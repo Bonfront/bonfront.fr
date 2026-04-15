@@ -99,32 +99,6 @@ window.addEventListener('scroll', () => {
 
 const form = document.getElementById('contactForm');
 
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const btn = form.querySelector('.btn-primary');
-    const original = btn.textContent;
-
-    btn.textContent = 'Envoi en cours...';
-    btn.style.opacity = '0.7';
-    btn.disabled = true;
-
-    setTimeout(() => {
-      btn.textContent = '✓ Message envoyé !';
-      btn.style.opacity = '1';
-      btn.style.background = '#4ade80';
-
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = '';
-        btn.disabled = false;
-        form.reset();
-      }, 3000);
-    }, 1200);
-  });
-}
-
 // ===========================
 // SMOOTH ANCHOR SCROLL
 // ===========================
