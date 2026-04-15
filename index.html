@@ -199,7 +199,10 @@
             <span>📧 contact@bonfront.fr</span>
           </div>
         </div>
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="a9f55e9b-afc1-4ab4-8415-621d0cce9472">
+  <input type="hidden" name="subject" value="Nouveau contact Bonfront">
+  <input type="hidden" name="redirect" value="https://bonfront.fr">
           <div class="form-group">
             <label>Ton prénom</label>
             <input type="text" placeholder="Lucas" required />
