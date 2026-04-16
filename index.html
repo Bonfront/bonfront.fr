@@ -218,13 +218,14 @@
           </div>
           <div class="form-group">
             <label for="probleme">Votre problème principal</label>
-            <select id="probleme" name="probleme">
+            <select id="probleme" name="probleme" onchange="toggleAutre(this)">
               <option value="">Choisir...</option>
               <option>Trop de tickets SAV</option>
               <option>Pas de support la nuit</option>
               <option>Clients sans réponse rapide</option>
               <option>Autre</option>
             </select>
+            <input id="autre-detail" type="text" name="probleme_detail" placeholder="Précisez votre problème..." style="display:none; margin-top: 8px;"/>
           </div>
           <button type="submit" class="btn-primary full">Réserver mon appel gratuit →</button>
         </form>
