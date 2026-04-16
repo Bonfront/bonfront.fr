@@ -97,6 +97,11 @@ window.addEventListener('scroll', () => {
 // FORM SUBMIT
 // ===========================
 
+function toggleAutre(select) {
+  const input = document.getElementById('autre-detail');
+  input.style.display = select.value === 'Autre' ? 'block' : 'none';
+}
+
 const form = document.getElementById('contactForm');
 
 // ===========================
