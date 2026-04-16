@@ -57,6 +57,40 @@ const countObserver = new IntersectionObserver((entries) => {
 counters.forEach(el => countObserver.observe(el));
 
 // ===========================
+// ORBES INTERACTIVES
+// ===========================
+
+const orb1 = document.querySelector('.orb-1');
+const orb2 = document.querySelector('.orb-2');
+
+let mouseX = 0, mouseY = 0;
+let orb1X = 0, orb1Y = 0;
+let orb2X = 0, orb2Y = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateOrbs() {
+  orb1X += (mouseX - orb1X) * 0.04;
+  orb1Y += (mouseY - orb1Y) * 0.04;
+  orb2X += (mouseX - orb2X) * 0.02;
+  orb2Y += (mouseY - orb2Y) * 0.02;
+
+  if (orb1) {
+    orb1.style.transform = `translate(${(orb1X - window.innerWidth / 2) * 0.08}px, ${(orb1Y - window.innerHeight / 2) * 0.08}px)`;
+  }
+  if (orb2) {
+    orb2.style.transform = `translate(${(orb2X - window.innerWidth / 2) * -0.06}px, ${(orb2Y - window.innerHeight / 2) * -0.06}px)`;
+  }
+
+  requestAnimationFrame(animateOrbs);
+}
+
+animateOrbs();
+
+// ===========================
 // CHAT MESSAGES ANIMATION
 // ===========================
 
