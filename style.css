@@ -117,7 +117,6 @@ body {
   display: flex;
   align-items: center;
   padding: 120px 0 80px;
-  overflow: hidden;
 }
 
 .hero-bg {
