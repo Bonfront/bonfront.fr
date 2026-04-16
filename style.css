@@ -140,6 +140,7 @@ body {
   top: -100px;
   right: -100px;
   animation: float 8s ease-in-out infinite;
+  transition: transform 0.1s ease-out;
 }
 
 .orb-2 {
@@ -149,6 +150,7 @@ body {
   bottom: 0;
   left: -100px;
   animation: float 10s ease-in-out infinite reverse;
+  transition: transform 0.1s ease-out;
 }
 
 .grid-overlay {
