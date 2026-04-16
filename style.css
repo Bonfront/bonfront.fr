@@ -34,8 +34,11 @@ html {
 }
 
 .logo-img {
-  height: 36px;
-  width: auto;
+  height: 36px !important;
+  width: auto !important;
+  max-width: 36px;
+  object-fit: contain;
+  display: block;
 }
 
 body {
