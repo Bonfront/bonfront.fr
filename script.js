@@ -143,10 +143,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const orb1 = document.querySelector('.orb-1');
 const orb2 = document.querySelector('.orb-2');
 
-document.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 60;
-  const y = (e.clientY / window.innerHeight - 0.5) * 60;
+let targetX = 0, targetY = 0;
+let currentX1 = 0, currentY1 = 0;
+let currentX2 = 0, currentY2 = 0;
 
-  if (orb1) orb1.style.transform = `translate(${x}px, ${y}px)`;
-  if (orb2) orb2.style.transform = `translate(${-x * 0.7}px, ${-y * 0.7}px)`;
+document.addEventListener('mousemove', (e) => {
+  targetX = (e.clientX / window.innerWidth - 0.5) * 80;
+  targetY = (e.clientY / window.innerHeight - 0.5) * 80;
 });
+
+function animateOrbs() {
+  currentX1 += (targetX - currentX1) * 0.05;
+  currentY1 += (targetY - currentY1) * 0.05;
+  currentX2 += (-targetX - currentX2) * 0.03;
+  currentY2 += (-targetY - currentY2) * 0.03;
+
+  if (orb1) orb1.style.transform = `translate(${currentX1}px, ${currentY1}px)`;
+  if (orb2) orb2.style.transform = `translate(${currentX2}px, ${currentY2}px)`;
+
+  requestAnimationFrame(animateOrbs);
+}
+
+animateOrbs();
