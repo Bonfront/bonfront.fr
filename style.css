@@ -823,10 +823,12 @@ body {
   gap: 16px;
 }
 
-.footer-legal a {
+.footer-legal a,
+.footer-legal a:visited,
+.iubenda-white {
   font-size: 13px;
-  color: rgba(255,255,255,0.25);
-  text-decoration: none;
+  color: rgba(255,255,255,0.25) !important;
+  text-decoration: none !important;
   transition: var(--transition);
 }
 
