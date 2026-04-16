@@ -33,6 +33,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.logo-img {
+  height: 36px;
+  width: auto;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--black);
