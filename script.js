@@ -99,7 +99,25 @@ window.addEventListener('scroll', () => {
 
 function toggleAutre(select) {
   const input = document.getElementById('autre-detail');
-  input.style.display = select.value === 'Autre' ? 'block' : 'none';
+  if (select.value === 'Autre') {
+    input.style.display = 'block';
+    input.style.maxHeight = '0';
+    input.style.opacity = '0';
+    input.style.overflow = 'hidden';
+    input.style.transition = 'max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease';
+    setTimeout(() => {
+      input.style.maxHeight = '60px';
+      input.style.opacity = '1';
+      input.style.marginTop = '8px';
+    }, 10);
+  } else {
+    input.style.maxHeight = '0';
+    input.style.opacity = '0';
+    input.style.marginTop = '0';
+    setTimeout(() => {
+      input.style.display = 'none';
+    }, 400);
+  }
 }
 
 const form = document.getElementById('contactForm');
