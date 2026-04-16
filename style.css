@@ -818,6 +818,22 @@ body {
   color: rgba(255,255,255,0.25);
 }
 
+.footer-legal {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-legal a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-legal a:hover {
+  color: rgba(255,255,255,0.6);
+}
+
 /* ===========================
    SCROLL REVEAL
    =========================== */
