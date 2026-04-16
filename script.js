@@ -148,8 +148,8 @@ let currentX1 = 0, currentY1 = 0;
 let currentX2 = 0, currentY2 = 0;
 
 document.addEventListener('mousemove', (e) => {
-  targetX = (e.clientX / window.innerWidth - 0.5) * 80;
-  targetY = (e.clientY / window.innerHeight - 0.5) * 80;
+  targetX = (e.clientX / window.innerWidth - 0.5) * 150;
+  targetY = (e.clientY / window.innerHeight - 0.5) * 150;
 });
 
 function animateOrbs() {
