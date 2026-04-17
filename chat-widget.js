@@ -39,7 +39,6 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'versionID': CONFIG.versionID,
         },
         body: JSON.stringify({ action, config: { tts: false, stripSSML: true } }),
       });
