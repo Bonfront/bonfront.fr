@@ -10,6 +10,7 @@
   // ─── CONFIG ────────────────────────────────────────────────────────────────
   const CONFIG = {
     projectID: '69dec0aceb0390b51363cf7c',
+    apiKey: 'VF.DM.69dec9d8db35b662d5e1f662.7PUlcOm0FdZjADby', // ← Remplace par ta clé API Voiceflow (Settings → API Keys)
     versionID: 'production',
     apiURL: 'https://general-runtime.voiceflow.com',
     agentName: 'Alex',
@@ -39,7 +40,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': CONFIG.projectID,
+          'Authorization': CONFIG.apiKey,
           'versionID': CONFIG.versionID,
         },
         body: JSON.stringify({ action, config: { tts: false, stripSSML: true } }),
