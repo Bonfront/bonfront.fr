@@ -79,8 +79,8 @@ const chatObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.3 });
 
-const messagesContainer = document.querySelector('.messages');
-if (messagesContainer) chatObserver.observe(messagesContainer);
+const chatTrigger = document.querySelector('.problem');
+if (chatTrigger) chatObserver.observe(chatTrigger);
 
 // ===========================
 // NAV SCROLL EFFECT
