@@ -62,6 +62,9 @@ counters.forEach(el => countObserver.observe(el));
 
 const messages = document.querySelectorAll('.msg');
 
+// Reset : retire la classe visible sur tous les messages au chargement
+messages.forEach(msg => msg.classList.remove('visible'));
+
 const chatObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
