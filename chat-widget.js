@@ -11,7 +11,7 @@
   const CONFIG = {
     projectID: '69dec0aceb0390b51363cf7c',
     apiKey: 'VF.DM.69dec9d8db35b662d5e1f662.7PUlcOm0FdZjADby', // ← Remplace par ta clé API Voiceflow (Settings → API Keys)
-    versionID: 'production',
+    versionID: 'development',
     apiURL: 'https://general-runtime.voiceflow.com',
     agentName: 'Alex',
     agentRole: 'Support IA · Bonfront',
