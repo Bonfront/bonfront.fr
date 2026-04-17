@@ -10,7 +10,7 @@
   // ─── CONFIG ────────────────────────────────────────────────────────────────
   const CONFIG = {
     projectID: '69dec0aceb0390b51363cf7c',
-    versionID: 'development',
+    versionID: 'production',
     apiURL: 'https://bonfront-vf-proxy.floral-mode-c501.workers.dev',
     agentName: 'Alex',
     agentRole: 'Support IA · Bonfront',
