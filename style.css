@@ -187,7 +187,7 @@ body {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(36px, 6vw, 80px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -2px;
@@ -201,7 +201,7 @@ body {
 }
 
 .hero-sub {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(15px, 2vw, 20px);
   font-weight: 300;
   color: rgba(255,255,255,0.6);
   line-height: 1.7;
@@ -269,6 +269,7 @@ body {
   gap: 40px;
   opacity: 0;
   animation: fadeUp 0.6s ease forwards 1s;
+  flex-wrap: wrap;
 }
 
 .stat {
@@ -325,7 +326,7 @@ body {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(24px, 4vw, 48px);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1.1;
@@ -350,7 +351,7 @@ body {
 
 .problem-left h2 {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(22px, 3vw, 40px);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1.15;
@@ -392,6 +393,11 @@ body {
   color: var(--black);
   align-self: flex-end;
   font-weight: 500;
+}
+
+/* Fix : les 3 points de typing sont dans un msg-out donc à droite et en bas */
+.msg-out .typing-dots {
+  justify-content: flex-end;
 }
 
 .typing-dots {
@@ -514,6 +520,7 @@ body {
   text-transform: uppercase;
   padding: 5px 16px;
   border-radius: 100px;
+  white-space: nowrap;
 }
 
 .pricing-top {
@@ -618,7 +625,7 @@ body {
 
 .objection-inner h2 {
   font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 36px);
+  font-size: clamp(20px, 3vw, 36px);
   font-weight: 700;
   letter-spacing: -0.5px;
   margin-bottom: 48px;
@@ -691,7 +698,7 @@ body {
 
 .contact-left h2 {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(22px, 3vw, 40px);
   font-weight: 700;
   letter-spacing: -1px;
   line-height: 1.15;
@@ -851,39 +858,207 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE TABLET (max 1024px)
+   =========================== */
+
+@media (max-width: 1024px) {
+  .problem-grid {
+    gap: 48px;
+  }
+
+  .contact-inner {
+    gap: 48px;
+  }
+
+  .objection-steps {
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+  }
+
+  .obj-step {
+    padding: 24px 20px;
+  }
+}
+
+/* ===========================
+   RESPONSIVE MOBILE (max 768px)
    =========================== */
 
 @media (max-width: 768px) {
-  .problem-grid,
-  .features,
-  .pricing,
-  .contact-inner {
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* NAV */
+  .nav {
+    padding: 16px 0;
+  }
+
+  .nav-cta {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 60px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    letter-spacing: -1px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions .btn-primary {
+    text-align: center;
+  }
+
+  .hero-stats {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stat-sep {
+    display: none;
+  }
+
+  .stat-num {
+    font-size: 28px;
+  }
+
+  /* SECTIONS */
+  .problem,
+  .solution,
+  .offre,
+  .objection,
+  .contact {
+    padding: 64px 0;
+  }
+
+  .section-title {
+    margin-bottom: 36px;
+  }
+
+  /* PROBLEME */
+  .problem-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .hero-stats {
-    gap: 24px;
+  .problem-left h2 {
+    font-size: clamp(22px, 6vw, 32px);
   }
 
+  .msg {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  /* SOLUTION */
+  .features {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 28px 24px;
+  }
+
+  /* OFFRE */
+  .pricing {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .pricing-card {
+    padding: 32px 24px;
+  }
+
+  .price {
+    font-size: 44px;
+  }
+
+  .garantie {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  /* OBJECTION */
   .objection-steps {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
+  .obj-step {
+    padding: 24px 20px;
+  }
+
   .obj-arrow {
     padding: 12px 0;
     transform: rotate(90deg);
+    justify-content: center;
   }
 
+  /* CONTACT */
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-form {
+    padding: 28px 24px;
+  }
+
+  /* FOOTER */
   .footer-inner {
     flex-direction: column;
     text-align: center;
+    gap: 12px;
   }
 
-  .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
+  .footer-legal {
+    justify-content: center;
+  }
+}
+
+/* ===========================
+   RESPONSIVE SMALL MOBILE (max 480px)
+   =========================== */
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(32px, 9vw, 48px);
+    letter-spacing: -1px;
+  }
+
+  .orb-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .orb-2 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .contact-form {
+    padding: 24px 20px;
+  }
+
+  .pricing-card {
+    padding: 28px 20px;
   }
 }
