@@ -384,15 +384,19 @@ body {
 .msg-in {
   background: rgba(255,255,255,0.08);
   color: rgba(255,255,255,0.85);
-  align-self: flex-start;
+  align-self: flex-end;
   border: 1px solid rgba(255,255,255,0.07);
 }
 
 .msg-out {
   background: var(--accent);
   color: var(--black);
-  align-self: flex-end;
+  align-self: flex-start;
   font-weight: 500;
+}
+
+.msg-out .typing-dots {
+  justify-content: flex-start;
 }
 
 /* Fix : les 3 points de typing sont dans un msg-out donc à droite et en bas */
