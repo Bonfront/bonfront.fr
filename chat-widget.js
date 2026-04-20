@@ -282,20 +282,19 @@
     addMessage(text, "user");
     input.value = "";
     showTyping();
-    try {
-      const res = await fetch(CONFIG.webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, sessionId }),
-      });
-      const data = await res.json();
-      hideTyping();
-      const reply = typeof data === 'string' ? data : (data.output || data.message || data.text || "Désolé, une erreur est survenue.");
-      addMessage(reply, "bot");
-    } catch (e) {
-      hideTyping();
-      addMessage("Désolé, je ne suis pas disponible pour le moment.", "bot");
-    }
+try {
+  const res = await fetch(CONFIG.webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: text, sessionId }),
+  });
+  const reply = await res.text();
+  hideTyping();
+  addMessage(reply || "Désolé, une erreur est survenue.", "bot");
+} catch (e) {
+  hideTyping();
+  addMessage("Désolé, je ne suis pas disponible pour le moment.", "bot");
+} 
   }
 
   function toggle() {
