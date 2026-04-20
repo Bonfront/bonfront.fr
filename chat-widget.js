@@ -4,7 +4,7 @@
     agentAvatar: null,
     greeting: "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
     color: "#e8ff00",
-    colorText: "#ffffff",
+    colorText: "#1a1a1a",
     font: "inherit",
     position: "bottom-right",
     borderRadius: "16px",
