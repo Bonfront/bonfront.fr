@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-M5L3W99TED');
 </script>
   
@@ -245,8 +244,21 @@
         </div>
         <div class="summary-card">
           <h4>Données que vous nous donnez</h4>
-          <p>Nous recueillons les données que vous nous donnez lorsque vous remplissez un formulaire.</p>
+          <p>Nous recueillons les données que vous nous donnez lorsque vous remplissez un formulaire ou utilisez le chat IA.</p>
           <span class="tag">Adresse électronique</span>
+          <span class="tag">Messages de chat</span>
+        </div>
+        <div class="summary-card">
+          <h4>Données traitées par l'agent IA</h4>
+          <p>Les messages envoyés via le widget de chat sont transmis à notre infrastructure IA pour générer une réponse.</p>
+          <span class="tag">Contenu des messages</span>
+          <span class="tag">Identifiant de session</span>
+        </div>
+        <div class="summary-card">
+          <h4>Données des sites clients</h4>
+          <p>Dans le cadre de nos services, nous indexons le contenu public des sites e-commerce de nos clients.</p>
+          <span class="tag">Contenu web public</span>
+          <span class="tag">Embeddings vectoriels</span>
         </div>
       </div>
     </div>
@@ -266,9 +278,9 @@
     <!-- TYPE DE DONNEES -->
     <div class="section">
       <h2 class="section-title">Type de Données que nous recueillons</h2>
-      <p>Figurent parmi les types de Données personnelles que cette Application collecte directement ou en recourant à des tiers : Données d'utilisation, Traqueurs, adresse électronique.</p>
+      <p>Figurent parmi les types de Données personnelles que cette Application collecte directement ou en recourant à des tiers : Données d'utilisation, Traqueurs, adresse électronique, messages de conversation avec l'agent IA, identifiants de session.</p>
+      <p>Dans le cadre de la fourniture de nos services aux e-commerçants, nous collectons et traitons également le contenu public des sites web de nos clients (textes, descriptions de produits, pages) à des fins d'indexation et d'entraînement de l'agent IA.</p>
       <p>Les données personnelles peuvent être librement fournies par l'Utilisateur, ou, en cas de Données d'utilisation, collectées automatiquement lorsque vous utilisez cette Application.</p>
-      <p>Sauf indication contraire, toutes les Données demandées par cette Application sont obligatoires et leur absence peut rendre impossible la fourniture des Services. Les Utilisateurs qui auraient des doutes sur les Données personnelles obligatoires sont invités à contacter le Propriétaire.</p>
     </div>
 
     <!-- MODE ET LIEU -->
@@ -277,12 +289,13 @@
 
       <h3 class="section-subtitle">Méthodes de traitement</h3>
       <p>Le Propriétaire prend les mesures de sécurité appropriées afin d'empêcher l'accès, la divulgation, la modification ou la destruction non autorisées des Données. Le traitement des Données est effectué à l'aide d'ordinateurs ou d'outils informatiques, en suivant les procédures et les modes organisationnels étroitement liés aux finalités indiquées.</p>
+      <p>Les conversations avec l'agent IA sont traitées via une infrastructure automatisée hébergée sur un serveur privé virtuel (VPS) situé en France (Roubaix, OVHcloud). Les messages sont transmis à l'API Anthropic (Claude) pour générer les réponses, puis stockés temporairement en mémoire de session.</p>
 
       <h3 class="section-subtitle">Lieu de traitement</h3>
-      <p>Les Données sont traitées au siège du Propriétaire et dans tous les autres lieux où sont situées les parties responsables du traitement. Selon la localisation de l'Utilisateur, les transferts de données peuvent entraîner le transfert des Données vers un pays autre que le sien.</p>
+      <p>Les Données sont traitées au siège du Propriétaire et dans tous les autres lieux où sont situées les parties responsables du traitement. Le serveur principal est hébergé en France (OVHcloud, Roubaix). Certaines données transitent par des services tiers dont les serveurs peuvent être localisés aux États-Unis ou dans d'autres pays (Anthropic, Supabase, Brevo).</p>
 
       <h3 class="section-subtitle">Temps de conservation</h3>
-      <p>Sauf indication contraire du présent document, les Données personnelles sont traitées et conservées aussi longtemps que requis par la finalité pour laquelle elles ont été collectées et peuvent être conservées plus longtemps du fait d'une obligation légale applicable ou sur la base du consentement de l'Utilisateur.</p>
+      <p>Les messages de chat sont conservés en mémoire de session le temps de la conversation uniquement et ne sont pas stockés de manière permanente après la fin de la session. Les embeddings vectoriels du contenu des sites clients sont conservés tant que le service est actif pour le client concerné. Les données du formulaire de contact sont conservées le temps nécessaire au traitement de la demande.</p>
     </div>
 
     <!-- FINALITES -->
@@ -293,7 +306,62 @@
         <li>Affichage de contenus à partir de plateformes externes</li>
         <li>Contacter l'Utilisateur</li>
         <li>Hébergement web et infrastructure de backend</li>
+        <li>Fourniture du service d'agent IA conversationnel (traitement des messages pour générer des réponses contextuelles)</li>
+        <li>Indexation du contenu public des sites clients à des fins de personnalisation de l'agent IA</li>
+        <li>Analyse des performances et amélioration du service</li>
       </ul>
+    </div>
+
+    <!-- AGENT IA -->
+    <div class="section">
+      <h2 class="section-title">Traitement des données par l'agent IA</h2>
+
+      <h3 class="section-subtitle">Fonctionnement du widget de chat</h3>
+      <p>Lorsque vous interagissez avec l'agent IA intégré sur un site utilisant les services Bonfront, vos messages sont transmis à notre infrastructure de traitement automatisée. Cette infrastructure utilise les services suivants :</p>
+
+      <div class="service-card">
+        <div class="service-icon">AI</div>
+        <div class="service-info">
+          <h4>Anthropic (Claude)</h4>
+          <p>États-Unis · Traitement du langage naturel · Les messages sont envoyés à l'API Anthropic pour générer des réponses. Anthropic peut traiter ces données conformément à sa propre politique de confidentialité.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">n8</div>
+        <div class="service-info">
+          <h4>n8n (self-hosted)</h4>
+          <p>OVHcloud · France · Orchestration des flux de données · L'infrastructure n8n est hébergée sur un serveur privé en France et ne transfère pas de données à des tiers non mentionnés.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">SB</div>
+        <div class="service-info">
+          <h4>Supabase</h4>
+          <p>Union européenne (Ireland) · Stockage vectoriel · Utilisé pour stocker les embeddings du contenu des sites clients. Les données stockées sont des représentations vectorielles du contenu public, non des données personnelles des utilisateurs finaux.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">OL</div>
+        <div class="service-info">
+          <h4>Ollama (self-hosted)</h4>
+          <p>OVHcloud · France · Génération d'embeddings · Traitement local des textes pour créer des représentations vectorielles. Aucun transfert de données vers des tiers.</p>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle">Données traitées lors d'une conversation</h3>
+      <p>Lors d'une interaction avec l'agent IA, les données suivantes sont traitées :</p>
+      <ul>
+        <li>Le contenu textuel de vos messages</li>
+        <li>Un identifiant de session anonyme généré aléatoirement (non lié à votre identité)</li>
+        <li>L'historique de la conversation en cours (uniquement pour la durée de la session)</li>
+      </ul>
+      <p>Aucune donnée d'identification personnelle n'est collectée automatiquement lors des conversations (ni nom, ni adresse IP, ni cookie de suivi spécifique à l'agent IA).</p>
+
+      <h3 class="section-subtitle">Indexation des sites clients</h3>
+      <p>Dans le cadre de nos services aux e-commerçants, nous procédons à l'indexation automatique du contenu public de leurs sites web (pages produits, pages d'information, politiques de livraison, etc.). Ce contenu est converti en représentations vectorielles (embeddings) et stocké dans Supabase pour permettre à l'agent IA de répondre de manière pertinente aux questions des visiteurs. Seul le contenu publiquement accessible est indexé.</p>
     </div>
 
     <!-- INFORMATIONS DETAILLEES -->
@@ -315,7 +383,7 @@
         <div class="service-icon">📬</div>
         <div class="service-info">
           <h4>Formulaire de contact</h4>
-          <p>Adresse électronique · Données personnelles soumises volontairement</p>
+          <p>Adresse électronique · Données personnelles soumises volontairement · Traitement via Brevo (anciennement Sendinblue), Union européenne</p>
         </div>
       </div>
 
@@ -325,7 +393,23 @@
         <div class="service-icon">⬡</div>
         <div class="service-info">
           <h4>GitHub Pages</h4>
-          <p>GitHub Inc. · États-Unis · Différents types de Données selon la politique du service</p>
+          <p>GitHub Inc. · États-Unis · Hébergement du site vitrine bonfront.fr</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">OV</div>
+        <div class="service-info">
+          <h4>OVHcloud VPS</h4>
+          <p>OVH SAS · France (Roubaix) · Hébergement de l'infrastructure IA (n8n, Ollama, base de données) · Données stockées sur le territoire français</p>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle">Statistiques et analytics</h3>
+      <div class="service-card">
+        <div class="service-icon">G</div>
+        <div class="service-info">
+          <h4>Google Analytics (gtag.js)</h4>
+          <p>Google Ireland Limited · Irlande · Données d'utilisation, traqueurs · Utilisé pour analyser le trafic du site bonfront.fr</p>
         </div>
       </div>
     </div>
@@ -342,9 +426,13 @@
         <li>Le traitement est nécessaire pour se conformer à une obligation légale à laquelle le Propriétaire est soumis.</li>
         <li>Le traitement est nécessaire aux fins des intérêts légitimes poursuivis par le Propriétaire ou par un tiers.</li>
       </ul>
+      <p>Pour les données traitées dans le cadre de l'agent IA conversationnel, la base juridique est l'intérêt légitime (fourniture du service demandé) et, le cas échéant, le consentement de l'Utilisateur.</p>
+
+      <h3 class="section-subtitle">Transferts internationaux de données</h3>
+      <p>Certaines données peuvent être transférées vers des pays tiers, notamment vers les États-Unis dans le cadre de l'utilisation de l'API Anthropic (Claude). Ces transferts s'effectuent dans le respect des garanties appropriées prévues par le RGPD, notamment les clauses contractuelles types de la Commission européenne.</p>
 
       <h3 class="section-subtitle">Informations complémentaires sur la durée de conservation</h3>
-      <p>Les Données personnelles collectées à des fins liées à l'exécution d'un contrat entre le Propriétaire et l'Utilisateur doivent être conservées jusqu'à la pleine exécution du contrat.</p>
+      <p>Les données de conversation avec l'agent IA sont conservées uniquement pour la durée de la session active. Les embeddings vectoriels sont conservés tant que le contrat de service avec le client e-commerce est actif. Les données du formulaire de contact sont conservées pendant une durée maximale de 3 ans à compter du dernier contact.</p>
       <p>Une fois la période de conservation expirée, les Données personnelles seront supprimées.</p>
     </div>
 
@@ -360,9 +448,16 @@
         <li><strong>Limiter le traitement de leurs Données.</strong></li>
         <li><strong>Faire supprimer ou effacer leurs Données personnelles.</strong></li>
         <li><strong>Récupérer leurs Données</strong> et les faire transférer à un autre responsable.</li>
-        <li><strong>Déposer plainte</strong> auprès de leur autorité compétente en matière de protection des données.</li>
+        <li><strong>Déposer plainte</strong> auprès de leur autorité compétente en matière de protection des données (en France : la CNIL, www.cnil.fr).</li>
       </ul>
-      <p>Toute demande d'exercice de ces droits peut être adressée au Propriétaire aux coordonnées indiquées dans le présent document. Ces demandes peuvent être exercées gratuitement et recevront une réponse dans un délai d'un mois.</p>
+      <p>Toute demande d'exercice de ces droits peut être adressée au Propriétaire à l'adresse contact@bonfront.fr. Ces demandes peuvent être exercées gratuitement et recevront une réponse dans un délai d'un mois.</p>
+    </div>
+
+    <!-- COOKIES -->
+    <div class="section">
+      <h2 class="section-title">Cookies et technologies de suivi</h2>
+      <p>Cette Application utilise des Traqueurs. Pour en savoir plus, les Utilisateurs peuvent consulter la <a href="cookies.html">Politique relative aux cookies</a>.</p>
+      <p>Le widget de chat IA utilise un identifiant de session stocké en mémoire du navigateur (sessionStorage) uniquement pour la durée de la conversation. Cet identifiant est généré aléatoirement et ne permet pas d'identifier personnellement l'Utilisateur. Il n'est pas conservé après la fermeture de l'onglet.</p>
     </div>
 
     <!-- INFORMATIONS SUPPLEMENTAIRES -->
@@ -374,6 +469,9 @@
 
       <h3 class="section-subtitle">Journaux système et maintenance</h3>
       <p>À des fins d'exploitation et de maintenance, cette Application et tout service tiers peuvent collecter des fichiers qui enregistrent les interactions avec cette Application (journaux système) ou utiliser à cette fin d'autres Données personnelles telles que l'adresse IP.</p>
+
+      <h3 class="section-subtitle">Sécurité des données</h3>
+      <p>Les données transitant entre le widget de chat et notre infrastructure sont chiffrées via le protocole HTTPS/TLS. L'accès à l'infrastructure IA est protégé par authentification. Les clés API et secrets sont stockés de manière sécurisée et ne sont jamais exposés publiquement.</p>
 
       <h3 class="section-subtitle">Modifications de la présente politique de confidentialité</h3>
       <p>Le Propriétaire se réserve le droit d'apporter des modifications à la présente politique de confidentialité, à tout moment, en informant ses Utilisateurs sur cette page. Il est fortement recommandé de consulter cette page fréquemment, en se référant à la date de la dernière modification indiquée en bas.</p>
@@ -388,6 +486,12 @@
 
       <h3 class="section-subtitle">Données d'utilisation</h3>
       <p>Les informations collectées automatiquement par cette Application, qui peuvent inclure les adresses IP, l'heure de la demande, la méthode utilisée pour soumettre la demande au serveur, et d'autres paramètres concernant le système d'exploitation ou l'environnement informatique de l'Utilisateur.</p>
+
+      <h3 class="section-subtitle">Embedding vectoriel</h3>
+      <p>Représentation mathématique d'un texte sous forme de vecteur numérique, utilisée par les systèmes d'intelligence artificielle pour comprendre le sens sémantique d'un contenu. Ces représentations ne contiennent pas de données personnelles identifiables.</p>
+
+      <h3 class="section-subtitle">Agent IA conversationnel</h3>
+      <p>Programme informatique utilisant l'intelligence artificielle pour comprendre et répondre aux messages des utilisateurs en langage naturel, dans le cadre des services Bonfront.</p>
 
       <h3 class="section-subtitle">Utilisateur</h3>
       <p>La personne utilisant cette Application qui, sauf indication contraire, correspond à la Personne concernée.</p>
