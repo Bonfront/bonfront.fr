@@ -7,20 +7,17 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-M5L3W99TED');
 </script>
 
   <!-- Indexisation -->
-  
   <meta name="description" content="Bonfront installe un agent IA sur votre boutique e-commerce en 7 jours. Support client 24h/24, installation clé en main à partir de 500€.">
-<meta name="keywords" content="agent IA e-commerce, chatbot boutique en ligne, support client IA, agent IA France">
-<meta property="og:title" content="Bonfront — Support client IA pour e-commerce">
-<meta property="og:description" content="Votre support client dort la nuit. Le vôtre ne devrait pas.">
-<meta property="og:url" content="https://bonfront.fr">
+  <meta name="keywords" content="agent IA e-commerce, chatbot boutique en ligne, support client IA, agent IA France">
+  <meta property="og:title" content="Bonfront — Support client IA pour e-commerce">
+  <meta property="og:description" content="Votre support client dort la nuit. Le vôtre ne devrait pas.">
+  <meta property="og:url" content="https://bonfront.fr">
 
   <!-- Header -->
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bonfront — Support client IA pour e-commerce</title>
@@ -29,6 +26,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .footer-legal {
+      position: relative;
+    }
+    .footer-legal-toggle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .footer-legal-toggle:hover { color: rgba(255,255,255,0.6); }
+    .footer-legal-toggle .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+      font-size: 10px;
+    }
+    .footer-legal-toggle.open .arrow { transform: rotate(180deg); }
+    .footer-legal-dropdown {
+      display: none;
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      background: #1a1a18;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      min-width: 200px;
+      z-index: 10;
+    }
+    .footer-legal-dropdown.open { display: block; }
+    .footer-legal-dropdown a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .footer-legal-dropdown a:hover {
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.9);
+    }
+  </style>
 </head>
 <body>
 
@@ -97,8 +144,8 @@
             <div class="msg msg-in" data-delay="800">Ce produit est-il disponible en taille 42 ?</div>
             <div class="msg msg-out" data-delay="1400">Bonjour ! Voici le suivi de votre commande... ✅</div>
             <div class="msg msg-out" data-delay="2200">
-                <span class="typing-dots"><span></span><span></span><span></span></span>
-          </div>
+              <span class="typing-dots"><span></span><span></span><span></span></span>
+            </div>
           </div>
           <p class="problem-conclusion">Sans réponse rapide, ils vont chez le concurrent.<br/>C'est aussi simple que ça.</p>
         </div>
@@ -255,18 +302,22 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <span class="logo">Bonfront</span>
-      <span>© 2026 Bonfront · Tous droits réservés</span>
-      <div class="footer-legal">
-        <a href="politique-confidentialite.html">Politique de confidentialité</a>
-        <a href="cookies.html">Cookies</a>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="logo">Bonfront</span>
+        <span>© 2026 Bonfront · Tous droits réservés</span>
+        <div class="footer-legal">
+          <button class="footer-legal-toggle" onclick="toggleLegal(this)">
+            Documents légaux <span class="arrow">▲</span>
+          </button>
+          <div class="footer-legal-dropdown">
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+        </div>
+        <span>contact@bonfront.fr</span>
       </div>
-      <span>contact@bonfront.fr</span>
     </div>
-  </div>
-    
   </footer>
 
   <!-- AGENT IA -->
@@ -274,3 +325,20 @@
 
   <!-- Animations -->
   <script src="script.js"></script>
+
+  <script>
+    function toggleLegal(btn) {
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      const legal = document.querySelector('.footer-legal');
+      if (legal && !legal.contains(e.target)) {
+        document.querySelector('.footer-legal-toggle').classList.remove('open');
+        document.querySelector('.footer-legal-dropdown').classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
