@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-M5L3W99TED');
 </script>
   
@@ -38,7 +37,6 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
-    /* NAV */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -69,7 +67,6 @@
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--white); }
-    /* CONTENT */
     .page {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -97,19 +94,13 @@
       line-height: 1.05;
       margin-bottom: 20px;
     }
-    .page-date {
-      font-size: 13px;
-      color: rgba(255,255,255,0.3);
-    }
-    /* SECTIONS */
+    .page-date { font-size: 13px; color: rgba(255,255,255,0.3); }
     .section {
       margin-bottom: 48px;
       padding-bottom: 48px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .section:last-child {
-      border-bottom: none;
-    }
+    .section:last-child { border-bottom: none; }
     .section-title {
       font-family: var(--font-display);
       font-size: 20px;
@@ -142,16 +133,9 @@
       margin-bottom: 8px;
       line-height: 1.7;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    strong {
-      color: rgba(255,255,255,0.85);
-      font-weight: 500;
-    }
-    /* SERVICE CARD */
+    strong { color: rgba(255,255,255,0.85); font-weight: 500; }
     .service-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -171,8 +155,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
       flex-shrink: 0;
+      font-family: var(--font-display);
     }
     .service-info h4 {
       font-family: var(--font-display);
@@ -181,12 +168,7 @@
       color: var(--white);
       margin-bottom: 4px;
     }
-    .service-info p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-      margin: 0;
-    }
-    /* FOOTER */
+    .service-info p { font-size: 13px; color: rgba(255,255,255,0.4); margin: 0; }
     .footer {
       border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 24px;
@@ -198,22 +180,10 @@
       flex-wrap: wrap;
       gap: 16px;
     }
-    .footer span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-    }
-    .footer-links {
-      display: flex;
-      gap: 16px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-    }
-    .footer-links a:hover {
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-    }
+    .footer span { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); text-decoration: none; }
   </style>
 </head>
 <body>
@@ -258,6 +228,14 @@
       <h3 class="section-subtitle">Nécessaires</h3>
       <p>Cette Application utilise des Cookies dits « techniques » et d'autres Traqueurs similaires pour mener des activités strictement nécessaires au fonctionnement ou à la fourniture du Service.</p>
 
+      <div class="service-card">
+        <div class="service-icon">AI</div>
+        <div class="service-info">
+          <h4>Widget de chat IA Bonfront (sessionStorage)</h4>
+          <p>Traqueur technique · Session uniquement · Le widget de chat intégré au site utilise le sessionStorage du navigateur pour stocker un identifiant de session anonyme et l'historique de la conversation en cours. Ces données sont automatiquement supprimées à la fermeture de l'onglet et ne sont jamais transmises à des tiers à des fins publicitaires. Aucun cookie persistant n'est déposé par ce widget.</p>
+        </div>
+      </div>
+
       <h3 class="section-subtitle">Expérience</h3>
       <p>Cette Application utilise des Traqueurs pour améliorer la qualité de l'expérience utilisateur et permettre les interactions avec le contenu, les réseaux et les plateformes externes.</p>
 
@@ -267,15 +245,7 @@
         <div class="service-icon">G</div>
         <div class="service-info">
           <h4>Google Fonts</h4>
-          <p>Google Ireland Limited · Irlande · Données d'utilisation</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">💬</div>
-        <div class="service-info">
-          <h4>Voiceflow</h4>
-          <p>Agent de support client intégré au site · Données de conversation</p>
+          <p>Google Ireland Limited · Irlande · Données d'utilisation · Chargement des polices d'écriture depuis les serveurs Google</p>
         </div>
       </div>
 
@@ -283,7 +253,18 @@
         <div class="service-icon">📬</div>
         <div class="service-info">
           <h4>Web3Forms</h4>
-          <p>Traitement des formulaires de contact · Données personnelles soumises</p>
+          <p>Traitement des formulaires de contact · Données personnelles soumises volontairement par l'Utilisateur</p>
+        </div>
+      </div>
+
+      <h3 class="section-subtitle">Mesure d'audience</h3>
+      <p>Cette Application utilise des Traqueurs pour mesurer le trafic et analyser le comportement des Utilisateurs dans le but d'améliorer le Service.</p>
+
+      <div class="service-card">
+        <div class="service-icon">G</div>
+        <div class="service-info">
+          <h4>Google Analytics (gtag.js)</h4>
+          <p>Google Ireland Limited · Irlande · Cookies de mesure d'audience · Collecte des données d'utilisation anonymisées (pages visitées, durée de session, source du trafic). Les données sont conservées 26 mois. L'Utilisateur peut s'opposer à ce suivi via les paramètres de son navigateur ou via <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">l'extension Google Analytics Opt-out</a>.</p>
         </div>
       </div>
     </div>
@@ -293,6 +274,7 @@
       <h2 class="section-title">Comment gérer les préférences et donner ou retirer son consentement</h2>
       <p>Lorsque l'utilisation des Traqueurs repose sur le consentement de l'utilisateur, celui-ci peut donner ou retirer son consentement en définissant ou en mettant à jour ses préférences dans le panneau des choix en matière de confidentialité disponible sur cette Application.</p>
       <p>S'agissant des Traqueurs tiers, les Utilisateurs peuvent gérer leurs préférences par le lien de retrait associé ou en contactant directement le tiers concerné.</p>
+      <p>Concernant le widget de chat IA, l'Utilisateur peut à tout moment vider le sessionStorage de son navigateur pour effacer les données de session locales. Ces données étant stockées uniquement en session, elles disparaissent automatiquement à la fermeture de l'onglet.</p>
     </div>
 
     <!-- CONTROLE -->
@@ -312,7 +294,7 @@
     <!-- CONSEQUENCES -->
     <div class="section">
       <h2 class="section-title">Conséquences du refus de l'utilisation des Traqueurs</h2>
-      <p>L'Utilisateur est libre de décider d'autoriser ou non l'utilisation de Traqueurs. Toutefois, il convient de noter que les Traqueurs permettent à cette Application de fournir aux Utilisateurs une meilleure expérience et des fonctionnalités avancées. Si l'Utilisateur décide de bloquer l'utilisation des Traqueurs, il est possible que le Propriétaire ne soit pas en mesure de fournir les fonctionnalités connexes.</p>
+      <p>L'Utilisateur est libre de décider d'autoriser ou non l'utilisation de Traqueurs. Toutefois, il convient de noter que les Traqueurs permettent à cette Application de fournir aux Utilisateurs une meilleure expérience et des fonctionnalités avancées. Si l'Utilisateur décide de bloquer l'utilisation des Traqueurs, il est possible que le Propriétaire ne soit pas en mesure de fournir les fonctionnalités connexes, notamment le widget de chat IA qui requiert le sessionStorage pour fonctionner correctement.</p>
     </div>
 
     <!-- DEFINITIONS -->
@@ -325,8 +307,11 @@
       <h3 class="section-subtitle">Cookie</h3>
       <p>Les Cookies sont des Traqueurs constitués de petits ensembles de données stockés dans le navigateur de l'Utilisateur.</p>
 
+      <h3 class="section-subtitle">sessionStorage</h3>
+      <p>Mécanisme de stockage local du navigateur permettant de conserver des données temporairement, uniquement pour la durée d'une session (onglet ouvert). Contrairement aux Cookies, les données du sessionStorage ne sont pas transmises au serveur à chaque requête et sont automatiquement supprimées à la fermeture de l'onglet.</p>
+
       <h3 class="section-subtitle">Traqueurs</h3>
-      <p>Un Traqueur indique toute technologie — par exemple, les Cookies, les identifiants uniques, les balises Web, les scripts intégrés — permettant de suivre les Utilisateurs, par exemple en accédant à des informations ou en les stockant sur l'appareil de l'Utilisateur.</p>
+      <p>Un Traqueur indique toute technologie — par exemple, les Cookies, les identifiants uniques, les balises Web, les scripts intégrés, le sessionStorage — permettant de suivre les Utilisateurs, par exemple en accédant à des informations ou en les stockant sur l'appareil de l'Utilisateur.</p>
 
       <h3 class="section-subtitle">Informations légales</h3>
       <p>Cette politique concerne uniquement cette Application, sauf indication contraire dans le présent document. Elle a été rédigée conformément au Règlement (UE) 2016/679 (RGPD).</p>
