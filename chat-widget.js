@@ -3,7 +3,7 @@
     agentName: "Alex",
     agentAvatar: null,
     greeting: "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
-    color: "#1a1a2e",
+    color: "#e8ff00",
     colorText: "#ffffff",
     font: "inherit",
     position: "bottom-right",
