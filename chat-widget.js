@@ -290,7 +290,7 @@
       });
       const data = await res.json();
       hideTyping();
-      const reply = data.output || data.message || data.text || "Désolé, une erreur est survenue.";
+      const reply = typeof data === 'string' ? data : (data.output || data.message || data.text || "Désolé, une erreur est survenue.");
       addMessage(reply, "bot");
     } catch (e) {
       hideTyping();
