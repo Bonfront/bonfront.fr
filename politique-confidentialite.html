@@ -292,7 +292,7 @@
       <p>Les conversations avec l'agent IA sont traitées via une infrastructure automatisée hébergée sur un serveur privé virtuel (VPS) situé en France (Roubaix, OVHcloud). Les messages sont transmis à l'API Anthropic (Claude) pour générer les réponses, puis stockés temporairement en mémoire de session.</p>
 
       <h3 class="section-subtitle">Lieu de traitement</h3>
-      <p>Les Données sont traitées au siège du Propriétaire et dans tous les autres lieux où sont situées les parties responsables du traitement. Le serveur principal est hébergé en France (OVHcloud, Roubaix). Certaines données transitent par des services tiers dont les serveurs peuvent être localisés aux États-Unis ou dans d'autres pays (Anthropic, Supabase, Brevo).</p>
+      <p>Les Données sont traitées au siège du Propriétaire et dans tous les autres lieux où sont situées les parties responsables du traitement. Le serveur principal est hébergé en France (OVHcloud, Roubaix). Certaines données transitent par des services tiers dont les serveurs peuvent être localisés aux États-Unis ou dans d'autres pays (Anthropic, Qdrant, Brevo).</p>
 
       <h3 class="section-subtitle">Temps de conservation</h3>
       <p>Les messages de chat sont conservés en mémoire de session le temps de la conversation uniquement et ne sont pas stockés de manière permanente après la fin de la session. Les embeddings vectoriels du contenu des sites clients sont conservés tant que le service est actif pour le client concerné. Les données du formulaire de contact sont conservées le temps nécessaire au traitement de la demande.</p>
@@ -336,10 +336,10 @@
       </div>
 
       <div class="service-card">
-        <div class="service-icon">SB</div>
+        <div class="service-icon">QD</div>
         <div class="service-info">
-          <h4>Supabase</h4>
-          <p>Union européenne (Ireland) · Stockage vectoriel · Utilisé pour stocker les embeddings du contenu des sites clients. Les données stockées sont des représentations vectorielles du contenu public, non des données personnelles des utilisateurs finaux.</p>
+          <h4>Qdrant</h4>
+          <p>France (OVHcloud, Roubaix) · Stockage vectoriel · Utilisé pour stocker les embeddings du contenu des sites clients. Les données sont hébergées en self-hosted sur notre serveur, non partagées avec des tiers.</p>
         </div>
       </div>
 
@@ -361,7 +361,7 @@
       <p>Aucune donnée d'identification personnelle n'est collectée automatiquement lors des conversations (ni nom, ni adresse IP, ni cookie de suivi spécifique à l'agent IA).</p>
 
       <h3 class="section-subtitle">Indexation des sites clients</h3>
-      <p>Dans le cadre de nos services aux e-commerçants, nous procédons à l'indexation automatique du contenu public de leurs sites web (pages produits, pages d'information, politiques de livraison, etc.). Ce contenu est converti en représentations vectorielles (embeddings) et stocké dans Supabase pour permettre à l'agent IA de répondre de manière pertinente aux questions des visiteurs. Seul le contenu publiquement accessible est indexé.</p>
+      <p>Dans le cadre de nos services aux e-commerçants, nous procédons à l'indexation automatique du contenu public de leurs sites web (pages produits, pages d'information, politiques de livraison, etc.). Ce contenu est converti en représentations vectorielles (embeddings) et stocké dans Qdrant pour permettre à l'agent IA de répondre de manière pertinente aux questions des visiteurs. Seul le contenu publiquement accessible est indexé.</p>
     </div>
 
     <!-- INFORMATIONS DETAILLEES -->
