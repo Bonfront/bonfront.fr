@@ -1,1 +1,314 @@
-function a0_0xb49d(_0x31aecd,_0x5040f7){_0x31aecd=_0x31aecd-0x18a;const _0xb65a5e=a0_0x5a2d();let _0x126036=_0xb65a5e[_0x31aecd];return _0x126036;}function a0_0x5a2d(){const _0x1a2c84=['.bf-choice-btn','forEach','dialog','slice','8347510JXiQxN','bf-messages','user-wrap','Ouvrir\x20le\x20chat','disabled','https://bonfront-vf-proxy.floral-mode-c501.workers.dev','replace','push','agentRole','bf_uid','API\x20error\x20','textContent','toggle','stringify','div','apply','createElement','application/json','getElementById','bf-input','click','Support\x20IA\x20·\x20Bonfront','[Bonfront\x20Widget]','Enter','status','json','bf-bubble\x20','head','focus','3735342uaMgog','bf-typing-indicator','error','POST','style','message','Fermer\x20le\x20chat','length','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22bf-header-tag\x22>IA</span>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22bf-messages\x22></div>\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22bf-panel-footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bf-input-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20type=\x22text\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20id=\x22bf-input\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20placeholder=\x22Posez\x20votre\x20question…\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20autocomplete=\x22off\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20maxlength=\x22500\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x22bf-send\x22\x20aria-label=\x22Envoyer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20width=\x2216\x22\x20height=\x2216\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20stroke=\x22currentColor\x22\x20stroke-width=\x222.5\x22\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<line\x20x1=\x2222\x22\x20y1=\x222\x22\x20x2=\x2211\x22\x20y2=\x2213\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<polygon\x20points=\x2222\x202\x2015\x2022\x2011\x2013\x202\x209\x2022\x202\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22bf-footer-note\x22>Propulsé\x20par\x20Bonfront\x20·\x20Agent\x20IA\x20e-commerce</p>\x0a\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','/state/user/','scrollTop','type','preventDefault','5286136gsAioN','className','keydown','addEventListener','scrollHeight','readyState','request','Je\x20rencontre\x20un\x20problème\x20de\x20connexion.\x20Réessayez\x20dans\x20un\x20instant.','bf-msg-wrap\x20agent-wrap','search','show','bf_','label','payload','classList','setAttribute','7jmVefn','/interact','production','agent-wrap','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bf-agent-role\x22>','content','2708UqWuzL','remove','text','constructor','toString','user','aria-label','256RGQocH','innerHTML','\x0a\x20\x20\x20\x20\x20\x20<div\x20id=\x22bf-panel-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bf-avatar\x22>A</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bf-agent-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22bf-agent-name\x22>','loading','69dec0aceb0390b51363cf7c','launch','(((.+)+)+)+$','image','button','appendChild','name','now','bf-send','55793619szVlyB','is-open','launchDelay','agent','7279434SdsVyK','bf-notif-dot','5567588ykPIUH','trim','visual','buttons','value','add'];a0_0x5a2d=function(){return _0x1a2c84;};return a0_0x5a2d();}(function(_0x72fee0,_0x38e014){const _0xd0b352=a0_0xb49d,_0x4d616b=_0x72fee0();while(!![]){try{const _0x312d42=parseInt(_0xd0b352(0x1e5))/0x1*(-parseInt(_0xd0b352(0x1ec))/0x2)+-parseInt(_0xd0b352(0x1c2))/0x3+-parseInt(_0xd0b352(0x19b))/0x4+-parseInt(_0xd0b352(0x1a5))/0x5+-parseInt(_0xd0b352(0x199))/0x6+parseInt(_0xd0b352(0x1df))/0x7*(parseInt(_0xd0b352(0x1cf))/0x8)+parseInt(_0xd0b352(0x195))/0x9;if(_0x312d42===_0x38e014)break;else _0x4d616b['push'](_0x4d616b['shift']());}catch(_0x284198){_0x4d616b['push'](_0x4d616b['shift']());}}}(a0_0x5a2d,0xf2992),(function(){const _0xdc0b19=a0_0xb49d,_0x53810c=(function(){let _0xa18b95=!![];return function(_0x3f3caf,_0x3dd301){const _0x3e184b=_0xa18b95?function(){const _0x2876f2=a0_0xb49d;if(_0x3dd301){const _0x4e448a=_0x3dd301[_0x2876f2(0x1b4)](_0x3f3caf,arguments);return _0x3dd301=null,_0x4e448a;}}:function(){};return _0xa18b95=![],_0x3e184b;};}());'use strict';const _0x1dd8d2={'projectID':_0xdc0b19(0x18c),'versionID':_0xdc0b19(0x1e1),'apiURL':_0xdc0b19(0x1aa),'agentName':'Alex','agentRole':_0xdc0b19(0x1ba),'launchDelay':0x4b0};function _0x1e8591(){const _0x4b6f70=_0xdc0b19,_0x58fa17=_0x53810c(this,function(){const _0x597b89=a0_0xb49d;return _0x58fa17['toString']()[_0x597b89(0x1d8)](_0x597b89(0x18e))['toString']()[_0x597b89(0x1e8)](_0x58fa17)[_0x597b89(0x1d8)]('(((.+)+)+)+$');});_0x58fa17();let _0x2a8fd6=localStorage['getItem']('bf_uid');return!_0x2a8fd6&&(_0x2a8fd6=_0x4b6f70(0x1da)+Math['random']()[_0x4b6f70(0x1e9)](0x24)[_0x4b6f70(0x1a4)](0x2)+Date[_0x4b6f70(0x193)](),localStorage['setItem'](_0x4b6f70(0x1ae),_0x2a8fd6)),_0x2a8fd6;}const _0x50ed03=_0x1e8591();let _0x3e7130=![],_0x20c773=![],_0x5a773c=![];async function _0x2cf9e8(_0x1a8471){const _0x274fb1=_0xdc0b19;try{const _0x571640=await fetch(_0x1dd8d2['apiURL']+_0x274fb1(0x1cb)+_0x50ed03+_0x274fb1(0x1e0),{'method':_0x274fb1(0x1c5),'headers':{'Content-Type':_0x274fb1(0x1b6)},'body':JSON[_0x274fb1(0x1b2)]({'action':_0x1a8471,'config':{'tts':![],'stripSSML':!![]}})});if(!_0x571640['ok'])throw new Error(_0x274fb1(0x1af)+_0x571640[_0x274fb1(0x1bd)]);return await _0x571640[_0x274fb1(0x1be)]();}catch(_0x2fca0e){return console[_0x274fb1(0x1c4)](_0x274fb1(0x1bb),_0x2fca0e),null;}}function _0x5aa150(_0x1216a5){const _0x1ec513=_0xdc0b19,_0x40e8fc=[];if(!_0x1216a5)return _0x40e8fc;for(const _0xecfb6a of _0x1216a5){if(_0xecfb6a[_0x1ec513(0x1cd)]===_0x1ec513(0x1e7)&&_0xecfb6a[_0x1ec513(0x1dc)]?.[_0x1ec513(0x1c7)])_0x40e8fc[_0x1ec513(0x1ac)]({'type':_0x1ec513(0x1e7),'content':_0xecfb6a['payload'][_0x1ec513(0x1c7)]});else{if(_0xecfb6a[_0x1ec513(0x1cd)]==='speak'&&_0xecfb6a[_0x1ec513(0x1dc)]?.['message'])_0x40e8fc[_0x1ec513(0x1ac)]({'type':_0x1ec513(0x1e7),'content':_0xecfb6a[_0x1ec513(0x1dc)]['message']});else{if(_0xecfb6a[_0x1ec513(0x1cd)]===_0x1ec513(0x19d)&&_0xecfb6a[_0x1ec513(0x1dc)]?.[_0x1ec513(0x18f)])_0x40e8fc[_0x1ec513(0x1ac)]({'type':_0x1ec513(0x18f),'content':_0xecfb6a[_0x1ec513(0x1dc)][_0x1ec513(0x18f)]});else _0xecfb6a[_0x1ec513(0x1cd)]==='choice'&&_0xecfb6a[_0x1ec513(0x1dc)]?.[_0x1ec513(0x19e)]?.[_0x1ec513(0x1c9)]&&_0x40e8fc['push']({'type':_0x1ec513(0x19e),'content':_0xecfb6a[_0x1ec513(0x1dc)][_0x1ec513(0x19e)]});}}}return _0x40e8fc;}const _0x5e55b3='\x0a\x20\x20\x20\x20@import\x20url(\x27https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap\x27);\x0a\x0a\x20\x20\x20\x20#bf-widget-launcher\x20{\x0a\x20\x20\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20bottom:\x2028px;\x0a\x20\x20\x20\x20\x20\x20right:\x2028px;\x0a\x20\x20\x20\x20\x20\x20z-index:\x209999;\x0a\x20\x20\x20\x20\x20\x20width:\x2056px;\x0a\x20\x20\x20\x20\x20\x20height:\x2056px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20background:\x20#e8ff00;\x0a\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20box-shadow:\x200\x204px\x2024px\x20rgba(232,255,0,0.35);\x0a\x20\x20\x20\x20\x20\x20transition:\x20transform\x200.25s\x20cubic-bezier(0.4,0,0.2,1),\x20box-shadow\x200.25s\x20ease;\x0a\x20\x20\x20\x20\x20\x20outline:\x20none;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher:hover\x20{\x0a\x20\x20\x20\x20\x20\x20transform:\x20scale(1.08)\x20translateY(-2px);\x0a\x20\x20\x20\x20\x20\x20box-shadow:\x200\x208px\x2036px\x20rgba(232,255,0,0.45);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher:active\x20{\x0a\x20\x20\x20\x20\x20\x20transform:\x20scale(0.96);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher\x20svg\x20{\x0a\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.2s\x20ease,\x20transform\x200.2s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher\x20.icon-chat\x20{\x20opacity:\x201;\x20transform:\x20scale(1)\x20rotate(0deg);\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher\x20.icon-close\x20{\x20opacity:\x200;\x20transform:\x20scale(0.6)\x20rotate(-45deg);\x20position:\x20absolute;\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher.is-open\x20.icon-chat\x20{\x20opacity:\x200;\x20transform:\x20scale(0.6)\x20rotate(45deg);\x20}\x0a\x20\x20\x20\x20#bf-widget-launcher.is-open\x20.icon-close\x20{\x20opacity:\x201;\x20transform:\x20scale(1)\x20rotate(0deg);\x20}\x0a\x0a\x20\x20\x20\x20#bf-notif-dot\x20{\x0a\x20\x20\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20\x20\x20top:\x20-2px;\x0a\x20\x20\x20\x20\x20\x20right:\x20-2px;\x0a\x20\x20\x20\x20\x20\x20width:\x2012px;\x0a\x20\x20\x20\x20\x20\x20height:\x2012px;\x0a\x20\x20\x20\x20\x20\x20background:\x20#ff4444;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20border:\x202px\x20solid\x20#0a0a0a;\x0a\x20\x20\x20\x20\x20\x20opacity:\x200;\x0a\x20\x20\x20\x20\x20\x20transform:\x20scale(0);\x0a\x20\x20\x20\x20\x20\x20transition:\x20all\x200.3s\x20cubic-bezier(0.34,1.56,0.64,1);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-notif-dot.show\x20{\x0a\x20\x20\x20\x20\x20\x20opacity:\x201;\x0a\x20\x20\x20\x20\x20\x20transform:\x20scale(1);\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20#bf-widget-panel\x20{\x0a\x20\x20\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20bottom:\x2096px;\x0a\x20\x20\x20\x20\x20\x20right:\x2028px;\x0a\x20\x20\x20\x20\x20\x20z-index:\x209998;\x0a\x20\x20\x20\x20\x20\x20width:\x20380px;\x0a\x20\x20\x20\x20\x20\x20max-width:\x20calc(100vw\x20-\x2040px);\x0a\x20\x20\x20\x20\x20\x20height:\x20560px;\x0a\x20\x20\x20\x20\x20\x20max-height:\x20calc(100vh\x20-\x20120px);\x0a\x20\x20\x20\x20\x20\x20background:\x20#111110;\x0a\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.08);\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2020px;\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20\x20\x20overflow:\x20hidden;\x0a\x20\x20\x20\x20\x20\x20box-shadow:\x200\x2024px\x2080px\x20rgba(0,0,0,0.7),\x200\x200\x200\x201px\x20rgba(232,255,0,0.06);\x0a\x20\x20\x20\x20\x20\x20opacity:\x200;\x0a\x20\x20\x20\x20\x20\x20transform:\x20translateY(16px)\x20scale(0.96);\x0a\x20\x20\x20\x20\x20\x20pointer-events:\x20none;\x0a\x20\x20\x20\x20\x20\x20transition:\x20opacity\x200.3s\x20cubic-bezier(0.4,0,0.2,1),\x20transform\x200.3s\x20cubic-bezier(0.4,0,0.2,1);\x0a\x20\x20\x20\x20\x20\x20transform-origin:\x20bottom\x20right;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-widget-panel.is-open\x20{\x0a\x20\x20\x20\x20\x20\x20opacity:\x201;\x0a\x20\x20\x20\x20\x20\x20transform:\x20translateY(0)\x20scale(1);\x0a\x20\x20\x20\x20\x20\x20pointer-events:\x20all;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20#bf-panel-header\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2020px\x2020px\x2016px;\x0a\x20\x20\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20gap:\x2012px;\x0a\x20\x20\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-avatar\x20{\x0a\x20\x20\x20\x20\x20\x20width:\x2040px;\x0a\x20\x20\x20\x20\x20\x20height:\x2040px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20background:\x20#e8ff00;\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27Syne\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2016px;\x0a\x20\x20\x20\x20\x20\x20font-weight:\x20800;\x0a\x20\x20\x20\x20\x20\x20color:\x20#0a0a0a;\x0a\x20\x20\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20\x20\x20position:\x20relative;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-avatar::after\x20{\x0a\x20\x20\x20\x20\x20\x20content:\x20\x27\x27;\x0a\x20\x20\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20\x20\x20bottom:\x201px;\x0a\x20\x20\x20\x20\x20\x20right:\x201px;\x0a\x20\x20\x20\x20\x20\x20width:\x209px;\x0a\x20\x20\x20\x20\x20\x20height:\x209px;\x0a\x20\x20\x20\x20\x20\x20background:\x20#22c55e;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20border:\x202px\x20solid\x20#111110;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-agent-info\x20{\x0a\x20\x20\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-agent-name\x20{\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27Syne\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2015px;\x0a\x20\x20\x20\x20\x20\x20font-weight:\x20700;\x0a\x20\x20\x20\x20\x20\x20color:\x20#ffffff;\x0a\x20\x20\x20\x20\x20\x20letter-spacing:\x20-0.3px;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-agent-role\x20{\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2011px;\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.35);\x0a\x20\x20\x20\x20\x20\x20letter-spacing:\x200.5px;\x0a\x20\x20\x20\x20\x20\x20margin-top:\x201px;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-header-tag\x20{\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2010px;\x0a\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20letter-spacing:\x201px;\x0a\x20\x20\x20\x20\x20\x20text-transform:\x20uppercase;\x0a\x20\x20\x20\x20\x20\x20color:\x20#0a0a0a;\x0a\x20\x20\x20\x20\x20\x20background:\x20#e8ff00;\x0a\x20\x20\x20\x20\x20\x20padding:\x203px\x208px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x20100px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20#bf-messages\x20{\x0a\x20\x20\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20\x20\x20overflow-y:\x20auto;\x0a\x20\x20\x20\x20\x20\x20padding:\x2016px;\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20\x20\x20gap:\x2012px;\x0a\x20\x20\x20\x20\x20\x20scroll-behavior:\x20smooth;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-messages::-webkit-scrollbar\x20{\x20width:\x203px;\x20}\x0a\x20\x20\x20\x20#bf-messages::-webkit-scrollbar-track\x20{\x20background:\x20transparent;\x20}\x0a\x20\x20\x20\x20#bf-messages::-webkit-scrollbar-thumb\x20{\x20background:\x20rgba(255,255,255,0.1);\x20border-radius:\x202px;\x20}\x0a\x0a\x20\x20\x20\x20.bf-msg-wrap\x20{\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20flex-direction:\x20column;\x0a\x20\x20\x20\x20\x20\x20gap:\x204px;\x0a\x20\x20\x20\x20\x20\x20opacity:\x200;\x0a\x20\x20\x20\x20\x20\x20transform:\x20translateY(8px);\x0a\x20\x20\x20\x20\x20\x20animation:\x20bfMsgIn\x200.3s\x20cubic-bezier(0.4,0,0.2,1)\x20forwards;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20@keyframes\x20bfMsgIn\x20{\x0a\x20\x20\x20\x20\x20\x20to\x20{\x20opacity:\x201;\x20transform:\x20translateY(0);\x20}\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-msg-wrap.user-wrap\x20{\x20align-items:\x20flex-end;\x20}\x0a\x20\x20\x20\x20.bf-msg-wrap.agent-wrap\x20{\x20align-items:\x20flex-start;\x20}\x0a\x0a\x20\x20\x20\x20.bf-bubble\x20{\x0a\x20\x20\x20\x20\x20\x20max-width:\x2082%;\x0a\x20\x20\x20\x20\x20\x20padding:\x2011px\x2015px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2016px;\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20line-height:\x201.6;\x0a\x20\x20\x20\x20\x20\x20word-break:\x20break-word;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-bubble.agent\x20{\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.88);\x0a\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20border-bottom-left-radius:\x204px;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-bubble.user\x20{\x0a\x20\x20\x20\x20\x20\x20background:\x20#e8ff00;\x0a\x20\x20\x20\x20\x20\x20color:\x20#0a0a0a;\x0a\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20border-bottom-right-radius:\x204px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.bf-typing\x20{\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20gap:\x204px;\x0a\x20\x20\x20\x20\x20\x20padding:\x2012px\x2015px;\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2016px;\x0a\x20\x20\x20\x20\x20\x20border-bottom-left-radius:\x204px;\x0a\x20\x20\x20\x20\x20\x20width:\x20fit-content;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-typing\x20span\x20{\x0a\x20\x20\x20\x20\x20\x20width:\x205px;\x0a\x20\x20\x20\x20\x20\x20height:\x205px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2050%;\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.4);\x0a\x20\x20\x20\x20\x20\x20animation:\x20bfDot\x201.2s\x20infinite;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-typing\x20span:nth-child(2)\x20{\x20animation-delay:\x200.2s;\x20}\x0a\x20\x20\x20\x20.bf-typing\x20span:nth-child(3)\x20{\x20animation-delay:\x200.4s;\x20}\x0a\x20\x20\x20\x20@keyframes\x20bfDot\x20{\x0a\x20\x20\x20\x20\x20\x200%,\x2060%,\x20100%\x20{\x20opacity:\x200.3;\x20transform:\x20translateY(0);\x20}\x0a\x20\x20\x20\x20\x20\x2030%\x20{\x20opacity:\x201;\x20transform:\x20translateY(-4px);\x20}\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20.bf-buttons-wrap\x20{\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20flex-wrap:\x20wrap;\x0a\x20\x20\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20\x20\x20padding:\x200\x200\x204px;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-choice-btn\x20{\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2013px;\x0a\x20\x20\x20\x20\x20\x20font-weight:\x20500;\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.75);\x0a\x20\x20\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.14);\x0a\x20\x20\x20\x20\x20\x20border-radius:\x20100px;\x0a\x20\x20\x20\x20\x20\x20padding:\x207px\x2014px;\x0a\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20transition:\x20all\x200.2s\x20ease;\x0a\x20\x20\x20\x20\x20\x20outline:\x20none;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-choice-btn:hover\x20{\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(232,255,0,0.08);\x0a\x20\x20\x20\x20\x20\x20border-color:\x20rgba(232,255,0,0.35);\x0a\x20\x20\x20\x20\x20\x20color:\x20#e8ff00;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-choice-btn:active\x20{\x0a\x20\x20\x20\x20\x20\x20transform:\x20scale(0.97);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-choice-btn:disabled\x20{\x0a\x20\x20\x20\x20\x20\x20opacity:\x200.35;\x0a\x20\x20\x20\x20\x20\x20cursor:\x20not-allowed;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20#bf-panel-footer\x20{\x0a\x20\x20\x20\x20\x20\x20padding:\x2012px\x2012px\x2014px;\x0a\x20\x20\x20\x20\x20\x20border-top:\x201px\x20solid\x20rgba(255,255,255,0.06);\x0a\x20\x20\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-input-row\x20{\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20gap:\x208px;\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(255,255,255,0.04);\x0a\x20\x20\x20\x20\x20\x20border:\x201px\x20solid\x20rgba(255,255,255,0.08);\x0a\x20\x20\x20\x20\x20\x20border-radius:\x2012px;\x0a\x20\x20\x20\x20\x20\x20padding:\x208px\x208px\x208px\x2014px;\x0a\x20\x20\x20\x20\x20\x20transition:\x20border-color\x200.2s\x20ease;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20.bf-input-row:focus-within\x20{\x0a\x20\x20\x20\x20\x20\x20border-color:\x20rgba(232,255,0,0.3);\x0a\x20\x20\x20\x20\x20\x20background:\x20rgba(232,255,0,0.02);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-input\x20{\x0a\x20\x20\x20\x20\x20\x20flex:\x201;\x0a\x20\x20\x20\x20\x20\x20background:\x20transparent;\x0a\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20outline:\x20none;\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.85);\x0a\x20\x20\x20\x20\x20\x20line-height:\x201.5;\x0a\x20\x20\x20\x20\x20\x20resize:\x20none;\x0a\x20\x20\x20\x20\x20\x20height:\x2022px;\x0a\x20\x20\x20\x20\x20\x20max-height:\x2080px;\x0a\x20\x20\x20\x20\x20\x20overflow-y:\x20auto;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-input::placeholder\x20{\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.2);\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-send\x20{\x0a\x20\x20\x20\x20\x20\x20width:\x2034px;\x0a\x20\x20\x20\x20\x20\x20height:\x2034px;\x0a\x20\x20\x20\x20\x20\x20border-radius:\x208px;\x0a\x20\x20\x20\x20\x20\x20background:\x20#e8ff00;\x0a\x20\x20\x20\x20\x20\x20border:\x20none;\x0a\x20\x20\x20\x20\x20\x20cursor:\x20pointer;\x0a\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20flex-shrink:\x200;\x0a\x20\x20\x20\x20\x20\x20transition:\x20all\x200.2s\x20ease;\x0a\x20\x20\x20\x20\x20\x20outline:\x20none;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20#bf-send:hover\x20{\x20background:\x20#c4d900;\x20transform:\x20scale(1.05);\x20}\x0a\x20\x20\x20\x20#bf-send:active\x20{\x20transform:\x20scale(0.95);\x20}\x0a\x20\x20\x20\x20#bf-send:disabled\x20{\x20opacity:\x200.35;\x20cursor:\x20not-allowed;\x20transform:\x20none;\x20}\x0a\x20\x20\x20\x20#bf-send\x20svg\x20{\x20color:\x20#0a0a0a;\x20}\x0a\x0a\x20\x20\x20\x20.bf-footer-note\x20{\x0a\x20\x20\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20font-family:\x20\x27DM\x20Sans\x27,\x20sans-serif;\x0a\x20\x20\x20\x20\x20\x20font-size:\x2010px;\x0a\x20\x20\x20\x20\x20\x20color:\x20rgba(255,255,255,0.18);\x0a\x20\x20\x20\x20\x20\x20margin-top:\x208px;\x0a\x20\x20\x20\x20\x20\x20letter-spacing:\x200.3px;\x0a\x20\x20\x20\x20}\x0a\x0a\x20\x20\x20\x20@media\x20(max-width:\x20440px)\x20{\x0a\x20\x20\x20\x20\x20\x20#bf-widget-panel\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20bottom:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20right:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20left:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20height:\x2085vh;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2020px\x2020px\x200\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20transform-origin:\x20bottom\x20center;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20#bf-widget-launcher\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20bottom:\x2020px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20right:\x2020px;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20}\x0a\x20\x20';function _0x404737(){const _0x444a03=_0xdc0b19,_0x2c4a43=document[_0x444a03(0x1b5)](_0x444a03(0x1c6));_0x2c4a43[_0x444a03(0x1b0)]=_0x5e55b3,document[_0x444a03(0x1c0)]['appendChild'](_0x2c4a43);const _0x57fff4=document['createElement'](_0x444a03(0x190));_0x57fff4['id']='bf-widget-launcher',_0x57fff4[_0x444a03(0x1de)](_0x444a03(0x1eb),_0x444a03(0x1a8)),_0x57fff4['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22bf-notif\x22\x20id=\x22bf-notif-dot\x22></span>\x0a\x20\x20\x20\x20\x20\x20<svg\x20class=\x22icon-chat\x22\x20width=\x2224\x22\x20height=\x2224\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20stroke=\x22#0a0a0a\x22\x20stroke-width=\x222\x22\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<path\x20d=\x22M21\x2015a2\x202\x200\x200\x201-2\x202H7l-4\x204V5a2\x202\x200\x200\x201\x202-2h14a2\x202\x200\x200\x201\x202\x202z\x22/>\x0a\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20<svg\x20class=\x22icon-close\x22\x20width=\x2220\x22\x20height=\x2220\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20fill=\x22none\x22\x20stroke=\x22#0a0a0a\x22\x20stroke-width=\x222.5\x22\x20stroke-linecap=\x22round\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<line\x20x1=\x2218\x22\x20y1=\x226\x22\x20x2=\x226\x22\x20y2=\x2218\x22/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<line\x20x1=\x226\x22\x20y1=\x226\x22\x20x2=\x2218\x22\x20y2=\x2218\x22/>\x0a\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20',document['body'][_0x444a03(0x191)](_0x57fff4);const _0xf387b4=document[_0x444a03(0x1b5)](_0x444a03(0x1b3));return _0xf387b4['id']='bf-widget-panel',_0xf387b4[_0x444a03(0x1de)]('role',_0x444a03(0x1a3)),_0xf387b4[_0x444a03(0x1de)]('aria-label','Chat\x20avec\x20Alex'),_0xf387b4['innerHTML']=_0x444a03(0x18a)+_0x1dd8d2['agentName']+_0x444a03(0x1e3)+_0x1dd8d2[_0x444a03(0x1ad)]+_0x444a03(0x1ca),document['body'][_0x444a03(0x191)](_0xf387b4),{'launcher':_0x57fff4,'panel':_0xf387b4};}function _0x2a78a4(_0x8fc2e0,_0x15118c){const _0x4eeaed=_0xdc0b19,_0x2a68b7=document[_0x4eeaed(0x1b7)](_0x4eeaed(0x1a6)),_0x260065=document[_0x4eeaed(0x1b5)](_0x4eeaed(0x1b3));_0x260065[_0x4eeaed(0x1d0)]='bf-msg-wrap\x20'+(_0x8fc2e0===_0x4eeaed(0x1ea)?_0x4eeaed(0x1a7):_0x4eeaed(0x1e2));const _0x552330=document[_0x4eeaed(0x1b5)](_0x4eeaed(0x1b3));_0x552330[_0x4eeaed(0x1d0)]=_0x4eeaed(0x1bf)+(_0x8fc2e0===_0x4eeaed(0x1ea)?_0x4eeaed(0x1ea):_0x4eeaed(0x198)),_0x552330[_0x4eeaed(0x1ed)]=_0x15118c[_0x4eeaed(0x1ab)](/\n/g,'<br>'),_0x260065[_0x4eeaed(0x191)](_0x552330),_0x2a68b7[_0x4eeaed(0x191)](_0x260065),_0x200692();}function _0x36eb01(_0x5ca633){const _0x40acd2=_0xdc0b19,_0x50d9ea=document[_0x40acd2(0x1b7)](_0x40acd2(0x1a6)),_0x9b533f=document[_0x40acd2(0x1b5)](_0x40acd2(0x1b3));_0x9b533f[_0x40acd2(0x1d0)]=_0x40acd2(0x1d7);const _0x1f7252=document['createElement'](_0x40acd2(0x1b3));_0x1f7252['className']='bf-buttons-wrap',_0x5ca633[_0x40acd2(0x1a2)](_0xda7f7d=>{const _0x1ecd17=_0x40acd2,_0x448eed=document[_0x1ecd17(0x1b5)]('button');_0x448eed[_0x1ecd17(0x1d0)]='bf-choice-btn',_0x448eed[_0x1ecd17(0x1b0)]=_0xda7f7d['name']||_0xda7f7d[_0x1ecd17(0x1d5)]?.[_0x1ecd17(0x1dc)]?.[_0x1ecd17(0x1db)]||_0xda7f7d[_0x1ecd17(0x192)],_0x448eed[_0x1ecd17(0x1d2)](_0x1ecd17(0x1b9),()=>{const _0x3d5739=_0x1ecd17;document['querySelectorAll'](_0x3d5739(0x1a1))[_0x3d5739(0x1a2)](_0x5e28fa=>_0x5e28fa[_0x3d5739(0x1a9)]=!![]),_0x43a1ea(_0xda7f7d[_0x3d5739(0x192)]||_0xda7f7d['request']?.[_0x3d5739(0x1dc)]?.[_0x3d5739(0x1db)]);}),_0x1f7252[_0x1ecd17(0x191)](_0x448eed);}),_0x9b533f['appendChild'](_0x1f7252),_0x50d9ea[_0x40acd2(0x191)](_0x9b533f),_0x200692();}function _0x2acc18(){const _0x6c3205=_0xdc0b19;if(_0x5a773c)return;_0x5a773c=!![];const _0x5bab22=document['getElementById'](_0x6c3205(0x1a6)),_0x594b28=document[_0x6c3205(0x1b5)]('div');_0x594b28[_0x6c3205(0x1d0)]='bf-msg-wrap\x20agent-wrap',_0x594b28['id']=_0x6c3205(0x1c3),_0x594b28['innerHTML']='<div\x20class=\x22bf-typing\x22><span></span><span></span><span></span></div>',_0x5bab22[_0x6c3205(0x191)](_0x594b28),_0x200692();}function _0x36181b(){const _0x9ed8=_0xdc0b19;_0x5a773c=![];const _0x1e0567=document[_0x9ed8(0x1b7)](_0x9ed8(0x1c3));if(_0x1e0567)_0x1e0567['remove']();}function _0x200692(){const _0x2d8710=_0xdc0b19,_0x3fa3c7=document[_0x2d8710(0x1b7)](_0x2d8710(0x1a6));if(_0x3fa3c7)_0x3fa3c7[_0x2d8710(0x1cc)]=_0x3fa3c7[_0x2d8710(0x1d3)];}function _0x40a20f(_0x1b4a4a){const _0xa30fd0=_0xdc0b19,_0x57353a=document[_0xa30fd0(0x1b7)](_0xa30fd0(0x1b8)),_0x1ea80c=document['getElementById'](_0xa30fd0(0x194));if(_0x57353a)_0x57353a[_0xa30fd0(0x1a9)]=_0x1b4a4a;if(_0x1ea80c)_0x1ea80c[_0xa30fd0(0x1a9)]=_0x1b4a4a;}async function _0x1a7fa2(){const _0x83de59=_0xdc0b19;_0x2acc18(),_0x40a20f(!![]);const _0x222c07=await _0x2cf9e8({'type':_0x83de59(0x18d)});_0x36181b(),_0x40a20f(![]),_0x222c07?(_0x3e7130=!![],_0x281f10(_0x222c07)):(_0x2a78a4(_0x83de59(0x198),'Bonjour,\x20je\x20suis\x20Alex.\x20Comment\x20puis-je\x20vous\x20aider\x20aujourd\x27hui&nbsp;?'),_0x3e7130=!![]);}function _0x281f10(_0x52b5b9){const _0x1e0b8c=_0xdc0b19,_0x47123c=_0x5aa150(_0x52b5b9);_0x47123c[_0x1e0b8c(0x1a2)]((_0x398d08,_0x8bfcd3)=>{setTimeout(()=>{const _0x38dd2f=a0_0xb49d;if(_0x398d08[_0x38dd2f(0x1cd)]===_0x38dd2f(0x1e7))_0x2a78a4(_0x38dd2f(0x198),_0x398d08[_0x38dd2f(0x1e4)]);else _0x398d08[_0x38dd2f(0x1cd)]===_0x38dd2f(0x19e)&&_0x36eb01(_0x398d08[_0x38dd2f(0x1e4)]);},_0x8bfcd3*0x50);});}async function _0x43a1ea(_0x4258cd){const _0x559bfd=_0xdc0b19;if(!_0x4258cd||!_0x4258cd[_0x559bfd(0x19c)]())return;const _0x4314a3=_0x4258cd[_0x559bfd(0x19c)]();_0x2a78a4(_0x559bfd(0x1ea),_0x4314a3),_0x40a20f(!![]);const _0x20a725=document[_0x559bfd(0x1b7)](_0x559bfd(0x1b8));if(_0x20a725)_0x20a725[_0x559bfd(0x19f)]='';if(!_0x3e7130)await _0x1a7fa2();_0x2acc18();const _0x247f55=await _0x2cf9e8({'type':_0x559bfd(0x1e7),'payload':_0x4314a3});_0x36181b(),_0x40a20f(![]);_0x247f55?_0x281f10(_0x247f55):_0x2a78a4('agent',_0x559bfd(0x1d6));if(_0x20a725)_0x20a725[_0x559bfd(0x1c1)]();}function _0x145965(){const _0x10be6d=_0xdc0b19,{launcher:_0x54f37c,panel:_0x2c085e}=_0x404737();_0x54f37c['addEventListener'](_0x10be6d(0x1b9),async()=>{const _0x40d1e2=_0x10be6d;_0x20c773=!_0x20c773,_0x54f37c[_0x40d1e2(0x1dd)][_0x40d1e2(0x1b1)]('is-open',_0x20c773),_0x2c085e[_0x40d1e2(0x1dd)][_0x40d1e2(0x1b1)](_0x40d1e2(0x196),_0x20c773),_0x54f37c[_0x40d1e2(0x1de)](_0x40d1e2(0x1eb),_0x20c773?_0x40d1e2(0x1c8):_0x40d1e2(0x1a8)),document[_0x40d1e2(0x1b7)](_0x40d1e2(0x19a))['classList'][_0x40d1e2(0x1e6)](_0x40d1e2(0x1d9)),_0x20c773&&!_0x3e7130&&await _0x1a7fa2(),_0x20c773&&setTimeout(()=>{const _0x5c189e=_0x40d1e2,_0x597704=document[_0x5c189e(0x1b7)]('bf-input');if(_0x597704)_0x597704[_0x5c189e(0x1c1)]();},0x140);}),document[_0x10be6d(0x1b7)](_0x10be6d(0x194))[_0x10be6d(0x1d2)](_0x10be6d(0x1b9),()=>{const _0x57e5b2=_0x10be6d,_0x3ac745=document[_0x57e5b2(0x1b7)](_0x57e5b2(0x1b8));_0x3ac745&&_0x3ac745[_0x57e5b2(0x19f)][_0x57e5b2(0x19c)]()&&_0x43a1ea(_0x3ac745[_0x57e5b2(0x19f)]);}),document[_0x10be6d(0x1b7)](_0x10be6d(0x1b8))[_0x10be6d(0x1d2)](_0x10be6d(0x1d1),_0x4c6f36=>{const _0x2e8fa3=_0x10be6d;if(_0x4c6f36['key']===_0x2e8fa3(0x1bc)&&!_0x4c6f36['shiftKey']){_0x4c6f36[_0x2e8fa3(0x1ce)]();const _0x35fab6=document[_0x2e8fa3(0x1b7)](_0x2e8fa3(0x1b8));_0x35fab6&&_0x35fab6[_0x2e8fa3(0x19f)]['trim']()&&_0x43a1ea(_0x35fab6[_0x2e8fa3(0x19f)]);}}),setTimeout(()=>{const _0x3ffa31=_0x10be6d;!_0x20c773&&document['getElementById'](_0x3ffa31(0x19a))[_0x3ffa31(0x1dd)][_0x3ffa31(0x1a0)]('show');},_0x1dd8d2[_0x10be6d(0x197)]);}document[_0xdc0b19(0x1d4)]===_0xdc0b19(0x18b)?document[_0xdc0b19(0x1d2)]('DOMContentLoaded',_0x145965):_0x145965();}()));
+(function () {
+  const CONFIG = {
+    agentName: "Alex",
+    agentAvatar: null,
+    greeting: "Bonjour ! Comment puis-je vous aider aujourd'hui ?",
+    color: "#1a1a2e",
+    colorText: "#ffffff",
+    font: "inherit",
+    position: "bottom-right",
+    borderRadius: "16px",
+    bubbleSize: "56px",
+    webhookUrl: "https://n8n.bonfront.fr/webhook/chat",
+  };
+
+  const css = `
+    #bonfront-bubble {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: ${CONFIG.bubbleSize};
+      height: ${CONFIG.bubbleSize};
+      border-radius: 50%;
+      background: ${CONFIG.color};
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99998;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    #bonfront-bubble:hover { transform: scale(1.08); }
+    #bonfront-bubble:active { transform: scale(0.92); }
+    #bonfront-bubble .bf-icon { position: absolute; transition: transform 0.2s ease, opacity 0.15s ease; }
+    #bonfront-bubble .bf-icon-close { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+    #bonfront-bubble.bf-open .bf-icon-chat { opacity: 0; transform: rotate(90deg) scale(0.6); }
+    #bonfront-bubble.bf-open .bf-icon-close { opacity: 1; transform: rotate(0deg) scale(1); }
+    #bonfront-notif {
+      position: absolute;
+      top: 0; right: 0;
+      width: 12px; height: 12px;
+      background: #e24b4a;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      animation: bf-pulse 1.8s infinite;
+    }
+    @keyframes bf-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    #bonfront-window {
+      position: fixed;
+      bottom: 92px;
+      right: 24px;
+      width: 340px;
+      max-height: 520px;
+      background: #fff;
+      border-radius: ${CONFIG.borderRadius};
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 99997;
+      font-family: ${CONFIG.font};
+      transform-origin: bottom right;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+      transform: scale(0.7) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    #bonfront-window.bf-open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+    #bonfront-header {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: ${CONFIG.color};
+      color: ${CONFIG.colorText};
+      flex-shrink: 0;
+    }
+    #bonfront-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 500;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    #bonfront-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    #bonfront-status { display: flex; align-items: center; gap: 5px; font-size: 11px; opacity: 0.85; }
+    #bonfront-status span { width: 6px; height: 6px; border-radius: 50%; background: #5DCAA5; display: inline-block; }
+    #bonfront-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f8f8f8;
+    }
+    .bf-msg-bot, .bf-msg-user { display: flex; flex-direction: column; max-width: 82%; animation: bf-slidein 0.22s cubic-bezier(0.34,1.3,0.64,1); }
+    .bf-msg-bot { align-self: flex-start; }
+    .bf-msg-user { align-self: flex-end; }
+    @keyframes bf-slidein {
+      from { transform: translateY(8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .bf-bubble-bot {
+      background: #fff;
+      border-radius: 14px 14px 14px 4px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #1a1a1a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .bf-bubble-user {
+      background: ${CONFIG.color};
+      color: ${CONFIG.colorText};
+      border-radius: 14px 14px 4px 14px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bf-typing {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 10px 14px;
+      background: #fff;
+      border-radius: 14px 14px 14px 4px;
+      width: fit-content;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .bf-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #aaa;
+      animation: bf-bounce 1.2s infinite;
+    }
+    .bf-dot:nth-child(2) { animation-delay: 0.2s; }
+    .bf-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bf-bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+    #bonfront-footer {
+      padding: 10px 12px;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    #bonfront-input {
+      flex: 1;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      padding: 9px 14px;
+      font-size: 13px;
+      outline: none;
+      font-family: ${CONFIG.font};
+      transition: border-color 0.15s;
+    }
+    #bonfront-input:focus { border-color: ${CONFIG.color}; }
+    #bonfront-send {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: ${CONFIG.color};
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    #bonfront-send:hover { transform: scale(1.08); }
+    #bonfront-send:active { transform: scale(0.9); }
+    #bonfront-branding {
+      text-align: center;
+      font-size: 10px;
+      color: #bbb;
+      padding: 4px 0 6px;
+      background: #fff;
+    }
+    #bonfront-branding a { color: #bbb; text-decoration: none; }
+    #bonfront-branding a:hover { color: #888; }
+  `;
+
+  const style = document.createElement("style");
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  const bubble = document.createElement("button");
+  bubble.id = "bonfront-bubble";
+  bubble.setAttribute("aria-label", "Ouvrir le chat");
+  bubble.innerHTML = `
+    <svg class="bf-icon bf-icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${CONFIG.colorText}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg class="bf-icon bf-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CONFIG.colorText}" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+    <div id="bonfront-notif"></div>
+  `;
+
+  const avatarContent = CONFIG.agentAvatar
+    ? `<img src="${CONFIG.agentAvatar}" alt="${CONFIG.agentName}" />`
+    : `<span>${CONFIG.agentName.charAt(0).toUpperCase()}</span>`;
+
+  const win = document.createElement("div");
+  win.id = "bonfront-window";
+  win.setAttribute("role", "dialog");
+  win.setAttribute("aria-label", `Chat avec ${CONFIG.agentName}`);
+  win.innerHTML = `
+    <div id="bonfront-header">
+      <div id="bonfront-avatar">${avatarContent}</div>
+      <div>
+        <div style="font-size:14px;font-weight:500;">${CONFIG.agentName}</div>
+        <div id="bonfront-status"><span></span>En ligne</div>
+      </div>
+    </div>
+    <div id="bonfront-messages"></div>
+    <div id="bonfront-footer">
+      <input id="bonfront-input" type="text" placeholder="Votre message..." autocomplete="off" />
+      <button id="bonfront-send" aria-label="Envoyer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${CONFIG.colorText}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+    <div id="bonfront-branding">Propulsé par <a href="https://bonfront.fr" target="_blank">Bonfront</a></div>
+  `;
+
+  document.body.appendChild(bubble);
+  document.body.appendChild(win);
+
+  const messages = document.getElementById("bonfront-messages");
+  const input = document.getElementById("bonfront-input");
+  let isOpen = false;
+  let sessionId = "session_" + Math.random().toString(36).substr(2, 9);
+
+  function addMessage(text, type) {
+    const wrapper = document.createElement("div");
+    wrapper.className = type === "user" ? "bf-msg-user" : "bf-msg-bot";
+    const bubble = document.createElement("div");
+    bubble.className = type === "user" ? "bf-bubble-user" : "bf-bubble-bot";
+    bubble.textContent = text;
+    wrapper.appendChild(bubble);
+    messages.appendChild(wrapper);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function showTyping() {
+    const t = document.createElement("div");
+    t.id = "bf-typing-indicator";
+    t.className = "bf-msg-bot";
+    t.innerHTML = `<div class="bf-typing"><div class="bf-dot"></div><div class="bf-dot"></div><div class="bf-dot"></div></div>`;
+    messages.appendChild(t);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t = document.getElementById("bf-typing-indicator");
+    if (t) t.remove();
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    input.value = "";
+    showTyping();
+    try {
+      const res = await fetch(CONFIG.webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, sessionId }),
+      });
+      const data = await res.json();
+      hideTyping();
+      const reply = data.output || data.message || data.text || "Désolé, une erreur est survenue.";
+      addMessage(reply, "bot");
+    } catch (e) {
+      hideTyping();
+      addMessage("Désolé, je ne suis pas disponible pour le moment.", "bot");
+    }
+  }
+
+  function toggle() {
+    isOpen = !isOpen;
+    bubble.classList.toggle("bf-open", isOpen);
+    win.classList.toggle("bf-open", isOpen);
+    document.getElementById("bonfront-notif").style.display = "none";
+    if (isOpen) input.focus();
+  }
+
+  bubble.addEventListener("click", toggle);
+  document.getElementById("bonfront-send").addEventListener("click", sendMessage);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMessage(); });
+
+  addMessage(CONFIG.greeting, "bot");
+})();
