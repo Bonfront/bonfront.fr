@@ -250,13 +250,17 @@
   const input = document.getElementById("bonfront-input");
   let isOpen = false;
   let sessionId = "session_" + Math.random().toString(36).substr(2, 9);
+  let conversationHistory = [];
 
   function addMessage(text, type) {
     const wrapper = document.createElement("div");
     wrapper.className = type === "user" ? "bf-msg-user" : "bf-msg-bot";
     const bubble = document.createElement("div");
     bubble.className = type === "user" ? "bf-bubble-user" : "bf-bubble-bot";
-    bubble.textContent = text;
+    bubble.innerHTML = text
+  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  .replace(/\*(.*?)\*/g, '<em>$1</em>')
+  .replace(/\n/g, '<br>');
     wrapper.appendChild(bubble);
     messages.appendChild(wrapper);
     messages.scrollTop = messages.scrollHeight;
@@ -280,17 +284,19 @@
     const text = input.value.trim();
     if (!text) return;
     addMessage(text, "user");
+    conversationHistory.push({ role: "user", content: text });
     input.value = "";
     showTyping();
 try {
   const res = await fetch(CONFIG.webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: text, sessionId }),
+    body: JSON.stringify({ message: text, sessionId, history: conversationHistory }),
   });
   const reply = await res.text();
   hideTyping();
   addMessage(reply || "Désolé, une erreur est survenue.", "bot");
+  conversationHistory.push({ role: "assistant", content: reply });
 } catch (e) {
   hideTyping();
   addMessage("Désolé, je ne suis pas disponible pour le moment.", "bot");
