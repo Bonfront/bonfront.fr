@@ -11,7 +11,7 @@
     colorDark:   "#0e0f0d",
     colorText:   "#0e0f0d",
     webhookUrl:  "https://n8n.bonfront.fr/webhook/chat",
-    token:       "fdf7bc82-d244-4254-80cd-e547734bd4e3",   // ← à remplacer par client
+    token:       "fdf7bc82-d244-4254-80cd-e547734bd4e3", 
   };
 
   /* ─────────────────────────────────────────────
