@@ -11,6 +11,7 @@
     colorDark:   "#0e0f0d",
     colorText:   "#0e0f0d",
     webhookUrl:  "https://n8n.bonfront.fr/webhook/chat",
+    token:       "BONFRONT_TOKEN_CLIENT",   // ← à remplacer par client
   };
 
   /* ─────────────────────────────────────────────
@@ -414,13 +415,23 @@
     try {
       const res = await fetch(CONFIG.webhookUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Bonfront-Token": CONFIG.token,
+        },
         body: JSON.stringify({
           message: text,
           sessionId,
           history: conversationHistory,
         }),
       });
+
+      if (!res.ok) {
+        hideTyping();
+        addMessage("Désolé, une erreur est survenue.", "bot");
+        return;
+      }
+
       const reply = await res.text();
       hideTyping();
       const replyText = reply || "Désolé, une erreur est survenue.";
