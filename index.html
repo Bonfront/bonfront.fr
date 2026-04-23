@@ -75,6 +75,14 @@
       background: rgba(255,255,255,0.05);
       color: rgba(255,255,255,0.9);
     }
+    .nav-apropos {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+    .nav-apropos:hover { color: rgba(255,255,255,0.85); }
   </style>
 </head>
 <body>
@@ -83,7 +91,10 @@
   <nav class="nav">
     <div class="nav-inner">
       <span class="logo">Bonfront</span>
-      <a href="#contact" class="nav-cta">Réserver un appel</a>
+      <div style="display:flex; align-items:center; gap:24px;">
+        <a href="a-propos.html" class="nav-apropos">À propos</a>
+        <a href="#contact" class="nav-cta">Réserver un appel</a>
+      </div>
     </div>
   </nav>
 
@@ -317,18 +328,21 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner" style="justify-content: center; flex-direction: column; align-items: center; gap: 12px;">
-  <span class="logo">Bonfront</span>
-  <span>© 2026 Bonfront · Tous droits réservés</span>
-  <div class="footer-legal">
-    <button class="footer-legal-toggle" onclick="toggleLegal(this)">
-      Documents légaux <span class="arrow">▲</span>
-    </button>
-    <div class="footer-legal-dropdown">
-      <a href="politique-confidentialite.html">Politique de confidentialité</a>
-      <a href="cookies.html">Cookies</a>
+      <span class="logo">Bonfront</span>
+      <span>© 2026 Bonfront · Tous droits réservés</span>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <a href="a-propos.html" style="font-size:13px; color:rgba(255,255,255,0.25); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">À propos</a>
+        <div class="footer-legal">
+          <button class="footer-legal-toggle" onclick="toggleLegal(this)">
+            Documents légaux <span class="arrow">▲</span>
+          </button>
+          <div class="footer-legal-dropdown">
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   </footer>
 
   <!-- AGENT IA -->
