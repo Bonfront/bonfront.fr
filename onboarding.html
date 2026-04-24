@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonfront — Onboarding</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #d2ff28;
+      --accent-dark: #8aaa10;
+      --bg: #0e0f0d;
+      --bg2: #111210;
+      --bg3: #1a1b18;
+      --border: rgba(255,255,255,0.07);
+      --text: #d8d9d3;
+      --text-dim: rgba(255,255,255,0.35);
+      --text-dark: #0e0f0d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND ── */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.07;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: var(--accent);
+      top: -100px; right: -100px;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: var(--accent);
+      bottom: 100px; left: -80px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .logo { color: #fff; }
+
+    /* ── ERROR STATE ── */
+    #error-state {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px;
+    }
+    #error-state.visible { display: flex; }
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+    .error-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .error-sub {
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    /* ── MAIN WRAPPER ── */
+    #form-state {
+      display: none;
+      position: relative;
+      z-index: 1;
+      padding: 120px 24px 80px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    #form-state.visible { display: block; }
+
+    /* ── HEADER ── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(210,255,40,0.08);
+      border: 1px solid rgba(210,255,40,0.15);
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin-bottom: 20px;
+    }
+    .page-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .page-title .accent { color: var(--accent); }
+    .page-sub {
+      color: var(--text-dim);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-bar {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 48px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+
+    /* ── SECTIONS ── */
+    .form-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .form-section:hover { border-color: rgba(210,255,40,0.1); }
+
+    .section-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    /* ── FIELDS ── */
+    .field {
+      margin-bottom: 20px;
+    }
+    .field:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+    label .required { color: var(--accent); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      caret-color: var(--accent);
+      -webkit-appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.18); }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(210,255,40,0.35);
+      box-shadow: 0 0 0 3px rgba(210,255,40,0.06);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    select option { background: #1a1b18; }
+
+    /* ── RADIO GROUP ── */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .radio-option:hover { border-color: rgba(210,255,40,0.2); }
+    .radio-option input[type="radio"] { display: none; }
+    .radio-option.selected {
+      border-color: rgba(210,255,40,0.4);
+      background: rgba(210,255,40,0.04);
+    }
+    .radio-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+    }
+    .radio-option.selected .radio-dot {
+      border-color: var(--accent);
+    }
+    .radio-dot::after {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .radio-option.selected .radio-dot::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .radio-label {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .radio-label strong {
+      display: block;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .radio-label span {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ── FILE UPLOAD ── */
+    .file-upload {
+      border: 1px dashed rgba(210,255,40,0.2);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: var(--bg3);
+    }
+    .file-upload:hover {
+      border-color: rgba(210,255,40,0.4);
+      background: rgba(210,255,40,0.02);
+    }
+    .file-upload.has-file {
+      border-color: rgba(210,255,40,0.4);
+      background: rgba(210,255,40,0.04);
+    }
+    .file-upload input { display: none; }
+    .file-icon { font-size: 24px; margin-bottom: 8px; }
+    .file-text { font-size: 13px; color: var(--text-dim); }
+    .file-text strong { color: var(--accent); }
+    .file-name { font-size: 13px; color: var(--accent); margin-top: 6px; }
+
+    /* ── SUBMIT ── */
+    .form-footer {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-submit {
+      width: 100%;
+      height: 52px;
+      background: var(--accent);
+      color: var(--text-dark);
+      border: none;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 2px 0 var(--accent-dark), 0 8px 24px rgba(210,255,40,0.2);
+      letter-spacing: 0.01em;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 0 var(--accent-dark), 0 16px 32px rgba(210,255,40,0.28);
+    }
+    .btn-submit:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--accent-dark); }
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    /* ── SUCCESS ── */
+    #success-state {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px;
+    }
+    #success-state.visible { display: flex; }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(210,255,40,0.1);
+      border: 1px solid rgba(210,255,40,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      margin-bottom: 8px;
+      animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes pop {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .success-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .success-sub {
+      color: var(--text-dim);
+      font-size: 15px;
+      max-width: 400px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      #form-state { padding: 100px 16px 60px; }
+      .form-section { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <nav>
+    <span class="logo">Bonfront</span>
+  </nav>
+
+  <!-- ERROR -->
+  <div id="error-state">
+    <div class="error-icon">🔒</div>
+    <div class="error-title">Accès non autorisé</div>
+    <div class="error-sub">Ce lien est invalide ou a expiré. Contactez Bonfront pour recevoir un nouveau lien d'onboarding.</div>
+  </div>
+
+  <!-- FORM -->
+  <div id="form-state">
+    <div class="page-header">
+      <div class="page-badge">Onboarding client</div>
+      <h1 class="page-title">Configurons<br/>votre <span class="accent">agent IA</span></h1>
+      <p class="page-sub">Quelques informations pour personnaliser Alex selon votre boutique.<br/>Cela prend moins de 5 minutes.</p>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <form id="onboarding-form" novalidate>
+
+      <!-- 01 · BOUTIQUE -->
+      <div class="form-section">
+        <div class="section-num">01</div>
+        <div class="section-title">Votre boutique</div>
+        <div class="field">
+          <label>Nom de la boutique <span class="required">*</span></label>
+          <input type="text" name="boutique_nom" placeholder="Ex : MaBoutique" required />
+        </div>
+        <div class="field">
+          <label>URL de la boutique <span class="required">*</span></label>
+          <input type="url" name="boutique_url" placeholder="https://maboutique.fr" required />
+        </div>
+        <div class="field">
+          <label>Plateforme e-commerce <span class="required">*</span></label>
+          <select name="plateforme" required>
+            <option value="">Choisir...</option>
+            <option>Shopify</option>
+            <option>WooCommerce</option>
+            <option>PrestaShop</option>
+            <option>Wix</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 02 · SUPPORT -->
+      <div class="form-section">
+        <div class="section-num">02</div>
+        <div class="section-title">Votre support client</div>
+        <div class="field">
+          <label>Questions les plus fréquentes de vos clients <span class="required">*</span></label>
+          <textarea name="faq" placeholder="Ex : Où est ma commande ? Comment retourner un article ? Quels sont vos délais de livraison ?..." required></textarea>
+        </div>
+        <div class="field">
+          <label>Politique de retour <span class="required">*</span></label>
+          <textarea name="retours" placeholder="Durée, conditions, remboursement ou échange..."></textarea>
+        </div>
+        <div class="field">
+          <label>Délais de livraison habituels <span class="required">*</span></label>
+          <input type="text" name="livraison" placeholder="Ex : 3 à 5 jours ouvrés en France métropolitaine" required />
+        </div>
+        <div class="field">
+          <label>Ce que l'agent ne doit jamais faire</label>
+          <textarea name="interdits" placeholder="Ex : Ne jamais promettre un remboursement, ne pas communiquer les prix fournisseurs..."></textarea>
+        </div>
+      </div>
+
+      <!-- 03 · TON -->
+      <div class="form-section">
+        <div class="section-num">03</div>
+        <div class="section-title">Ton et personnalité de l'agent</div>
+        <div class="field">
+          <label>Quel ton souhaitez-vous ? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option" onclick="selectRadio(this)">
+              <input type="radio" name="ton" value="formel" />
+              <div class="radio-dot"></div>
+              <div class="radio-label">
+                <strong>Formel</strong>
+                <span>Professionnel, courtois, vouvoiement systématique</span>
+              </div>
+            </label>
+            <label class="radio-option" onclick="selectRadio(this)">
+              <input type="radio" name="ton" value="décontracté" />
+              <div class="radio-dot"></div>
+              <div class="radio-label">
+                <strong>Décontracté</strong>
+                <span>Chaleureux, accessible, tutoiement possible</span>
+              </div>
+            </label>
+            <label class="radio-option" onclick="selectRadio(this)">
+              <input type="radio" name="ton" value="entre les deux" />
+              <div class="radio-dot"></div>
+              <div class="radio-label">
+                <strong>Entre les deux</strong>
+                <span>Amical mais professionnel, vouvoiement par défaut</span>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Prénom souhaité pour l'agent</label>
+          <input type="text" name="agent_prenom" placeholder="Laisser vide pour garder Alex" />
+        </div>
+      </div>
+
+      <!-- 04 · DESIGN -->
+      <div class="form-section">
+        <div class="section-num">04</div>
+        <div class="section-title">Design du widget</div>
+        <div class="field">
+          <label>Avez-vous un design en tête ? <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option" onclick="selectRadio(this); toggleDesignUpload(true)">
+              <input type="radio" name="design_choix" value="oui" />
+              <div class="radio-dot"></div>
+              <div class="radio-label">
+                <strong>Oui, j'ai un design</strong>
+                <span>Je fournis une maquette ou des références visuelles</span>
+              </div>
+            </label>
+            <label class="radio-option" onclick="selectRadio(this); toggleDesignUpload(false)">
+              <input type="radio" name="design_choix" value="non" />
+              <div class="radio-dot"></div>
+              <div class="radio-label">
+                <strong>Je fais confiance à Bonfront</strong>
+                <span>Bonfront crée un widget cohérent avec ma boutique</span>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="field" id="design-upload-field" style="display:none;">
+          <label>Maquette ou références visuelles</label>
+          <div class="file-upload" id="file-drop" onclick="document.getElementById('design-file').click()">
+            <input type="file" id="design-file" name="design_file" accept="image/*,.pdf,.fig,.sketch" onchange="handleFile(this)" />
+            <div class="file-icon">📎</div>
+            <div class="file-text"><strong>Cliquez pour importer</strong> ou glissez un fichier</div>
+            <div class="file-text" style="margin-top:4px;">PNG, JPG, PDF, Figma — max 10 Mo</div>
+            <div class="file-name" id="file-name"></div>
+          </div>
+          <div class="field" style="margin-top:12px;">
+            <label>Ou décrivez votre design</label>
+            <textarea name="design_description" placeholder="Couleurs, forme du launcher, nom de l'agent, position..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn-submit" id="submit-btn">Envoyer mon questionnaire →</button>
+        <div class="form-note">Vos réponses sont transmises directement à Bonfront · Lien à usage unique</div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div id="success-state">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Reçu !</div>
+    <div class="success-sub">Vos réponses ont bien été transmises à Bonfront. Nous revenons vers vous dans les 24h pour lancer la configuration de votre agent.</div>
+  </div>
+
+  <script>
+    /* ── TOKEN CHECK ── */
+    const params = new URLSearchParams(window.location.search);
+    const token  = params.get('token');
+
+    const VALID_TOKENS = [
+      "af3edea8-7ec9-424b-8e65-50e058358689",
+      "e4872129-7bf0-4894-869d-05aeeac867c4"
+    ];
+
+    function isValidToken(t) {
+      if (!t) return false;
+      // Si VALID_TOKENS est vide, accepte tout token présent dans l'URL (mode dev)
+      if (VALID_TOKENS.length === 0) return true;
+      return VALID_TOKENS.includes(t);
+    }
+
+    if (isValidToken(token)) {
+      document.getElementById('form-state').classList.add('visible');
+    } else {
+      document.getElementById('error-state').classList.add('visible');
+    }
+
+    /* ── PROGRESS ── */
+    function updateProgress() {
+      const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
+      let filled = 0;
+      inputs.forEach(el => { if (el.value.trim()) filled++; });
+      // Radio required
+      const tonFilled = document.querySelector('input[name="ton"]:checked') ? 1 : 0;
+      const designFilled = document.querySelector('input[name="design_choix"]:checked') ? 1 : 0;
+      const total = inputs.length + 2;
+      const pct = Math.round(((filled + tonFilled + designFilled) / total) * 100);
+      document.getElementById('progress').style.width = pct + '%';
+    }
+
+    document.getElementById('onboarding-form').addEventListener('input', updateProgress);
+    document.getElementById('onboarding-form').addEventListener('change', updateProgress);
+
+    /* ── RADIO ── */
+    function selectRadio(label) {
+      const name = label.querySelector('input[type="radio"]').name;
+      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        r.closest('.radio-option').classList.remove('selected');
+      });
+      label.classList.add('selected');
+      label.querySelector('input[type="radio"]').checked = true;
+      updateProgress();
+    }
+
+    /* ── DESIGN TOGGLE ── */
+    function toggleDesignUpload(show) {
+      document.getElementById('design-upload-field').style.display = show ? 'block' : 'none';
+    }
+
+    /* ── FILE ── */
+    function handleFile(input) {
+      const file = input.files[0];
+      if (file) {
+        document.getElementById('file-name').textContent = '✓ ' + file.name;
+        document.getElementById('file-drop').classList.add('has-file');
+      }
+    }
+
+    /* ── DRAG & DROP ── */
+    const dropZone = document.getElementById('file-drop');
+    if (dropZone) {
+      dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'rgba(210,255,40,0.5)'; });
+      dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = ''; });
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.style.borderColor = '';
+        const file = e.dataTransfer.files[0];
+        if (file) {
+          document.getElementById('design-file').files = e.dataTransfer.files;
+          document.getElementById('file-name').textContent = '✓ ' + file.name;
+          dropZone.classList.add('has-file');
+        }
+      });
+    }
+
+    /* ── SUBMIT ── */
+    document.getElementById('onboarding-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours...';
+
+      // Collecte des données
+      const data = new FormData(this);
+      data.append('access_key', 'a9f55e9b-afc1-4ab4-8415-621d0cce9472');
+      data.append('subject', 'Onboarding client — ' + (data.get('boutique_nom') || 'Nouveau client'));
+      data.append('from_name', 'Bonfront Onboarding');
+      data.append('token', token);
+
+      await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+
+      document.getElementById('form-state').classList.remove('visible');
+      document.getElementById('success-state').classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
