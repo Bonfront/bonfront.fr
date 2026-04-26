@@ -267,6 +267,18 @@
     }
     select option { background: #1a1b18; }
 
+    /* ── TWO COLS ── */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .field-row .field { margin-bottom: 0; }
+    @media (max-width: 520px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
     /* ── RADIO GROUP ── */
     .radio-group {
       display: flex;
@@ -354,6 +366,14 @@
     .file-text { font-size: 13px; color: var(--text-dim); }
     .file-text strong { color: var(--accent); }
     .file-name { font-size: 13px; color: var(--accent); margin-top: 6px; }
+
+    /* ── HINT ── */
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
 
     /* ── SUBMIT ── */
     .form-footer {
@@ -474,9 +494,44 @@
 
     <form id="onboarding-form" novalidate>
 
-      <!-- 01 · BOUTIQUE -->
+      <!-- 01 · FACTURATION -->
       <div class="form-section">
         <div class="section-num">01</div>
+        <div class="section-title">Informations de facturation</div>
+        <div class="field">
+          <label>Raison sociale <span class="required">*</span></label>
+          <input type="text" name="raison_sociale" placeholder="Ex : MaBoutique SAS" required />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>SIRET <span class="required">*</span></label>
+            <input type="text" name="siret" placeholder="14 chiffres" required maxlength="17" />
+          </div>
+          <div class="field">
+            <label>Numéro de TVA intracommunautaire</label>
+            <input type="text" name="tva_intra" placeholder="FR + 11 chiffres" />
+            <div class="field-hint">Laisser vide si non applicable (franchise TVA)</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Adresse du siège social <span class="required">*</span></label>
+          <input type="text" name="adresse" placeholder="Ex : 12 rue de la Paix, 75001 Paris" required />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Nom du contact / signataire <span class="required">*</span></label>
+            <input type="text" name="contact_nom" placeholder="Prénom Nom" required />
+          </div>
+          <div class="field">
+            <label>Email de facturation <span class="required">*</span></label>
+            <input type="email" name="contact_email" placeholder="compta@maboutique.fr" required />
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · BOUTIQUE -->
+      <div class="form-section">
+        <div class="section-num">02</div>
         <div class="section-title">Votre boutique</div>
         <div class="field">
           <label>Nom de la boutique <span class="required">*</span></label>
@@ -499,9 +554,9 @@
         </div>
       </div>
 
-      <!-- 02 · SUPPORT -->
+      <!-- 03 · SUPPORT -->
       <div class="form-section">
-        <div class="section-num">02</div>
+        <div class="section-num">03</div>
         <div class="section-title">Votre support client</div>
         <div class="field">
           <label>Questions les plus fréquentes de vos clients <span class="required">*</span></label>
@@ -521,9 +576,9 @@
         </div>
       </div>
 
-      <!-- 03 · TON -->
+      <!-- 04 · TON -->
       <div class="form-section">
-        <div class="section-num">03</div>
+        <div class="section-num">04</div>
         <div class="section-title">Ton et personnalité de l'agent</div>
         <div class="field">
           <label>Quel ton souhaitez-vous ? <span class="required">*</span></label>
@@ -560,9 +615,9 @@
         </div>
       </div>
 
-      <!-- 04 · DESIGN -->
+      <!-- 05 · DESIGN -->
       <div class="form-section">
-        <div class="section-num">04</div>
+        <div class="section-num">05</div>
         <div class="section-title">Design du widget</div>
         <div class="field">
           <label>Avez-vous un design en tête ? <span class="required">*</span></label>
@@ -628,7 +683,6 @@
 
     function isValidToken(t) {
       if (!t) return false;
-      // Si VALID_TOKENS est vide, accepte tout token présent dans l'URL (mode dev)
       if (VALID_TOKENS.length === 0) return true;
       return VALID_TOKENS.includes(t);
     }
@@ -644,7 +698,6 @@
       const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
       let filled = 0;
       inputs.forEach(el => { if (el.value.trim()) filled++; });
-      // Radio required
       const tonFilled = document.querySelector('input[name="ton"]:checked') ? 1 : 0;
       const designFilled = document.querySelector('input[name="design_choix"]:checked') ? 1 : 0;
       const total = inputs.length + 2;
@@ -697,6 +750,18 @@
       });
     }
 
+    /* ── SIRET FORMAT ── */
+    document.querySelector('input[name="siret"]').addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '').slice(0, 14);
+      if (v.length > 9) v = v.slice(0,9) + ' ' + v.slice(9);
+      if (v.replace(' ','').length > 9) {
+        // Format: 123 456 789 01234
+        let raw = this.value.replace(/\D/g,'').slice(0,14);
+        v = raw.slice(0,3) + (raw.length>3?' ':'') + raw.slice(3,6) + (raw.length>6?' ':'') + raw.slice(6,9) + (raw.length>9?' ':'') + raw.slice(9,14);
+      }
+      this.value = v;
+    });
+
     /* ── SUBMIT ── */
     document.getElementById('onboarding-form').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -705,7 +770,6 @@
       btn.disabled = true;
       btn.textContent = 'Envoi en cours...';
 
-      // Collecte des données
       const data = new FormData(this);
       data.append('access_key', 'a9f55e9b-afc1-4ab4-8415-621d0cce9472');
       data.append('subject', 'Onboarding client — ' + (data.get('boutique_nom') || 'Nouveau client'));
