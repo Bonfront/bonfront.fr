@@ -543,7 +543,7 @@
         </div>
         <div class="field">
           <label>Plateforme e-commerce <span class="required">*</span></label>
-          <select name="plateforme" required>
+          <select name="plateforme" required onchange="toggleAutrePlateforme(this.value)">
             <option value="">Choisir...</option>
             <option>Shopify</option>
             <option>WooCommerce</option>
@@ -551,6 +551,10 @@
             <option>Wix</option>
             <option>Autre</option>
           </select>
+        </div>
+        <div class="field" id="autre-plateforme-field" style="display:none;">
+          <label>Précisez votre plateforme <span class="required">*</span></label>
+          <input type="text" name="plateforme_autre" placeholder="Ex : Magento, Squarespace, custom..." />
         </div>
       </div>
 
@@ -656,6 +660,17 @@
         </div>
       </div>
 
+      <!-- 06 · DEMANDES PARTICULIÈRES -->
+      <div class="form-section">
+        <div class="section-num">06</div>
+        <div class="section-title">Autre chose ?</div>
+        <div class="field">
+          <label>Avez-vous des demandes particulières ou des informations à nous communiquer ?</label>
+          <textarea name="demandes_particulieres" placeholder="Ex : intégration spécifique souhaitée, contraintes techniques, délai souhaité, questions sur le service..." style="min-height: 120px;"></textarea>
+          <div class="field-hint">Optionnel — tout ce qui pourrait nous aider à mieux vous accompagner.</div>
+        </div>
+      </div>
+
       <div class="form-footer">
         <button type="submit" class="btn-submit" id="submit-btn">Envoyer mon questionnaire →</button>
         <div class="form-note">Vos réponses sont transmises directement à Bonfront · Lien à usage unique</div>
@@ -748,6 +763,17 @@
           dropZone.classList.add('has-file');
         }
       });
+    }
+
+    /* ── AUTRE PLATEFORME ── */
+    function toggleAutrePlateforme(val) {
+      const field = document.getElementById('autre-plateforme-field');
+      const input = field.querySelector('input');
+      const show = val === 'Autre';
+      field.style.display = show ? 'block' : 'none';
+      input.required = show;
+      if (!show) input.value = '';
+      updateProgress();
     }
 
     /* ── SIRET FORMAT ── */
