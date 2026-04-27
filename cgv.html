@@ -242,19 +242,36 @@
       border-bottom: 1px solid var(--border);
       color: var(--text);
       line-height: 1.5;
+      vertical-align: top;
     }
     .pricing-table tr:last-child td { border-bottom: none; }
     .pricing-table td:first-child { color: #fff; font-weight: 500; }
     .pricing-table td .tag {
+      display: inline-block;
       font-size: 10px;
       background: rgba(210,255,40,0.1);
       color: var(--accent);
       border: 1px solid rgba(210,255,40,0.2);
       border-radius: 4px;
       padding: 2px 6px;
-      margin-left: 8px;
+      margin-left: 6px;
       font-weight: 600;
       letter-spacing: 0.05em;
+    }
+    .tier-row td {
+      background: rgba(210,255,40,0.03);
+      border-top: 1px solid rgba(210,255,40,0.1);
+      padding: 16px 16px 6px;
+      color: var(--accent);
+    }
+    .tier-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
     }
 
     footer {
@@ -275,10 +292,7 @@
       letter-spacing: -0.02em;
       text-decoration: none;
     }
-    .footer-copy {
-      font-size: 12px;
-      color: var(--text-dim);
-    }
+    .footer-copy { font-size: 12px; color: var(--text-dim); }
     .footer-nav {
       display: flex;
       align-items: center;
@@ -293,13 +307,7 @@
       transition: color 0.2s;
     }
     .footer-nav a:hover { color: rgba(255,255,255,0.7); }
-    .footer-nav-sep {
-      font-size: 11px;
-      color: rgba(255,255,255,0.1);
-      user-select: none;
-    }
-    .footer-logo { color: #fff; }
-    .footer-nav a { color: var(--text-dim); }
+    .footer-nav-sep { font-size: 11px; color: rgba(255,255,255,0.1); user-select: none; }
 
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
@@ -384,7 +392,7 @@
         <span class="section-num">03</span>
         <h2 class="section-title">Prestations et tarifs</h2>
       </div>
-      <p>Bonfront propose les prestations suivantes :</p>
+      <p>Bonfront propose trois paliers de service adaptés à la taille et aux besoins de chaque structure :</p>
       <table class="pricing-table">
         <thead>
           <tr>
@@ -394,6 +402,10 @@
           </tr>
         </thead>
         <tbody>
+          <!-- STARTER -->
+          <tr class="tier-row">
+            <td colspan="3"><span class="tier-label">Starter — Solo &amp; Micro-e-commerce</span></td>
+          </tr>
           <tr>
             <td>Installation de l'agent IA <span class="tag">ONE-SHOT</span></td>
             <td>500 € HT</td>
@@ -404,14 +416,43 @@
             <td>29 € HT / mois</td>
             <td>Abonnement mensuel — 1er mois offert</td>
           </tr>
+          <!-- BUSINESS -->
+          <tr class="tier-row">
+            <td colspan="3"><span class="tier-label">Business — PME (2 à 50 personnes)</span></td>
+          </tr>
           <tr>
-            <td>Maintenance et optimisation <span class="tag">OPTIONNEL</span></td>
+            <td>Installation de l'agent IA <span class="tag">ONE-SHOT</span></td>
+            <td>800 € HT</td>
+            <td>Paiement unique à la commande</td>
+          </tr>
+          <tr>
+            <td>Hébergement de l'agent <span class="tag">OBLIGATOIRE</span></td>
+            <td>29 € HT / mois</td>
+            <td>Abonnement mensuel — 1er mois offert</td>
+          </tr>
+          <tr>
+            <td>Maintenance et optimisation <span class="tag">INCLUS</span></td>
             <td>97 € HT / mois</td>
             <td>Abonnement mensuel sans engagement</td>
           </tr>
+          <!-- ENTERPRISE -->
+          <tr class="tier-row">
+            <td colspan="3"><span class="tier-label">Enterprise — Société (50+ personnes)</span></td>
+          </tr>
+          <tr>
+            <td>Installation sur mesure <span class="tag">ONE-SHOT</span></td>
+            <td>Sur devis</td>
+            <td>Défini lors de l'appel de cadrage</td>
+          </tr>
+          <tr>
+            <td>Hébergement &amp; Maintenance <span class="tag">OBLIGATOIRE</span></td>
+            <td>Sur devis</td>
+            <td>Abonnement mensuel — conditions personnalisées</td>
+          </tr>
         </tbody>
       </table>
-      <p>Bonfront étant en franchise de TVA (article 293 B du CGI), les prix sont indiqués hors TVA et aucune TVA n'est applicable. La mention "TVA non applicable — article 293 B du CGI" figurera sur toutes les factures.</p>
+      <p>Bonfront est actuellement en franchise de TVA conformément à l'article 293 B du CGI. Les prix sont donc indiqués hors TVA et aucune TVA n'est applicable tant que ce régime est en vigueur. La mention <strong>"TVA non applicable — article 293 B du CGI"</strong> figurera sur toutes les factures émises sous ce régime.</p>
+      <p><strong>Clause d'évolution TVA :</strong> Dans le cas où Bonfront viendrait à dépasser le seuil de franchise de TVA ou à opter volontairement pour l'assujettissement à la TVA, les tarifs indiqués seraient alors entendus hors taxes (HT) et la TVA au taux légal en vigueur serait ajoutée. Le Client en serait informé par email avec un préavis minimum de 30 jours avant toute modification de facturation.</p>
       <p>L'abonnement d'hébergement est obligatoire pour maintenir l'agent IA en ligne. La résiliation de cet abonnement entraîne la désactivation immédiate de l'agent à l'issue de la période mensuelle en cours.</p>
       <p>Les tarifs peuvent être modifiés à tout moment par Bonfront, avec un préavis de 30 jours pour les abonnements en cours.</p>
     </div>
