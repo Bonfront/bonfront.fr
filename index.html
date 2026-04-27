@@ -35,6 +35,200 @@
       transition: color 0.2s;
     }
     .nav-apropos:hover { color: rgba(255,255,255,0.85); }
+
+    /* ── PRICING TIERS ── */
+    .pricing-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 40px;
+    }
+
+    .tier-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .tier-card:hover {
+      border-color: rgba(210,255,40,0.25);
+    }
+    .tier-card.tier-featured {
+      border-color: rgba(210,255,40,0.4);
+      background: rgba(210,255,40,0.04);
+    }
+
+    .tier-badge { display: none; }
+
+    .tier-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .tier-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d2ff28;
+      margin-bottom: 8px;
+    }
+
+    .tier-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 4px;
+    }
+
+    .tier-target {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 20px;
+    }
+
+    .tier-price-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tier-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .tier-price-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .tier-price-amount.devis {
+      font-size: 22px;
+    }
+
+    .tier-price-unit {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .tier-price-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+    }
+
+    .tier-body {
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tier-section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin: 0 0 12px;
+    }
+
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+
+    .tier-features li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      line-height: 1.4;
+    }
+
+    .tier-features li::before {
+      content: '✓';
+      color: #d2ff28;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .tier-features li.tier-extra::before {
+      content: '✦';
+      color: rgba(210,255,40,0.5);
+    }
+
+    .tier-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 16px 0;
+    }
+
+    .tier-cta {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+
+    .tier-cta-primary {
+      background: #d2ff28;
+      color: #0e0f0d;
+      border: none;
+    }
+    .tier-cta-primary:hover {
+      background: #e0ff5a;
+    }
+
+    .tier-cta-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .tier-cta-ghost:hover {
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-tiers {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -151,52 +345,104 @@
     <div class="container">
       <p class="section-label">L'offre</p>
       <h2 class="section-title">Simple. Transparent. Sans surprise.</h2>
-      <div class="pricing" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;">
-        <div class="pricing-card">
-          <div class="pricing-top">
-            <h3>Installation</h3>
-            <div class="price">500<span>€</span></div>
-            <p>Une seule fois</p>
+
+      <div class="pricing-tiers">
+
+        <!-- STARTER -->
+        <div class="tier-card">
+          <div class="tier-header">
+            <p class="tier-label">Starter</p>
+            <h3 class="tier-name">Solo & Micro</h3>
+            <p class="tier-target">Boutique indépendante · 1 personne</p>
+            <div class="tier-price-block">
+              <div class="tier-price-row">
+                <span class="tier-price-amount">500</span>
+                <span class="tier-price-unit">€ installation</span>
+              </div>
+              <div class="tier-price-row">
+                <span class="tier-price-amount">29</span>
+                <span class="tier-price-unit">€/mois hébergement</span>
+              </div>
+              <span class="tier-price-note">1er mois offert</span>
+            </div>
           </div>
-          <ul class="pricing-list">
-            <li>Mise en place complète de l'agent</li>
-            <li>Intégration à votre boutique</li>
-            <li>Formation sur vos produits et données</li>
-            <li>Tests et validation avec vous</li>
-            <li>Remboursé sous 14 jours si non conforme</li>
-          </ul>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-top">
-            <h3>Hébergement</h3>
-            <div class="price">29<span>€/mois</span></div>
-            <p>Obligatoire · 1er mois offert</p>
+          <div class="tier-body">
+            <p class="tier-section-title">Inclus</p>
+            <ul class="tier-features">
+              <li>Mise en place complète de l'agent</li>
+              <li>Intégration à votre boutique</li>
+              <li>Formation sur vos produits et données</li>
+              <li>Tests et validation avec vous</li>
+              <li>Hébergement sécurisé 24h/24</li>
+              <li>Mises à jour techniques incluses</li>
+              <li>Remboursé sous 14 jours si non conforme</li>
+            </ul>
+            <a href="#contact" class="tier-cta tier-cta-ghost">Nous contacter →</a>
           </div>
-          <ul class="pricing-list">
-            <li>Agent hébergé sur nos serveurs sécurisés</li>
-            <li>Disponibilité 24h/24, 7j/7</li>
-            <li>Mises à jour techniques incluses</li>
-            <li>Surveillance et redémarrage automatique</li>
-            <li>Résiliation = désactivation de l'agent</li>
-          </ul>
         </div>
-        <div class="pricing-card pricing-featured">
-          <div class="pricing-badge">Recommandé</div>
-          <div class="pricing-top">
-            <h3>Maintenance</h3>
-            <div class="price">97<span>€/mois</span></div>
-            <p>Sans engagement</p>
+
+        <!-- BUSINESS -->
+        <div class="tier-card">
+          <div class="tier-badge">Recommandé</div>
+          <div class="tier-header">
+            <p class="tier-label">Business</p>
+            <h3 class="tier-name">PME</h3>
+            <p class="tier-target">Équipe de 2 à 50 personnes</p>
+            <div class="tier-price-block">
+              <div class="tier-price-row">
+                <span class="tier-price-amount">800</span>
+                <span class="tier-price-unit">€ installation</span>
+              </div>
+              <div class="tier-price-row">
+                <span class="tier-price-amount">126</span>
+                <span class="tier-price-unit">€/mois</span>
+              </div>
+              <span class="tier-price-note">Hébergement 29€ + Maintenance 97€ · 1er mois offert</span>
+            </div>
           </div>
-          <ul class="pricing-list">
-            <li>Mises à jour continues de l'agent</li>
-            <li>Optimisations basées sur les échanges</li>
-            <li>Support prioritaire</li>
-            <li>Rapport mensuel des performances</li>
-            <li>Annulation à tout moment</li>
-          </ul>
-          <a href="#contact" class="btn-primary full">Démarrer maintenant</a>
+          <div class="tier-body">
+            <p class="tier-section-title">Tout Starter, plus</p>
+            <ul class="tier-features">
+              <li>Maintenance active mensuelle</li>
+              <li>Optimisations basées sur les échanges réels</li>
+              <li>Rapport mensuel des performances</li>
+              <li>Support prioritaire</li>
+              <li>Mise à jour continue de la base de connaissance</li>
+              <li class="tier-extra">Annulation à tout moment</li>
+            </ul>
+            <a href="#contact" class="tier-cta tier-cta-ghost">Nous contacter →</a>
+          </div>
         </div>
+
+        <!-- ENTERPRISE -->
+        <div class="tier-card">
+          <div class="tier-header">
+            <p class="tier-label">Enterprise</p>
+            <h3 class="tier-name">Société</h3>
+            <p class="tier-target">Structure de 50+ personnes · Multi-canaux</p>
+            <div class="tier-price-block">
+              <div class="tier-price-row">
+                <span class="tier-price-amount devis">Sur devis</span>
+              </div>
+              <span class="tier-price-note">Installation + abonnement personnalisés</span>
+            </div>
+          </div>
+          <div class="tier-body">
+            <p class="tier-section-title">Tout Business, plus</p>
+            <ul class="tier-features">
+              <li>Intégrations sur mesure (CRM, ERP, Zendesk…)</li>
+              <li>Support multi-langue</li>
+              <li>Analytics avancés et tableaux de bord</li>
+              <li>SLA garanti avec temps de réponse défini</li>
+              <li>Accompagnement dédié à l'onboarding</li>
+              <li class="tier-extra">Architecture multi-agents selon le volume</li>
+            </ul>
+            <a href="#contact" class="tier-cta tier-cta-ghost">Nous contacter →</a>
+          </div>
+        </div>
+
       </div>
+
       <div class="garantie">
         <div class="garantie-icon">🛡️</div>
         <div>
