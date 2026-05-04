@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matchy Cycling - Vêtements cyclisme éco-responsable</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ee;
+    --white: #ffffff;
+    --dark: #1a1a18;
+    --mid: #4a4a44;
+    --muted: #9a9a90;
+    --border: #e0dcd4;
+    --accent: #2d5a3d;
+    --accent2: #c8a96e;
+    --tag: #e8ede9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .logo span { color: var(--accent2); }
+
+  nav { display: flex; gap: 32px; align-items: center; }
+  nav a {
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: white !important;
+    padding: 8px 18px;
+    font-size: 12px !important;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 48px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--tag);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    color: var(--mid);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .badge-pill {
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--mid);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero-visual {
+    background: var(--accent);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-visual-inner {
+    text-align: center;
+    color: white;
+    padding: 40px;
+  }
+
+  .hero-visual-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 1;
+    opacity: 0.15;
+    position: absolute;
+    bottom: -10px;
+    right: 20px;
+  }
+
+  .hero-visual-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-visual-sub {
+    font-size: 12px;
+    opacity: 0.7;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* COLLECTIONS BAR */
+  .collections-bar {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .col-tab {
+    padding: 16px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .col-tab:hover { color: var(--accent); }
+  .col-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* GRID */
+  .products-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--dark);
+  }
+
+  .section-count {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .product-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 24px rgba(45,90,61,0.08);
+  }
+
+  .product-img {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    font-style: italic;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.06));
+  }
+
+  .col-ultra { background: linear-gradient(135deg, #1a2e1f, #2d5a3d); color: rgba(255,255,255,0.15); }
+  .col-lab { background: linear-gradient(135deg, #2a2a2a, #444); color: rgba(255,255,255,0.12); }
+  .col-altitude { background: linear-gradient(135deg, #1e3a5f, #2e5899); color: rgba(255,255,255,0.12); }
+  .col-essential { background: linear-gradient(135deg, #3d2a1e, #7a5a3a); color: rgba(255,255,255,0.12); }
+  .col-origins { background: linear-gradient(135deg, #2a1e3d, #5a3a7a); color: rgba(255,255,255,0.12); }
+  .col-accessoire { background: linear-gradient(135deg, #1e3a2a, #4a8a5a); color: rgba(255,255,255,0.12); }
+
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+  }
+
+  .badge-new { background: var(--accent2); color: white; }
+  .badge-eco { background: var(--accent); color: white; }
+  .badge-last { background: #c0392b; color: white; }
+
+  .product-body { padding: 20px; }
+
+  .product-collection {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+
+  .product-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .product-specs {
+    margin-bottom: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .spec {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 3px 0;
+    color: var(--mid);
+  }
+
+  .spec-val { font-weight: 600; color: var(--dark); }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--dark);
+  }
+
+  .sizes {
+    display: flex;
+    gap: 4px;
+  }
+
+  .size-tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+  }
+
+  /* ENGAGEMENTS */
+  .engagements {
+    background: var(--accent);
+    padding: 48px;
+    margin: 0;
+  }
+
+  .engagements-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .engagement {
+    color: white;
+    text-align: center;
+  }
+
+  .engagement-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .engagement-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .engagement-text {
+    font-size: 12px;
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  /* WIDGET */
+  #support-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  #chat-bubble {
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(45,90,61,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: auto;
+  }
+
+  #chat-bubble:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 28px rgba(45,90,61,0.45);
+  }
+
+  #chat-bubble svg { width: 24px; height: 24px; }
+
+  #chat-window {
+    width: 360px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    margin-bottom: 12px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  #chat-window.open { display: flex; }
+
+  .chat-header {
+    padding: 16px 20px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chat-header-info { display: flex; align-items: center; gap: 12px; }
+
+  .chat-avatar {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: white;
+  }
+
+  .chat-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+  }
+
+  .chat-status {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: #7fff7f;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  #chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fafaf8;
+  }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 8px;
+  }
+
+  .msg.bot {
+    background: var(--white);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    color: var(--dark);
+  }
+
+  .msg.user {
+    background: var(--accent);
+    color: white;
+    align-self: flex-end;
+  }
+
+  .msg.typing {
+    background: var(--white);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  .chat-input-area {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    background: var(--white);
+  }
+
+  #chat-input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--dark);
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #chat-input:focus { border-color: var(--accent); }
+  #chat-input::placeholder { color: var(--muted); }
+
+  #send-btn {
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 8px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  #send-btn:hover { opacity: 0.85; }
+  #send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo-sm {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--accent2);
+    font-style: italic;
+  }
+
+  footer p { font-size: 12px; color: #666; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Matchy <span>Cycling</span></div>
+  <nav>
+    <a href="#">Femmes</a>
+    <a href="#">Hommes</a>
+    <a href="#">Accessoires</a>
+    <a href="#">Collections</a>
+    <a href="#">Custom</a>
+    <a href="#" class="nav-cta">Les Géants</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag">Annecy · Depuis 2016</div>
+    <h1>Cyclisme<br><em>éco-responsable</em><br>haute performance</h1>
+    <p class="hero-sub">Vêtements conçus par des cyclistes pour des cyclistes. Fabriqués en France et en Italie, avec 30% à 100% de matières recyclées. Circuit court, zéro compromis sur la performance.</p>
+    <div class="hero-badges">
+      <span class="badge-pill">Made in France & Italy</span>
+      <span class="badge-pill">30–100% recyclé</span>
+      <span class="badge-pill">Livraison offerte dès 200€</span>
+      <span class="badge-pill">Retours 14 jours</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-num">∞</div>
+    <div class="hero-visual-inner">
+      <div class="hero-visual-text">Conçu pour<br>l'ultra-distance</div>
+      <div class="hero-visual-sub">Collection Ultra · Nouveau 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="collections-bar">
+  <button class="col-tab active">Tout</button>
+  <button class="col-tab">Ultra</button>
+  <button class="col-tab">LAB</button>
+  <button class="col-tab">Altitude</button>
+  <button class="col-tab">Essential</button>
+  <button class="col-tab">Origins</button>
+  <button class="col-tab">Accessoires</button>
+</div>
+
+<div class="products-section">
+  <div class="section-header">
+    <div class="section-title">Catalogue</div>
+    <div class="section-count">14 produits</div>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Maillot ULTRA -->
+    <div class="product-card">
+      <div class="product-img col-ultra">
+        <span class="product-badge badge-new">Nouveau</span>
+        Ultra
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Ultra</div>
+        <div class="product-name">Maillot ULTRA</div>
+        <p class="product-desc">Premier maillot à intégrer une poche dorsale compatible poche à eau 2L. Stockage 4x supérieur à un maillot classique. Conçu dans un rayon de 150 km autour de Lyon.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Fabrication</span><span class="spec-val">France — 150km</span></div>
+          <div class="spec"><span>Poches</span><span class="spec-val">Dorsale 2L + ventrales + arrière</span></div>
+          <div class="spec"><span>Réfléchissants</span><span class="spec-val">Avant et arrière intégrés</span></div>
+          <div class="spec"><span>Poche à eau</span><span class="spec-val">Option Hydrapack 2L</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">389 €</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maillot ULTRA LITE -->
+    <div class="product-card">
+      <div class="product-img col-ultra">
+        <span class="product-badge badge-new">Nouveau</span>
+        Ultra<br>Lite
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Ultra</div>
+        <div class="product-name">Maillot ULTRA LITE</div>
+        <p class="product-desc">Version allégée du maillot ULTRA. Fabriqué en Italie, compatible poche à eau 1,5L. Fit compressif et aérodynamique, idéal au-dessus de 25°C. 4 coloris disponibles.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Fabrication</span><span class="spec-val">Italie</span></div>
+          <div class="spec"><span>Matière</span><span class="spec-val">100% française</span></div>
+          <div class="spec"><span>Poche à eau</span><span class="spec-val">Compatible 1,5L</span></div>
+          <div class="spec"><span>Zip</span><span class="spec-val">Frontal intégral</span></div>
+          <div class="spec"><span>Coloris</span><span class="spec-val">Pure White / Pourpre / Indigo / Coral</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">299 €</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuissard ULTRA Homme -->
+    <div class="product-card">
+      <div class="product-img col-ultra">
+        <span class="product-badge badge-new">Nouveau</span>
+        Cuissard<br>Ultra
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Ultra — Homme</div>
+        <div class="product-name">Cuissard Ultra Homme — Noir</div>
+        <p class="product-desc">160g/m², 30% plus léger qu'un cuissard classique. Doublé ripstop Cordura, résistant à l'abrasion jusqu'à 45 km/h. 5 poches. Mesh alvéolé respirant en haut du corps.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Matière corps</span><span class="spec-val">Cordura 160g/m²</span></div>
+          <div class="spec"><span>Résistance abrasion</span><span class="spec-val">Jusqu'à 45 km/h</span></div>
+          <div class="spec"><span>Poches</span><span class="spec-val">5 (doubles latérales + arrière)</span></div>
+          <div class="spec"><span>Tissé</span><span class="spec-val">En Ardèche</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">À venir</div>
+          <div class="sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuissard ULTRA Femme -->
+    <div class="product-card">
+      <div class="product-img col-ultra">
+        <span class="product-badge badge-new">Nouveau</span>
+        Cuissard<br>Ultra F
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Ultra — Femme</div>
+        <div class="product-name">Cuissard Ultra Femme — Noir</div>
+        <p class="product-desc">Identique au modèle homme avec le système Easy'Loop exclusif : boucle de libération rapide sur les bretelles pour les arrêts techniques sans ôter le maillot.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Système</span><span class="spec-val">Easy'Loop (libération rapide)</span></div>
+          <div class="spec"><span>Matière corps</span><span class="spec-val">Cordura 160g/m²</span></div>
+          <div class="spec"><span>Résistance abrasion</span><span class="spec-val">Jusqu'à 45 km/h</span></div>
+          <div class="spec"><span>Poches</span><span class="spec-val">5 poches stratégiques</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">À venir</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maillot Altitude ML -->
+    <div class="product-card">
+      <div class="product-img col-altitude">
+        Altitude<br>ML
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Altitude</div>
+        <div class="product-name">Maillot Altitude ML Unisexe — Noir</div>
+        <p class="product-desc">Deux tissus italiens techniques combinés. Version manches longues, idéale printemps-automne. Bande silicone 45mm, 3 poches arrière indépendantes, zip intégral silicone.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Matière</span><span class="spec-val">100% recyclée</span></div>
+          <div class="spec"><span>Fabrication</span><span class="spec-val">Made in France</span></div>
+          <div class="spec"><span>Poches</span><span class="spec-val">3 arrière indépendantes</span></div>
+          <div class="spec"><span>Silicone</span><span class="spec-val">Bande 45mm + zip injecté</span></div>
+          <div class="spec"><span>Coloris</span><span class="spec-val">4 disponibles</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">159 €</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuissard Essential Cargo -->
+    <div class="product-card">
+      <div class="product-img col-essential">
+        <span class="product-badge badge-new">New</span>
+        Essential<br>Cargo
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection Essential — Homme</div>
+        <div class="product-name">Cuissard Essential Cargo Homme</div>
+        <p class="product-desc">Cuissard avec poches cargo supplémentaires pour un stockage élargi. Disponible en 3 coloris : Prune, Military, Noir. Peau haute densité pour les longues sorties.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Poches</span><span class="spec-val">Cargo latérales + classiques</span></div>
+          <div class="spec"><span>Peau</span><span class="spec-val">Haute densité</span></div>
+          <div class="spec"><span>Coloris</span><span class="spec-val">Prune / Military / Noir</span></div>
+          <div class="spec"><span>Tailles</span><span class="spec-val">S à XL</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">149 €</div>
+          <div class="sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baselayer Unisexe -->
+    <div class="product-card">
+      <div class="product-img col-accessoire">
+        <span class="product-badge badge-eco">Éco</span>
+        Base<br>Layer
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Sous-maillots</div>
+        <div class="product-name">Baselayer Unisexe — Sommets Français</div>
+        <p class="product-desc">100% fibres recyclées. Mesh structure favorisant le flux d'air entre la peau et le textile. Sans manche, coupe ajustée. Réduit les frottements avec les bretelles du cuissard.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Matière</span><span class="spec-val">100% recyclée</span></div>
+          <div class="spec"><span>Type</span><span class="spec-val">Mesh respirant sans manche</span></div>
+          <div class="spec"><span>Usage</span><span class="spec-val">Première couche / été</span></div>
+          <div class="spec"><span>Lavage</span><span class="spec-val">30°C, sans assouplissant</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">49 €</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maillot LAB -->
+    <div class="product-card">
+      <div class="product-img col-lab">
+        LAB
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Collection LAB</div>
+        <div class="product-name">Maillot LAB — Performance</div>
+        <p class="product-desc">La base du maillot ULTRA. Tissé et assemblé en France dans un périmètre de 150 km. Haute technicité textile, aérodynamisme optimisé, coutures minimales.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Fabrication</span><span class="spec-val">France — 150km</span></div>
+          <div class="spec"><span>Aérodynamisme</span><span class="spec-val">Optimisé</span></div>
+          <div class="spec"><span>Poches arrière</span><span class="spec-val">3 indépendantes</span></div>
+          <div class="spec"><span>Matière</span><span class="spec-val">Française recyclée</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">229 €</div>
+          <div class="sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span class="size-tag">XL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom -->
+    <div class="product-card">
+      <div class="product-img col-origins">
+        Custom
+      </div>
+      <div class="product-body">
+        <div class="product-collection">Custom</div>
+        <div class="product-name">Tenue personnalisée — Club & Événement</div>
+        <p class="product-desc">Conception de tenues custom avec ou sans assistance graphique. À partir de 10 pièces. Clubs, équipes, événements sportifs. Contact : hello@matchycycling.com.</p>
+        <div class="product-specs">
+          <div class="spec"><span>Minimum</span><span class="spec-val">10 pièces</span></div>
+          <div class="spec"><span>Assistance graphique</span><span class="spec-val">Disponible</span></div>
+          <div class="spec"><span>Contact</span><span class="spec-val">hello@matchycycling.com</span></div>
+          <div class="spec"><span>Délai</span><span class="spec-val">Sur devis</span></div>
+        </div>
+        <div class="product-footer">
+          <div class="price">Sur devis</div>
+          <div class="sizes"><span class="size-tag">XS→XL</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="engagements">
+  <div class="engagements-inner">
+    <div class="engagement">
+      <span class="engagement-icon">🌿</span>
+      <div class="engagement-title">30–100% recyclé</div>
+      <p class="engagement-text">Matières recyclées sur toute la gamme, zéro plastique dans les emballages.</p>
+    </div>
+    <div class="engagement">
+      <span class="engagement-icon">🇫🇷</span>
+      <div class="engagement-title">Made in France & Italy</div>
+      <p class="engagement-text">Conçu à Annecy, produit en France et en Italie. Circuit court maîtrisé.</p>
+    </div>
+    <div class="engagement">
+      <span class="engagement-icon">🚚</span>
+      <div class="engagement-title">Livraison offerte</div>
+      <p class="engagement-text">Livraison gratuite en point relais dès 200€ d'achat en France.</p>
+    </div>
+    <div class="engagement">
+      <span class="engagement-icon">↩️</span>
+      <div class="engagement-title">Retours 14 jours</div>
+      <p class="engagement-text">Retour ou échange sous 14 jours pour tout produit non utilisé.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="logo-sm">Matchy Cycling</div>
+  <p>Page de démonstration — Bonfront.fr</p>
+  <p>Agent IA SAV disponible 24h/24</p>
+</footer>
+
+<!-- WIDGET ALEX -->
+<div id="support-widget">
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">A</div>
+        <div>
+          <div class="chat-name">Alex — SAV Matchy Cycling</div>
+          <div class="chat-status"><span class="status-dot"></span>En ligne</div>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div id="chat-messages">
+      <div class="msg bot">Bonjour ! Je suis Alex, l'assistant SAV Matchy Cycling. Je connais toute la gamme : maillots, cuissards, accessoires, collections Ultra, LAB, Altitude... Comment puis-je vous aider ?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Posez votre question..." />
+      <button id="send-btn" onclick="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+  <div id="chat-bubble" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  const WEBHOOK = 'https://n8n.bonfront.fr/webhook/matchy-cycling';
+  const TOKEN = 'MATCHY_TOKEN_PLACEHOLDER';
+  let history = [];
+  let isOpen = false;
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    document.getElementById('chat-window').classList.toggle('open', isOpen);
+    if (isOpen) document.getElementById('chat-input').focus();
+  }
+
+  function addMsg(text, role) {
+    const msgs = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    div.textContent = text;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const btn = document.getElementById('send-btn');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    btn.disabled = true;
+    addMsg(text, 'user');
+
+    const typing = addMsg('Alex est en train d\'écrire...', 'typing');
+
+    try {
+      const res = await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Bonfront-Token': TOKEN
+        },
+        body: JSON.stringify({ message: text, history })
+      });
+
+      const data = await res.json();
+      typing.remove();
+      const reply = data.response || 'Désolé, je n\'ai pas pu traiter votre demande.';
+      addMsg(reply, 'bot');
+      history.push({ role: 'user', content: text });
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      typing.remove();
+      addMsg('Une erreur est survenue. Veuillez réessayer.', 'typing');
+    }
+
+    btn.disabled = false;
+    input.focus();
+  }
+
+  document.getElementById('chat-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  document.querySelectorAll('.col-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.col-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
