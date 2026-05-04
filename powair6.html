@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powair6 - Catalogue HPA & Accessoires Airsoft</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #222222;
+    --accent: #e8ff00;
+    --accent2: #ff4d00;
+    --text: #f0f0f0;
+    --muted: #666666;
+    --red: #ff3333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .logo span { color: var(--text); }
+
+  nav { display: flex; gap: 28px; }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 60px 40px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .hero-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-top: 16px;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-shrink: 0;
+  }
+
+  .stat {
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* CATEGORIES */
+  .categories {
+    display: flex;
+    gap: 8px;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+
+  .cat-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+  }
+
+  /* GRID */
+  .grid-section {
+    padding: 40px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .product-card {
+    background: var(--surface);
+    padding: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .product-card:hover {
+    background: var(--surface2);
+  }
+
+  .product-card:hover .add-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .badge-rupture {
+    background: var(--red);
+    color: white;
+  }
+
+  .badge-new {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .badge-promo {
+    background: var(--accent2);
+    color: white;
+  }
+
+  .product-brand {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .product-specs {
+    margin-bottom: 16px;
+  }
+
+  .spec-line {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .spec-line:last-child { border-bottom: none; }
+
+  .spec-val {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .product-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+
+  .add-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 8px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.2s;
+  }
+
+  .add-btn.rupture {
+    background: var(--border);
+    color: var(--muted);
+    opacity: 1;
+    transform: none;
+    cursor: not-allowed;
+  }
+
+  /* WIDGET */
+  #support-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  #chat-bubble {
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(232,255,0,0.3);
+    transition: transform 0.2s;
+    margin-left: auto;
+  }
+
+  #chat-bubble:hover { transform: scale(1.05); }
+
+  #chat-bubble svg { width: 24px; height: 24px; }
+
+  #chat-window {
+    width: 360px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: none;
+    flex-direction: column;
+    margin-bottom: 12px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+  }
+
+  #chat-window.open { display: flex; }
+
+  .chat-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface2);
+  }
+
+  .chat-header-info { display: flex; align-items: center; gap: 12px; }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--bg);
+  }
+
+  .chat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .chat-status {
+    font-size: 11px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px;
+  }
+
+  #chat-messages {
+    height: 320px;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #chat-messages::-webkit-scrollbar { width: 4px; }
+  #chat-messages::-webkit-scrollbar-track { background: transparent; }
+  #chat-messages::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .msg.bot {
+    background: var(--surface2);
+    border-left: 2px solid var(--accent);
+    align-self: flex-start;
+    color: var(--text);
+  }
+
+  .msg.user {
+    background: var(--accent);
+    color: var(--bg);
+    align-self: flex-end;
+    font-weight: 500;
+  }
+
+  .msg.typing {
+    background: var(--surface2);
+    border-left: 2px solid var(--border);
+    align-self: flex-start;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .chat-input-area {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+  }
+
+  #chat-input {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #chat-input:focus { border-color: var(--accent); }
+  #chat-input::placeholder { color: var(--muted); }
+
+  #send-btn {
+    background: var(--accent);
+    border: none;
+    color: var(--bg);
+    padding: 8px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  #send-btn:hover { opacity: 0.85; }
+  #send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  footer .logo-sm {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">POWAIR<span>6</span></div>
+  <nav>
+    <a href="#">HPA</a>
+    <a href="#">Hop-Up</a>
+    <a href="#">Gaz</a>
+    <a href="#">Grenades</a>
+    <a href="#">Billes</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="hero-label">Spécialiste airsoft depuis 2009</div>
+    <h1>Équipement<br><em>HPA</em> &<br>Accessoires</h1>
+    <p class="hero-sub">Systèmes haute pression, joints hop-up de précision, gaz hautes performances et consommables pour joueurs exigeants. Livraison France & Europe.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">70K+</div>
+      <div class="stat-label">Références</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">600+</div>
+      <div class="stat-label">Marques</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Pays</div>
+    </div>
+  </div>
+</div>
+
+<div class="categories">
+  <button class="cat-btn active">Tout</button>
+  <button class="cat-btn">HPA & Régulateurs</button>
+  <button class="cat-btn">Hop-Up</button>
+  <button class="cat-btn">Gaz</button>
+  <button class="cat-btn">Grenades</button>
+  <button class="cat-btn">Billes</button>
+  <button class="cat-btn">Accessoires</button>
+</div>
+
+<div class="grid-section">
+  <div class="section-title">Catalogue produits</div>
+  <div class="products-grid">
+
+    <!-- Balystik Régulateur HPA HPR800C -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Régulateur HPA HPR800C</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Pression sortie</span><span class="spec-val">0 – 120 PSI réglable</span></div>
+        <div class="spec-line"><span>Pression entrée max</span><span class="spec-val">4500 PSI (310 bar)</span></div>
+        <div class="spec-line"><span>Raccord entrée</span><span class="spec-val">1/8 NPT mâle</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG, GBBR, HPA</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Aluminium usiné CNC</span></div>
+      </div>
+      <p class="product-desc">Régulateur haute pression de précision pour systèmes HPA. Réglage fin de la pression de sortie, idéal pour les moteurs Polarstar, Wolverine et Gate. Lecture directe sur manomètre intégré.</p>
+      <div class="product-footer">
+        <div class="price">69,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Bouteille HPA -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Bouteille Alu HPA 3000 PSI 0.8L + Preset HP</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Capacité</span><span class="spec-val">0,8 litre</span></div>
+        <div class="spec-line"><span>Pression max</span><span class="spec-val">3000 PSI (207 bar)</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Aluminium 6061-T6</span></div>
+        <div class="spec-line"><span>Preset inclus</span><span class="spec-val">Haute pression (HP)</span></div>
+        <div class="spec-line"><span>Filetage</span><span class="spec-val">Standard Foster</span></div>
+      </div>
+      <p class="product-desc">Bouteille HPA aluminium légère et compacte, livrée avec preset haute pression. Compatible avec tous les régulateurs Balystik et la majorité des systèmes HPA du marché. Idéale pour débuter en HPA.</p>
+      <div class="product-footer">
+        <div class="price">54,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Ligne HPA PREMIUM -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Ligne HPA Premium — Noir</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Longueur</span><span class="spec-val">120 cm</span></div>
+        <div class="spec-line"><span>Pression max</span><span class="spec-val">200 PSI</span></div>
+        <div class="spec-line"><span>Raccords</span><span class="spec-val">Foster mâle / 1/8 NPT mâle</span></div>
+        <div class="spec-line"><span>Tressage</span><span class="spec-val">Nylon renforcé</span></div>
+        <div class="spec-line"><span>Version</span><span class="spec-val">US</span></div>
+      </div>
+      <p class="product-desc">Ligne HPA premium tressée nylon, résistante à l'abrasion et aux torsions. Raccords Foster-mâle / 1/8 NPT mâle version US. Passage en body souple pour une intégration discrète dans la réplique.</p>
+      <div class="product-footer">
+        <div class="price">26,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Ligne HPA Mini Mamba -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Ligne HPA Mini Mamba — Version US</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Spiralée extensible</span></div>
+        <div class="spec-line"><span>Longueur repos</span><span class="spec-val">~30 cm</span></div>
+        <div class="spec-line"><span>Longueur étendue</span><span class="spec-val">~90 cm</span></div>
+        <div class="spec-line"><span>Raccords</span><span class="spec-val">Foster / 1/8 NPT US</span></div>
+        <div class="spec-line"><span>Usage</span><span class="spec-val">CQB, SMG, pistolets HPA</span></div>
+      </div>
+      <p class="product-desc">Ligne spiralée ultra-compacte, parfaite pour les répliques courtes (SMG, pistolets). Se rétracte automatiquement pour éviter les accrochages en terrain. Version US, compatible Balystik et la plupart des régulateurs.</p>
+      <div class="product-footer">
+        <div class="price">18,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Coupleur Mâle Macroflex -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Coupleur Mâle Macroflex 6mm — Version US</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Foster mâle rapide</span></div>
+        <div class="spec-line"><span>Entrée tube</span><span class="spec-val">Macroflex 6mm</span></div>
+        <div class="spec-line"><span>Version</span><span class="spec-val">US (Foster standard)</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Laiton nickelé</span></div>
+      </div>
+      <p class="product-desc">Coupleur Foster mâle rapide pour tube Macroflex 6mm. Permet de connecter rapidement une ligne HPA à un régulateur sans outils. Compatible avec tous les systèmes Foster version US du marché.</p>
+      <div class="product-footer">
+        <div class="price">6,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Coupleur Femelle 1/8 NPT -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Coupleur Femelle 1/8 NPT Mâle US — Noir</div>
+      <div class="badge badge-rupture">Rupture de stock</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Foster femelle / 1/8 NPT mâle</span></div>
+        <div class="spec-line"><span>Version</span><span class="spec-val">US</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Acier traité</span></div>
+        <div class="spec-line"><span>Usage</span><span class="spec-val">Jonction ligne/régulateur</span></div>
+      </div>
+      <p class="product-desc">Coupleur femelle Foster vers 1/8 NPT mâle pour interconnecter deux éléments de ligne HPA. Finition noire, robuste, compatible avec l'ensemble de la gamme Balystik et les régulateurs tiers version US.</p>
+      <div class="product-footer">
+        <div class="price">9,90 €</div>
+        <button class="add-btn rupture">Indisponible</button>
+      </div>
+    </div>
+
+    <!-- Balystik Graisse pneumatique -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Graisse Pneumatique Premium — AEG HPA GBB</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Silicone haute performance</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG, HPA, GBB, GBBR</span></div>
+        <div class="spec-line"><span>Format</span><span class="spec-val">Pot 30ml</span></div>
+        <div class="spec-line"><span>Température</span><span class="spec-val">-30°C à +200°C</span></div>
+      </div>
+      <p class="product-desc">Graisse silicone premium spécialement formulée pour les joints et O-rings des systèmes pneumatiques airsoft. N'attaque pas les joints, préserve l'étanchéité des régulateurs HPA et des culasses GBB. Indispensable pour l'entretien.</p>
+      <div class="product-footer">
+        <div class="price">8,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Sparclette Co2 33g -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Sparclette Co2 33g</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Contenance</span><span class="spec-val">33 grammes</span></div>
+        <div class="spec-line"><span>Pression interne</span><span class="spec-val">~57 bar à 20°C</span></div>
+        <div class="spec-line"><span>Filetage</span><span class="spec-val">Standard 3/8 universel</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">Répliques Co2 33g</span></div>
+      </div>
+      <p class="product-desc">Sparclette CO2 haute qualité 33g pour répliques airsoft compatibles. Filetage universel standard. À utiliser par temperatures supérieures à 10°C pour des performances optimales. Vendue à l'unité.</p>
+      <div class="product-footer">
+        <div class="price">3,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Sparclette Co2 12g x5 -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Sparclettes Co2 12g — Boîte de 5</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Contenance</span><span class="spec-val">12 grammes × 5</span></div>
+        <div class="spec-line"><span>Filetage</span><span class="spec-val">Standard universel</span></div>
+        <div class="spec-line"><span>Compatible</span><span class="spec-val">GBB pistolets, revolver</span></div>
+        <div class="spec-line"><span>Conditionnement</span><span class="spec-val">Boîte de 5 unités</span></div>
+      </div>
+      <p class="product-desc">Lot de 5 sparclettes CO2 12g pour pistolets GBB et revolvers airsoft. Qualité Balystik garantie sans fuite. Idéal pour les sessions d'entraînement. Économique à l'usage, compatible avec toutes les répliques 12g standard.</p>
+      <div class="product-footer">
+        <div class="price">3,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Balystik Sparclette Co2 12g x20 -->
+    <div class="product-card">
+      <div class="product-brand">Balystik</div>
+      <div class="product-name">Sparclettes Co2 12g — Boîte de 20</div>
+      <div class="badge badge-promo">Économique</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Contenance</span><span class="spec-val">12 grammes × 20</span></div>
+        <div class="spec-line"><span>Prix unitaire</span><span class="spec-val">~0,50 € / unité</span></div>
+        <div class="spec-line"><span>Filetage</span><span class="spec-val">Standard universel</span></div>
+        <div class="spec-line"><span>Conditionnement</span><span class="spec-val">Boîte de 20 unités</span></div>
+      </div>
+      <p class="product-desc">Pack économique de 20 sparclettes CO2 12g Balystik. Le meilleur rapport qualité-prix pour les joueurs réguliers. Compatible avec tous les pistolets GBB et revolvers airsoft 12g. À conserver à l'abri de la chaleur.</p>
+      <div class="product-footer">
+        <div class="price">9,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- 4UANTUM Joint Hop-Up AEG -->
+    <div class="product-card">
+      <div class="product-brand">4UANTUM</div>
+      <div class="product-name">Joint Hop-Up AEG Friction Pro — High Performance</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG standard (M4, AK, etc.)</span></div>
+        <div class="spec-line"><span>Dureté</span><span class="spec-val">70° Shore</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Silicone haute densité</span></div>
+        <div class="spec-line"><span>Diamètre bille</span><span class="spec-val">6mm</span></div>
+      </div>
+      <p class="product-desc">Joint hop-up haute performance à friction pour AEG. Silicone haute densité 70° pour un effet backspin précis et constant. Améliore significativement la précision et la portée. Installation directe sans modification.</p>
+      <div class="product-footer">
+        <div class="price">12,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- 4UANTUM Joint Hop-Up GBB -->
+    <div class="product-card">
+      <div class="product-brand">4UANTUM</div>
+      <div class="product-name">Joint Hop-Up GBB Friction Pro — High Performance</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">GBB pistolets & carabines</span></div>
+        <div class="spec-line"><span>Dureté</span><span class="spec-val">60° Shore</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Silicone haute densité</span></div>
+        <div class="spec-line"><span>Diamètre bille</span><span class="spec-val">6mm</span></div>
+      </div>
+      <p class="product-desc">Joint hop-up friction pro spécialement formulé pour les GBB. Dureté 60° Shore adaptée aux pressions plus élevées des systèmes gaz. Excellent maintien de la bille, effet hop régulier même en rafale.</p>
+      <div class="product-footer">
+        <div class="price">12,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Maple Leaf Joint Hop-Up Super Macaron -->
+    <div class="product-card">
+      <div class="product-brand">Maple Leaf</div>
+      <div class="product-name">Joint Hop-Up Super Macaron 60°</div>
+      <div class="badge badge-new">Populaire</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Dureté</span><span class="spec-val">60° Shore</span></div>
+        <div class="spec-line"><span>Profil</span><span class="spec-val">Macaron (plat)</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG / GBBR / HPA M4, AK</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Silicone souple</span></div>
+      </div>
+      <p class="product-desc">Le joint hop-up de référence Maple Leaf. Profil macaron plat pour un contact bille optimal et un effet backspin ultra-stable. Très populaire parmi les joueurs compétitifs. Compatible avec la majorité des chambre hop-up AEG, GBBR et HPA.</p>
+      <div class="product-footer">
+        <div class="price">9,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Maple Leaf AEG Hop Tensioner Omega -->
+    <div class="product-card">
+      <div class="product-brand">Maple Leaf</div>
+      <div class="product-name">AEG Hop Tensioner Omega</div>
+      <div class="badge badge-rupture">Rupture de stock</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Nub bras de hop</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Polymère haute résistance</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG V2 / V3 standard</span></div>
+        <div class="spec-line"><span>Usage</span><span class="spec-val">Précision longue portée</span></div>
+      </div>
+      <p class="product-desc">Nub Omega Maple Leaf pour bras de hop-up AEG. Optimise la pression sur le joint hop pour un effet backspin parfait et homogène. Conçu pour la précision en sniper et DMR. Remplacement direct du nub d'origine.</p>
+      <div class="product-footer">
+        <div class="price">5,90 €</div>
+        <button class="add-btn rupture">Indisponible</button>
+      </div>
+    </div>
+
+    <!-- Ultrair Power Gaz 570ml -->
+    <div class="product-card">
+      <div class="product-brand">Ultrair</div>
+      <div class="product-name">Power Gaz 570ml ASG — 150 PSI</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Contenance</span><span class="spec-val">570 ml</span></div>
+        <div class="spec-line"><span>Pression</span><span class="spec-val">150 PSI (~10,3 bar)</span></div>
+        <div class="spec-line"><span>Composition</span><span class="spec-val">HFC152a + silicone</span></div>
+        <div class="spec-line"><span>Température idéale</span><span class="spec-val">15°C à 30°C</span></div>
+        <div class="spec-line"><span>Valve</span><span class="spec-val">Standard GBB</span></div>
+      </div>
+      <p class="product-desc">Gaz green gas haute performance 150 PSI pour répliques GBB. Formule HFC152a enrichie en silicone pour lubrifier les joints automatiquement à chaque remplissage. Pression constante pour des performances régulières.</p>
+      <div class="product-footer">
+        <div class="price">7,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- ASG Ultrair High Power Gaz -->
+    <div class="product-card">
+      <div class="product-brand">ASG / Ultrair</div>
+      <div class="product-name">High Power Gaz 570ml — 178 PSI</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Contenance</span><span class="spec-val">570 ml</span></div>
+        <div class="spec-line"><span>Pression</span><span class="spec-val">178 PSI (~12,3 bar)</span></div>
+        <div class="spec-line"><span>Composition</span><span class="spec-val">HFC152a + silicone</span></div>
+        <div class="spec-line"><span>Usage recommandé</span><span class="spec-val">Températures < 15°C</span></div>
+        <div class="spec-line"><span>Valve</span><span class="spec-val">Standard GBB</span></div>
+      </div>
+      <p class="product-desc">Gaz haute pression 178 PSI pour conditions froides. Compense la perte de performance des GBB par temps frais. Silicone intégré pour lubrification automatique. Attention : à utiliser avec précaution sur les répliques standard.</p>
+      <div class="product-footer">
+        <div class="price">9,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Enola Gaye Grenade EG67 -->
+    <div class="product-card">
+      <div class="product-brand">Enola Gaye</div>
+      <div class="product-name">Grenade à Goupille EG67 — Billes</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Type</span><span class="spec-val">Grenade à goupille</span></div>
+        <div class="spec-line"><span>Contenance billes</span><span class="spec-val">~200 billes 6mm</span></div>
+        <div class="spec-line"><span>Délai amorçage</span><span class="spec-val">3 secondes</span></div>
+        <div class="spec-line"><span>Portée projection</span><span class="spec-val">~5 mètres</span></div>
+        <div class="spec-line"><span>Usage</span><span class="spec-val">CQB, milsim</span></div>
+      </div>
+      <p class="product-desc">Grenade airsoft à goupille EG67 propulsant ~200 billes 6mm dans un rayon de 5 mètres. Déclenchement 3 secondes après retrait de la goupille. Idéale pour le CQB et les parties milsim. Non réutilisable.</p>
+      <div class="product-footer">
+        <div class="price">6,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Joint pour tête de bouteille HPA -->
+    <div class="product-card">
+      <div class="product-brand">Générique</div>
+      <div class="product-name">Joint pour Tête de Bouteille HPA</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Diamètre</span><span class="spec-val">Standard tête Foster</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">NBR haute pression</span></div>
+        <div class="spec-line"><span>Pression max</span><span class="spec-val">4500 PSI compatible</span></div>
+        <div class="spec-line"><span>Vendu</span><span class="spec-val">À l'unité</span></div>
+      </div>
+      <p class="product-desc">Joint de remplacement pour tête de bouteille HPA. Matière NBR résistante aux hautes pressions. À remplacer dès l'apparition de fuites sur la connexion bouteille/régulateur. Compatibilité générale avec les têtes Foster standard.</p>
+      <div class="product-footer">
+        <div class="price">1,00 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- PTS Chargeur EPM1 RX -->
+    <div class="product-card">
+      <div class="product-brand">PTS</div>
+      <div class="product-name">Chargeur EPM1 RX pour AEG M4 — Noir</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Capacité</span><span class="spec-val">120 billes (midcap)</span></div>
+        <div class="spec-line"><span>Compatibilité</span><span class="spec-val">AEG M4 / AR15 standard</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">Polymère haute résistance</span></div>
+        <div class="spec-line"><span>Type</span><span class="spec-val">Midcap (non-windable)</span></div>
+        <div class="spec-line"><span>Couleur</span><span class="spec-val">Noir</span></div>
+      </div>
+      <p class="product-desc">Chargeur midcap PTS EPM1 RX 120 billes pour AEG M4. Polymère ultra-résistant aux chocs, alimentation régulière sans bruit. Design militaire réaliste basé sur les chargeurs PMAGs. Compatible avec toutes les répliques M4/AR15 standard.</p>
+      <div class="product-footer">
+        <div class="price">36,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+    <!-- BLS Billes 0.28g -->
+    <div class="product-card">
+      <div class="product-brand">BLS</div>
+      <div class="product-name">Billes 0,28g — Sachet 1kg</div>
+      <div class="product-specs">
+        <div class="spec-line"><span>Poids</span><span class="spec-val">0,28 grammes</span></div>
+        <div class="spec-line"><span>Diamètre</span><span class="spec-val">5,95mm ± 0,01</span></div>
+        <div class="spec-line"><span>Quantité</span><span class="spec-val">~3571 billes / kg</span></div>
+        <div class="spec-line"><span>Matière</span><span class="spec-val">PLA biodégradable</span></div>
+        <div class="spec-line"><span>Usage recommandé</span><span class="spec-val">AEG, HPA, GBBR</span></div>
+      </div>
+      <p class="product-desc">Billes 0,28g BLS haute précision, tolérances ± 0,01mm garanties. Idéales pour les répliques tunées et les HPA en extérieur. Matière PLA biodégradable. Le rapport qualité-prix de référence pour les joueurs réguliers.</p>
+      <div class="product-footer">
+        <div class="price">9,90 €</div>
+        <button class="add-btn">Ajouter</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="logo-sm">POWAIR6</div>
+  <p>Page de démonstration — Bonfront.fr</p>
+  <p>Agent IA SAV disponible 24h/24</p>
+</footer>
+
+<!-- WIDGET ALEX -->
+<div id="support-widget">
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">A</div>
+        <div>
+          <div class="chat-name">Alex — SAV Powair6</div>
+          <div class="chat-status"><span class="status-dot"></span>En ligne</div>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div id="chat-messages">
+      <div class="msg bot">Bonjour ! Je suis Alex, l'assistant SAV Powair6. Je connais vos produits HPA, hop-up, gaz et accessoires. Comment puis-je vous aider ?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Posez votre question..." />
+      <button id="send-btn" onclick="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+  <div id="chat-bubble" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  const WEBHOOK = 'https://n8n.bonfront.fr/webhook/powair6';
+  const TOKEN = 'e5d62a651f50a37ade254af9484799ca06900b1428e09581bbc8ae1ee081669b';
+  let history = [];
+  let isOpen = false;
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    document.getElementById('chat-window').classList.toggle('open', isOpen);
+    if (isOpen) document.getElementById('chat-input').focus();
+  }
+
+  function addMsg(text, role) {
+    const msgs = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = 'msg ' + role;
+    div.textContent = text;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const btn = document.getElementById('send-btn');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    btn.disabled = true;
+    addMsg(text, 'user');
+
+    const typing = addMsg('Alex est en train d\'écrire...', 'typing');
+
+    try {
+      const res = await fetch(WEBHOOK, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Bonfront-Token': TOKEN
+        },
+        body: JSON.stringify({ message: text, history })
+      });
+
+      const data = await res.json();
+      typing.remove();
+      const reply = data.response || 'Désolé, je n\'ai pas pu traiter votre demande.';
+      addMsg(reply, 'bot');
+      history.push({ role: 'user', content: text });
+      history.push({ role: 'assistant', content: reply });
+    } catch(e) {
+      typing.remove();
+      addMsg('Une erreur est survenue. Veuillez réessayer.', 'typing');
+    }
+
+    btn.disabled = false;
+    input.focus();
+  }
+
+  document.getElementById('chat-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
