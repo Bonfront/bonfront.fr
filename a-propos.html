@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Bonfront</title>
+  <meta name="description" content="Bonfront, c'est Etann Jean-Baptiste — développeur indépendant basé à Toulouse, spécialisé en automatisation IA pour e-commerçants français." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .nav-link.active { color: var(--white); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      padding: 160px 48px 100px;
+      position: relative;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-glow {
+      position: fixed;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.05) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.8);
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-title .accent { color: var(--accent); }
+    .hero-title .dim { color: rgba(244,244,240,0.18); }
+
+    /* INTRO SECTION */
+    .intro {
+      padding: 0 48px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* IDENTITY CARD */
+    .identity-card {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: sticky;
+      top: 88px;
+    }
+
+    .identity-top {
+      padding: 32px;
+      border-bottom: 1px solid var(--grey-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(210,255,40,0.04) 0%, transparent 60%);
+    }
+
+    .avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(210,255,40,0.08);
+      border: 1px solid rgba(210,255,40,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .identity-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .identity-role {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    .identity-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .identity-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--grey-border);
+      gap: 16px;
+    }
+
+    .identity-row:last-child { border-bottom: none; }
+
+    .identity-row-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .identity-row-value {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.7);
+      text-align: right;
+    }
+
+    /* STORY */
+    .story {}
+
+    .story-block {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .story-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .story-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .story-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .story-text {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.85;
+    }
+
+    .story-text + .story-text { margin-top: 16px; }
+
+    .story-highlight {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      margin-top: 24px;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.65);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* STACK */
+    .stack-section {
+      background: var(--grey-light);
+      border-top: 1px solid var(--grey-border);
+      border-bottom: 1px solid var(--grey-border);
+      padding: 100px 48px;
+    }
+
+    .stack-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 56px;
+      background: var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .stack-item {
+      background: var(--grey-light);
+      padding: 28px 24px;
+      transition: background 0.2s;
+    }
+
+    .stack-item:hover { background: var(--grey-mid); }
+
+    .stack-category {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.4);
+      margin-bottom: 12px;
+    }
+
+    .stack-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .stack-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.4);
+      line-height: 1.6;
+    }
+
+    /* VALUES */
+    .values-section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .value-card {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      padding: 32px;
+      transition: border-color 0.2s;
+    }
+
+    .value-card:hover { border-color: rgba(210,255,40,0.15); }
+
+    .value-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: rgba(210,255,40,0.35);
+      margin-bottom: 16px;
+    }
+
+    .value-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .value-text {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.75;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 0 48px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cta-box {
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      padding: 56px 60px;
+      background: var(--grey-light);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .cta-sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.4);
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 13px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(244,244,240,0.45);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 13px 20px;
+      border: 1px solid var(--grey-border);
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.15); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 32px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 60px; }
+      .intro { padding: 0 24px 70px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .identity-card { position: static; }
+      .stack-section { padding: 70px 24px; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+      .values-section { padding: 70px 24px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 0 24px 70px; }
+      .cta-box { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
+      .cta-actions { align-items: flex-start; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link active">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-dot"></div>
+      <div class="eyebrow-text">À propos</div>
+    </div>
+    <h1 class="hero-title">
+      Pas une agence.<br>
+      <span class="accent">Une personne.</span><br>
+      <span class="dim">Une vraie.</span>
+    </h1>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-grid">
+
+      <!-- IDENTITY CARD -->
+      <div class="identity-card reveal">
+        <div class="identity-top">
+          <div class="avatar">EJ</div>
+          <div>
+            <div class="identity-name">Etann Jean-Baptiste</div>
+            <div class="identity-role">Fondateur — Bonfront</div>
+          </div>
+        </div>
+        <div class="identity-rows">
+          <div class="identity-row">
+            <div class="identity-row-label">Localisation</div>
+            <div class="identity-row-value">Toulouse, France</div>
+          </div>
+          <div class="identity-row">
+            <div class="identity-row-label">Statut</div>
+            <div class="identity-row-value">Auto-entrepreneur</div>
+          </div>
+          <div class="identity-row">
+            <div class="identity-row-label">SIREN</div>
+            <div class="identity-row-value">104 193 719</div>
+          </div>
+          <div class="identity-row">
+            <div class="identity-row-label">Activité</div>
+            <div class="identity-row-value">APE 6202A</div>
+          </div>
+          <div class="identity-row">
+            <div class="identity-row-label">Créé le</div>
+            <div class="identity-row-value">24 avril 2026</div>
+          </div>
+          <div class="identity-row">
+            <div class="identity-row-label">Contact</div>
+            <div class="identity-row-value">
+              <a href="mailto:contact@bonfront.fr" style="color:var(--accent);text-decoration:none;">contact@bonfront.fr</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STORY -->
+      <div class="story reveal">
+
+        <div class="story-block">
+          <div class="story-label">L'origine</div>
+          <h2 class="story-title">Bonfront, c'est quoi ?</h2>
+          <p class="story-text">
+            Bonfront, c'est la contraction de "bon fond" — honnêteté, transparence, ce que vous voyez est ce que vous obtenez — et de "frontend", parce que l'IA est en première ligne, face à vos clients.
+          </p>
+          <p class="story-text">
+            L'idée est simple : les e-commerçants français perdent un temps fou sur des tâches répétitives — répondre aux mêmes questions SAV, analyser ce qui ne convertit pas sur leur boutique, surveiller leur marché. Bonfront automatise ça.
+          </p>
+          <div class="story-highlight">
+            "Je n'ai pas lancé Bonfront pour construire une agence. Je l'ai lancé parce que je voulais faire quelque chose d'utile, concrètement, pour des gens qui bossent dur sur leurs boutiques."
+          </div>
+        </div>
+
+        <div class="story-block">
+          <div class="story-label">Le fondateur</div>
+          <h2 class="story-title">Qui est derrière tout ça ?</h2>
+          <p class="story-text">
+            Moi, c'est Etann. 21 ans, basé près de Toulouse. Parcours atypique : formation en game design et développement (niveau 6 RNCP), background en développement Java et en art 3D, reconverti dans l'IA et l'automatisation.
+          </p>
+          <p class="story-text">
+            Bonfront a été construit en une nuit d'avril 2026 — le site, l'infrastructure, l'agent IA, les pages légales, tout. Pas par bravade, mais parce que quand quelque chose est clair dans ma tête, j'exécute.
+          </p>
+          <p class="story-text">
+            Je travaille seul. Ça veut dire que vous parlez directement à la personne qui configure votre agent, qui fait votre audit, qui répond à vos emails. Pas à un commercial qui passe la main à un technicien qui passe la main à un stagiaire.
+          </p>
+        </div>
+
+        <div class="story-block">
+          <div class="story-label">L'approche</div>
+          <h2 class="story-title">Comment je travaille.</h2>
+          <p class="story-text">
+            Je ne survends pas. Si votre boutique n'a pas besoin d'un agent IA, je vous le dis. Si l'audit identifie deux problèmes au lieu de dix, le rapport aura deux points, pas dix bullet points inutiles pour justifier le prix.
+          </p>
+          <p class="story-text">
+            Les tarifs sont pensés pour les petites boutiques — pas pour les grands groupes qui ont déjà une équipe tech. L'objectif c'est que ça soit accessible, que ça marche, et que vous le voyez dans vos résultats.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="stack-section">
+    <div class="stack-inner">
+      <div class="reveal">
+        <div style="font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Stack technique</div>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px;">Ce qui tourne sous le capot.</h2>
+        <p style="font-size:0.95rem;font-weight:300;color:rgba(244,244,240,0.5);max-width:520px;line-height:1.8;">Des outils solides, open-source quand c'est possible, hébergés en Europe.</p>
+      </div>
+      <div class="stack-grid reveal">
+        <div class="stack-item">
+          <div class="stack-category">Orchestration</div>
+          <div class="stack-name">n8n</div>
+          <div class="stack-desc">Automatisation des workflows — indexation, SAV, prospection, tendances.</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-category">Intelligence</div>
+          <div class="stack-name">Claude (Anthropic)</div>
+          <div class="stack-desc">Modèle de langage pour les réponses de l'agent et la génération de contenu.</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-category">Mémoire</div>
+          <div class="stack-name">Qdrant + Ollama</div>
+          <div class="stack-desc">Base vectorielle pour la recherche sémantique. Embeddings locaux, données privées.</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-category">Infrastructure</div>
+          <div class="stack-name">OVH VPS</div>
+          <div class="stack-desc">Serveur dédié hébergé en France. Docker, Traefik SSL, PostgreSQL.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values-section">
+    <div class="reveal">
+      <div style="font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Ce qui ne bouge pas</div>
+      <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px;">Quatre principes.</h2>
+    </div>
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-title">Honnêteté d'abord.</div>
+        <div class="value-text">Si ça ne sert à rien pour vous, je vous le dis. Je préfère perdre une vente que vous facturer quelque chose d'inutile.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-title">Un interlocuteur, pas un tunnel.</div>
+        <div class="value-text">Vous parlez à moi du début à la fin. Pas de tickets, pas de support externalisé, pas de délais absurdes.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-title">Des résultats, pas des slides.</div>
+        <div class="value-text">Pas de rapport de 40 pages pour impressionner. Ce qui compte c'est ce qui change concrètement dans votre quotidien.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div class="value-title">Vos données restent les vôtres.</div>
+        <div class="value-text">Infrastructure en France, aucune revente, aucun partage. Ce qui tourne sur votre serveur reste sur votre serveur.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div class="cta-box">
+      <div>
+        <div class="cta-tag">Travaillons ensemble</div>
+        <h2 class="cta-title">Une question ? Un projet ? Parlez-moi directement.</h2>
+        <p class="cta-sub">Pas de formulaire qui disparaît dans le vide. Un email, une vraie réponse.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:contact@bonfront.fr" class="btn-primary">
+          Écrire à Etann
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="audit.html" class="btn-ghost">Commencer par un audit →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="audit.html">Audit</a>
+        <a href="agent.html">Agent IA SAV</a>
+        <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
