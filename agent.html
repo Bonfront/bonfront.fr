@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent IA SAV — Bonfront</title>
+  <meta name="description" content="Un agent IA formé sur votre boutique qui répond à vos clients 24h/24. Installation 500€, hébergement 29€/mois." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .nav-link.active { color: var(--white); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.065) 0%, transparent 70%);
+      top: -150px; right: -50px;
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.03) 0%, transparent 70%);
+      bottom: 60px; left: 5%;
+      pointer-events: none;
+    }
+
+    .v-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(210,255,40,0.06) 30%, rgba(210,255,40,0.06) 70%, transparent);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-left {}
+
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .tag-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .tag-text {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.8);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      line-height: 0.97;
+      letter-spacing: -0.04em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    h1 .accent { color: var(--accent); }
+    h1 .dim { color: rgba(244,244,240,0.2); display: block; }
+
+    .hero-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(244,244,240,0.5);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      text-decoration: none;
+      padding: 14px 20px;
+      border: 1px solid var(--grey-border);
+      border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.15); }
+
+    /* CHAT MOCKUP */
+    .hero-right {
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+    .chat-window {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      background: var(--grey-mid);
+    }
+
+    .chat-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(210,255,40,0.1);
+      border: 1px solid rgba(210,255,40,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-avatar svg { color: var(--accent); }
+
+    .chat-info {}
+
+    .chat-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+    }
+
+    .chat-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    .status-dot-green {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #28ffb0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+    .chat-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 280px;
+    }
+
+    .msg {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 85%;
+    }
+
+    .msg.client { align-self: flex-end; align-items: flex-end; }
+    .msg.agent { align-self: flex-start; align-items: flex-start; }
+
+    .msg-bubble {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.83rem;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .msg.client .msg-bubble {
+      background: rgba(210,255,40,0.1);
+      border: 1px solid rgba(210,255,40,0.15);
+      color: rgba(244,244,240,0.85);
+      border-bottom-right-radius: 3px;
+    }
+
+    .msg.agent .msg-bubble {
+      background: var(--grey-mid);
+      border: 1px solid var(--grey-border);
+      color: rgba(244,244,240,0.75);
+      border-bottom-left-radius: 3px;
+    }
+
+    .msg-time {
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    .typing {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      background: var(--grey-mid);
+      border: 1px solid var(--grey-border);
+      border-radius: 10px;
+      border-bottom-left-radius: 3px;
+      width: fit-content;
+    }
+
+    .typing span {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--grey);
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%,60%,100% { transform: translateY(0); }
+      30% { transform: translateY(-5px); }
+    }
+
+    /* SECTION */
+    .section { padding: 100px 48px; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 60px;
+      background: var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--grey-light);
+      padding: 36px 32px;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: var(--grey-mid); }
+
+    .feature-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(210,255,40,0.4);
+      margin-bottom: 20px;
+    }
+
+    .feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(210,255,40,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.7;
+    }
+
+    /* PROCESS */
+    .process-section {
+      background: var(--grey-light);
+      border-top: 1px solid var(--grey-border);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 27px;
+      left: 28px; right: 28px;
+      height: 1px;
+      background: var(--grey-mid);
+    }
+
+    .process-step {
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .step-dot {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--grey-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 2;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      color: var(--accent);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .process-step:hover .step-dot {
+      border-color: var(--accent);
+      background: rgba(210,255,40,0.05);
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.65;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .pricing-card {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      padding: 36px 32px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .pricing-card:hover { border-color: rgba(210,255,40,0.15); }
+
+    .pricing-card.featured {
+      border-color: rgba(210,255,40,0.25);
+      background: linear-gradient(135deg, rgba(210,255,40,0.04) 0%, transparent 60%);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px; left: 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+    }
+
+    .pricing-type {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244,244,240,0.35);
+      margin-bottom: 16px;
+    }
+
+    .pricing-amount {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 3rem;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .pricing-amount .euro {
+      font-size: 1.4rem;
+      vertical-align: top;
+      margin-top: 8px;
+      display: inline-block;
+      color: rgba(244,244,240,0.5);
+    }
+
+    .pricing-recurrence {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      margin-bottom: 28px;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: var(--grey-border);
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.65);
+      line-height: 1.5;
+    }
+
+    .pricing-features li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing-features li.muted { color: rgba(244,244,240,0.3); }
+    .pricing-features li.muted::before { color: var(--grey); }
+
+    .btn-pricing {
+      display: block;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-pricing:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .btn-pricing.primary { background: var(--accent); color: var(--bg); }
+
+    .btn-pricing.outline {
+      border: 1px solid var(--grey-border);
+      color: rgba(244,244,240,0.5);
+    }
+
+    .btn-pricing.outline:hover { border-color: rgba(255,255,255,0.15); color: var(--white); }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    /* FAQ */
+    .faq-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--grey-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: var(--grey-light);
+      border: none;
+      padding: 22px 28px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: background 0.2s;
+    }
+
+    .faq-q:hover { background: var(--grey-mid); }
+
+    .faq-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      color: var(--accent);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s;
+      background: var(--grey-light);
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.8;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 28px 22px; }
+
+    /* CTA FINAL */
+    .cta-final {
+      text-align: center;
+      padding: 100px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(210,255,40,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      line-height: 1.05;
+    }
+
+    .cta-final p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 32px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .section { padding: 70px 24px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-grid::before { display: none; }
+      .cta-final { padding: 70px 24px; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link active">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="v-line" style="left:20%"></div>
+    <div class="v-line" style="right:20%"></div>
+
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <div class="tag-dot"></div>
+          <div class="tag-text">Service — Agent IA SAV</div>
+        </div>
+        <h1>
+          Vos clients<br>
+          <span class="accent">répondus.</span><br>
+          <span class="dim">Même à 3h du matin.</span>
+        </h1>
+        <p class="hero-desc">
+          Un agent IA formé sur votre boutique, vos produits, vos politiques. Il répond à vos clients à votre place — instantanément, 24h/24, 7j/7.
+        </p>
+        <div class="hero-actions">
+          <a href="mailto:contact@bonfront.fr?subject=Demande%20Agent%20IA%20SAV" class="btn-primary">
+            Demander une démo
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#tarifs" class="btn-ghost">
+            Voir les tarifs
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- CHAT MOCKUP -->
+      <div class="hero-right">
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div class="chat-info">
+              <div class="chat-name">Alex — Support</div>
+              <div class="chat-status">
+                <div class="status-dot-green"></div>
+                En ligne maintenant
+              </div>
+            </div>
+          </div>
+          <div class="chat-body">
+            <div class="msg client">
+              <div class="msg-bubble">Bonjour, mon colis est parti depuis 5 jours et je n'ai toujours pas de numéro de suivi.</div>
+              <div class="msg-time">14:22</div>
+            </div>
+            <div class="msg agent">
+              <div class="msg-bubble">Bonjour ! Je comprends votre inquiétude. Les numéros de suivi sont envoyés sous 24-48h après expédition. Votre commande #4821 a été expédiée hier — vous allez recevoir l'email de suivi d'ici ce soir.</div>
+              <div class="msg-time">14:22</div>
+            </div>
+            <div class="msg client">
+              <div class="msg-bubble">Super merci ! Et si je veux changer l'adresse de livraison ?</div>
+              <div class="msg-time">14:23</div>
+            </div>
+            <div class="msg agent">
+              <div class="typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Ce que fait l'agent</div>
+        <h2 class="section-title">Formé sur votre boutique.<br>Pas sur des généralités.</h2>
+        <p class="section-desc">L'agent apprend votre catalogue, vos politiques de retour, vos délais, vos FAQs. Il répond comme vous répondriez.</p>
+      </div>
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="feature-title">Disponible 24h/24</div>
+          <div class="feature-desc">Répond instantanément quelle que soit l'heure. Vos clients n'attendent plus jusqu'au lendemain matin.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="feature-title">Données 100% privées</div>
+          <div class="feature-desc">Vos données restent sur votre serveur. Aucune information client ne transite vers des tiers.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="feature-title">Indexation automatique</div>
+          <div class="feature-desc">L'agent se met à jour quand votre site change. Nouveaux produits, nouvelles politiques — il sait.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">04</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="feature-title">Widget intégrable</div>
+          <div class="feature-desc">Une ligne de code sur votre site. Compatible Shopify, WooCommerce, PrestaShop, et tout site HTML.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">05</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="feature-title">Tendances du marché</div>
+          <div class="feature-desc">L'agent surveille les tendances de votre secteur et vous envoie un résumé hebdomadaire.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">06</div>
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="feature-title">Transfert humain</div>
+          <div class="feature-desc">Quand la question dépasse l'agent, il l'identifie et vous transfère la conversation proprement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section process-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Mise en place</div>
+        <h2 class="section-title">Opérationnel en une semaine.</h2>
+        <p class="section-desc">Pas de formation de votre équipe, pas de migration. On s'occupe de tout.</p>
+      </div>
+      <div class="process-grid reveal">
+        <div class="process-step">
+          <div class="step-dot">01</div>
+          <div class="step-title">Onboarding</div>
+          <div class="step-desc">Vous remplissez un formulaire avec les infos de votre boutique. 10 minutes.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">02</div>
+          <div class="step-title">Indexation</div>
+          <div class="step-desc">On forme l'agent sur votre catalogue, vos CGV, votre FAQ, vos politiques.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">03</div>
+          <div class="step-title">Installation</div>
+          <div class="step-desc">On intègre le widget sur votre site. Une ligne de code, rien à configurer de votre côté.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">04</div>
+          <div class="step-title">Go live</div>
+          <div class="step-desc">L'agent est en ligne. Vos clients sont pris en charge. Vous récupérez votre temps.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIFS -->
+  <section class="section" id="tarifs">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Tarifs</div>
+        <h2 class="section-title">Simple et transparent.</h2>
+        <p class="section-desc">Pas de frais cachés. Pas d'engagement longue durée. Vous pouvez arrêter quand vous voulez.</p>
+      </div>
+      <div class="pricing-grid reveal">
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Obligatoire</div>
+          <div class="pricing-type">Installation</div>
+          <div class="pricing-amount"><span class="euro">€</span>500</div>
+          <div class="pricing-recurrence">paiement unique</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Création et configuration de l'agent</li>
+            <li>Indexation complète de votre site</li>
+            <li>Intégration du widget</li>
+            <li>Tests et validation</li>
+            <li>Formation sur vos spécificités métier</li>
+          </ul>
+          <a href="mailto:contact@bonfront.fr?subject=Commande%20Agent%20IA%20SAV" class="btn-pricing primary">Démarrer →</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">1er mois offert</div>
+          <div class="pricing-type">Hébergement</div>
+          <div class="pricing-amount"><span class="euro">€</span>29</div>
+          <div class="pricing-recurrence">par mois — obligatoire</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Serveur dédié sécurisé</li>
+            <li>Disponibilité 24h/24</li>
+            <li>Sauvegardes automatiques</li>
+            <li>Mises à jour de l'infrastructure</li>
+            <li>Support technique inclus</li>
+          </ul>
+          <a href="mailto:contact@bonfront.fr?subject=Commande%20Agent%20IA%20SAV" class="btn-pricing primary">Démarrer →</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-type">Maintenance</div>
+          <div class="pricing-amount"><span class="euro">€</span>97</div>
+          <div class="pricing-recurrence">par mois — optionnel</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Ré-indexation mensuelle</li>
+            <li>Ajout de nouvelles connaissances</li>
+            <li>Ajustements et optimisations</li>
+            <li>Rapport mensuel de performances</li>
+            <li class="muted">Sans maintenance : ré-indexation à la demande</li>
+          </ul>
+          <a href="mailto:contact@bonfront.fr?subject=Option%20Maintenance%20Agent%20IA" class="btn-pricing outline">Ajouter l'option</a>
+        </div>
+
+      </div>
+      <p class="pricing-note reveal">Démarrage minimum : 500€ installation + 29€/mois hébergement (1er mois offert)</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Questions fréquentes</div>
+        <h2 class="section-title">Ce qu'on nous demande.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">
+            L'agent répond-il uniquement en français ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Par défaut oui, l'agent est configuré pour répondre en français. Il peut détecter la langue du client et s'adapter si votre boutique a une clientèle internationale — à préciser lors de l'onboarding.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Que se passe-t-il si l'agent ne sait pas répondre ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">L'agent reconnaît les limites de ses connaissances. Quand une question dépasse ce qu'il sait, il le dit clairement et propose à votre client de vous contacter directement, avec un message personnalisable.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Mes données clients sont-elles en sécurité ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Les conversations se déroulent sur votre serveur dédié hébergé en Europe. Aucune donnée ne passe par des services tiers. L'infrastructure est sécurisée (HTTPS, accès restreints, sauvegardes chiffrées).</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Puis-je arrêter à tout moment ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Oui. Il n'y a pas d'engagement de durée. Vous pouvez arrêter l'hébergement à tout moment avec un préavis de 30 jours. Les 500€ d'installation sont un coût unique non remboursable.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Combien de temps dure l'installation ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Entre 3 et 7 jours ouvrés selon la taille de votre catalogue et la complexité de vos politiques. Vous recevez un lien de test avant la mise en ligne officielle pour valider les réponses.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="cta-final-bg"></div>
+    <div style="position:relative;z-index:2;">
+      <h2>Prêt à reprendre votre temps ?</h2>
+      <p>Demandez une démo gratuite de 10 minutes. On vous montre l'agent sur votre boutique.</p>
+      <a href="mailto:contact@bonfront.fr?subject=Demande%20démo%20Agent%20IA%20SAV" class="btn-primary" style="display:inline-flex;">
+        Demander une démo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="audit.html">Audit</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // FAQ
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
