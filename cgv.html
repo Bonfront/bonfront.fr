@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditions Générales de Vente — Bonfront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* LAYOUT */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 48px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* SIDEBAR NAV */
+    .toc {
+      position: sticky;
+      top: 88px;
+    }
+
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.5);
+      margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover {
+      color: var(--white);
+      border-color: rgba(210,255,40,0.3);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .toc-list a.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .toc-date {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(90,90,84,0.6);
+      padding: 0 10px;
+    }
+
+    /* CONTENT */
+    .content {}
+
+    .content-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .content-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .content-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .content-intro {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ARTICLES */
+    .article {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--grey-border);
+      scroll-margin-top: 88px;
+    }
+
+    .article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .article-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.35);
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .article-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.85;
+    }
+
+    .article-body p { margin-bottom: 14px; }
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong {
+      font-weight: 500;
+      color: rgba(244,244,240,0.8);
+    }
+
+    .article-body ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .article-body ul li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* PRICING TABLE */
+    .pricing-table {
+      margin: 20px 0;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .pt-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      align-items: center;
+    }
+
+    .pt-row:last-child { border-bottom: none; }
+
+    .pt-row.header {
+      background: var(--grey-mid);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .pt-service { font-size: 0.87rem; font-weight: 400; color: rgba(244,244,240,0.75); }
+    .pt-type { font-size: 0.82rem; font-weight: 300; color: var(--grey); }
+    .pt-price {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--accent);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(210,255,40,0.04);
+      border: 1px solid rgba(210,255,40,0.12);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 32px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .page-wrap { grid-template-columns: 1fr; padding: 100px 24px 70px; gap: 40px; }
+      .toc { display: none; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- TABLE DES MATIÈRES -->
+    <aside class="toc">
+      <div class="toc-label">Sommaire</div>
+      <ul class="toc-list">
+        <li><a href="#art1">1. Objet</a></li>
+        <li><a href="#art2">2. Prestataire</a></li>
+        <li><a href="#art3">3. Services et tarifs</a></li>
+        <li><a href="#art4">4. Commande et formation du contrat</a></li>
+        <li><a href="#art5">5. Modalités de paiement</a></li>
+        <li><a href="#art6">6. Délais d'exécution</a></li>
+        <li><a href="#art7">7. Droit de rétractation</a></li>
+        <li><a href="#art8">8. Obligations du client</a></li>
+        <li><a href="#art9">9. Obligations du prestataire</a></li>
+        <li><a href="#art10">10. Responsabilité</a></li>
+        <li><a href="#art11">11. Propriété intellectuelle</a></li>
+        <li><a href="#art12">12. Résiliation</a></li>
+        <li><a href="#art13">13. Données personnelles</a></li>
+        <li><a href="#art14">14. Loi applicable et litiges</a></li>
+      </ul>
+      <div class="toc-date">Mise à jour : avril 2026</div>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="content">
+
+      <div class="content-header">
+        <div class="content-tag">Documents légaux</div>
+        <h1 class="content-title">Conditions Générales de Vente</h1>
+        <p class="content-intro">Les présentes conditions régissent l'ensemble des prestations proposées par Bonfront. Toute commande implique l'acceptation pleine et entière de ces CGV.</p>
+      </div>
+
+      <div class="article" id="art1">
+        <div class="article-num">Article 01</div>
+        <h2 class="article-title">Objet</h2>
+        <div class="article-body">
+          <p>Les présentes Conditions Générales de Vente (CGV) définissent les droits et obligations des parties dans le cadre de la vente de services proposés par Etann Jean-Baptiste, exerçant sous l'enseigne commerciale <strong>Bonfront</strong>, à destination de ses clients professionnels et particuliers.</p>
+          <p>Ces CGV s'appliquent à l'exclusion de toute autre condition. Toute commande passée auprès de Bonfront implique l'acceptation sans réserve des présentes CGV.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art2">
+        <div class="article-num">Article 02</div>
+        <h2 class="article-title">Prestataire</h2>
+        <div class="article-body">
+          <p><strong>Etann Jean-Baptiste</strong><br>
+          Enseigne : Bonfront<br>
+          Statut : Auto-entrepreneur<br>
+          SIREN : 104 193 719<br>
+          SIRET : 10419371900010<br>
+          Code APE : 6202A<br>
+          Siège social : 229 rue Saint-Honoré, 75001 Paris<br>
+          Email : <a href="mailto:contact@bonfront.fr" style="color:var(--accent);text-decoration:none;">contact@bonfront.fr</a></p>
+          <div class="info-box">
+            En qualité d'auto-entrepreneur bénéficiant de la franchise de TVA (article 293 B du CGI), Bonfront ne collecte pas de TVA. La mention "TVA non applicable — article 293 B du CGI" figure sur chaque facture.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="art3">
+        <div class="article-num">Article 03</div>
+        <h2 class="article-title">Services et tarifs</h2>
+        <div class="article-body">
+          <p>Bonfront propose les services suivants :</p>
+          <div class="pricing-table">
+            <div class="pt-row header">
+              <div>Service</div>
+              <div>Type</div>
+              <div>Tarif HT</div>
+            </div>
+            <div class="pt-row">
+              <div class="pt-service">Audit e-commerce</div>
+              <div class="pt-type">Paiement unique</div>
+              <div class="pt-price">49 €</div>
+            </div>
+            <div class="pt-row">
+              <div class="pt-service">Installation agent IA SAV</div>
+              <div class="pt-type">Paiement unique</div>
+              <div class="pt-price">500 €</div>
+            </div>
+            <div class="pt-row">
+              <div class="pt-service">Hébergement agent IA SAV</div>
+              <div class="pt-type">Mensuel — obligatoire</div>
+              <div class="pt-price">29 €/mois</div>
+            </div>
+            <div class="pt-row">
+              <div class="pt-service">Maintenance agent IA SAV</div>
+              <div class="pt-type">Mensuel — optionnel</div>
+              <div class="pt-price">97 €/mois</div>
+            </div>
+          </div>
+          <p>Le premier mois d'hébergement est offert lors de la souscription à l'agent IA SAV. Les tarifs sont indiqués hors taxes et sont susceptibles d'évoluer. Toute modification tarifaire est communiquée au client avec un préavis d'un mois minimum.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art4">
+        <div class="article-num">Article 04</div>
+        <h2 class="article-title">Commande et formation du contrat</h2>
+        <div class="article-body">
+          <p>Toute commande est formalisée par l'envoi d'un email à <a href="mailto:contact@bonfront.fr" style="color:var(--accent);text-decoration:none;">contact@bonfront.fr</a> ou via le formulaire disponible sur le site bonfront.fr, suivi de la réception d'un devis ou d'une confirmation de commande de la part de Bonfront.</p>
+          <p>Le contrat est réputé conclu à réception du paiement correspondant à la prestation commandée. Pour les services récurrents (hébergement, maintenance), le contrat prend effet à la date d'activation du service.</p>
+          <p>Bonfront se réserve le droit de refuser toute commande pour des motifs légitimes, notamment en cas d'information incomplète, de doute sur la solvabilité du client, ou d'incompatibilité technique avec les services proposés.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art5">
+        <div class="article-num">Article 05</div>
+        <h2 class="article-title">Modalités de paiement</h2>
+        <div class="article-body">
+          <p>Le paiement est exigible à la commande pour les prestations one-shot (audit, installation). Pour les services récurrents, la facturation intervient mensuellement à date anniversaire de souscription.</p>
+          <p>Les moyens de paiement acceptés sont :</p>
+          <ul>
+            <li>Virement bancaire</li>
+            <li>Paiement en ligne sécurisé (selon les modalités précisées lors de la commande)</li>
+          </ul>
+          <p>Tout retard de paiement entraîne, de plein droit, la suspension du service concerné jusqu'à régularisation. En cas de non-paiement persistant au-delà de 30 jours, Bonfront se réserve le droit de résilier le contrat et d'appliquer des pénalités de retard égales à trois fois le taux d'intérêt légal en vigueur.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art6">
+        <div class="article-num">Article 06</div>
+        <h2 class="article-title">Délais d'exécution</h2>
+        <div class="article-body">
+          <p>Les délais indicatifs de livraison sont les suivants :</p>
+          <ul>
+            <li><strong>Audit e-commerce :</strong> livraison du rapport sous 48 heures ouvrées à compter du paiement et de la réception de l'URL du site à analyser.</li>
+            <li><strong>Agent IA SAV :</strong> mise en production dans un délai de 3 à 7 jours ouvrés à compter du paiement et de la réception du formulaire d'onboarding complété.</li>
+          </ul>
+          <p>Ces délais sont donnés à titre indicatif. Un retard de livraison ne peut donner lieu à des pénalités ou à l'annulation de la commande, sauf accord express écrit entre les parties.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art7">
+        <div class="article-num">Article 07</div>
+        <h2 class="article-title">Droit de rétractation</h2>
+        <div class="article-body">
+          <p>Conformément à l'article L221-28 du Code de la consommation, <strong>le droit de rétractation ne s'applique pas</strong> aux prestations de services pleinement exécutées avant la fin du délai de rétractation, avec l'accord préalable express du consommateur.</p>
+          <p>Pour l'<strong>audit e-commerce</strong> : en commandant, le client reconnaît expressément que la prestation débutera immédiatement et accepte de renoncer à son droit de rétractation dès lors que le rapport lui est livré.</p>
+          <p>Pour l'<strong>agent IA SAV</strong> : un droit de rétractation de 14 jours calendaires s'applique à compter de la commande, à condition que la mise en production n'ait pas encore débuté. Passé ce délai ou après démarrage des travaux d'installation, aucun remboursement ne pourra être exigé sur les frais d'installation (500 €).</p>
+          <div class="info-box">
+            La garantie de remboursement mentionnée sur la page Audit e-commerce est une garantie commerciale propre à Bonfront, distincte du droit légal de rétractation. Elle s'applique si le rapport livré ne contient aucune recommandation actionnable. Toute demande doit être formulée dans les 7 jours suivant la réception du rapport.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="art8">
+        <div class="article-num">Article 08</div>
+        <h2 class="article-title">Obligations du client</h2>
+        <div class="article-body">
+          <p>Le client s'engage à :</p>
+          <ul>
+            <li>Fournir des informations exactes et complètes lors de la commande et de l'onboarding.</li>
+            <li>Communiquer sans délai tout changement susceptible d'affecter l'exécution des services (changement de domaine, restructuration du catalogue, modification des politiques de retour, etc.).</li>
+            <li>Régler les factures dans les délais convenus.</li>
+            <li>Ne pas utiliser les services de Bonfront à des fins illicites ou contraires à la réglementation en vigueur.</li>
+            <li>S'assurer que son site e-commerce est accessible publiquement pour permettre l'indexation par l'agent IA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article" id="art9">
+        <div class="article-num">Article 09</div>
+        <h2 class="article-title">Obligations du prestataire</h2>
+        <div class="article-body">
+          <p>Bonfront s'engage à :</p>
+          <ul>
+            <li>Exécuter les prestations commandées avec soin et professionnalisme.</li>
+            <li>Respecter les délais indicatifs communiqués, sauf circonstance indépendante de sa volonté.</li>
+            <li>Assurer la confidentialité des informations communiquées par le client dans le cadre de l'exécution des services.</li>
+            <li>Maintenir une disponibilité de l'infrastructure d'hébergement aussi élevée que possible, sans garantie formelle de disponibilité 100 %.</li>
+            <li>Informer le client de toute modification tarifaire avec un préavis d'un mois.</li>
+          </ul>
+          <p>Bonfront est soumis à une <strong>obligation de moyens</strong> et non de résultat. L'amélioration des performances commerciales du client ne saurait être garantie.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art10">
+        <div class="article-num">Article 10</div>
+        <h2 class="article-title">Responsabilité</h2>
+        <div class="article-body">
+          <p>La responsabilité de Bonfront ne peut être engagée en cas de :</p>
+          <ul>
+            <li>Force majeure ou événement imprévisible indépendant de sa volonté.</li>
+            <li>Faute ou négligence du client dans la transmission des informations nécessaires à l'exécution des services.</li>
+            <li>Indisponibilité temporaire des services liée à des opérations de maintenance ou à des défaillances de tiers (hébergeur, fournisseurs d'accès, etc.).</li>
+            <li>Perte de données résultant d'une action du client ou d'un tiers non mandaté par Bonfront.</li>
+          </ul>
+          <p>En tout état de cause, la responsabilité de Bonfront est limitée au montant des sommes effectivement perçues au titre de la prestation en cause.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art11">
+        <div class="article-num">Article 11</div>
+        <h2 class="article-title">Propriété intellectuelle</h2>
+        <div class="article-body">
+          <p>Les rapports d'audit, configurations d'agents IA, scripts, workflows et tout autre livrable produit par Bonfront sont la propriété exclusive de Bonfront jusqu'au complet paiement de la prestation concernée. À réception du paiement, le client bénéficie d'un droit d'usage personnel et non exclusif sur ces livrables.</p>
+          <p>Le client reste propriétaire des données, contenus et informations qu'il transmet à Bonfront dans le cadre de l'exécution des services. Il autorise Bonfront à les utiliser aux seules fins de réalisation des prestations commandées.</p>
+          <p>Bonfront se réserve le droit de mentionner le nom du client à titre de référence commerciale, sauf demande expresse contraire formulée par écrit.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art12">
+        <div class="article-num">Article 12</div>
+        <h2 class="article-title">Résiliation</h2>
+        <div class="article-body">
+          <p><strong>Services récurrents (hébergement, maintenance) :</strong> chaque partie peut résilier le contrat à tout moment, avec un préavis de <strong>30 jours calendaires</strong> notifié par email. La résiliation prend effet à l'issue de cette période. Les sommes déjà facturées et réglées ne sont pas remboursées.</p>
+          <p><strong>Résiliation pour manquement :</strong> en cas de non-respect des obligations par l'une des parties, l'autre peut résilier le contrat de plein droit après mise en demeure restée sans effet pendant 15 jours. Bonfront se réserve le droit de suspendre immédiatement le service en cas de non-paiement ou d'utilisation abusive.</p>
+          <p>À la résiliation, Bonfront procède à la désactivation de l'agent IA et supprime les données du client dans un délai de 30 jours, sauf obligation légale de conservation.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art13">
+        <div class="article-num">Article 13</div>
+        <h2 class="article-title">Données personnelles</h2>
+        <div class="article-body">
+          <p>Les données personnelles collectées lors de la commande (nom, email, informations de la boutique) sont traitées par Bonfront aux seules fins de gestion de la relation client et d'exécution des prestations.</p>
+          <p>Conformément au RGPD et à la loi Informatique et Libertés, le client dispose d'un droit d'accès, de rectification, de suppression et de portabilité de ses données, qu'il peut exercer en adressant un email à <a href="mailto:contact@bonfront.fr" style="color:var(--accent);text-decoration:none;">contact@bonfront.fr</a>.</p>
+          <p>Pour plus d'informations, consultez la <a href="politique-confidentialite.html" style="color:var(--accent);text-decoration:none;">Politique de confidentialité</a> de Bonfront.</p>
+        </div>
+      </div>
+
+      <div class="article" id="art14">
+        <div class="article-num">Article 14</div>
+        <h2 class="article-title">Loi applicable et litiges</h2>
+        <div class="article-body">
+          <p>Les présentes CGV sont soumises au droit français. En cas de litige relatif à leur interprétation ou à leur exécution, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire.</p>
+          <p>À défaut d'accord amiable dans un délai de 30 jours à compter de la notification du litige, tout différend sera soumis à la compétence exclusive des tribunaux de <strong>Toulouse (France)</strong>.</p>
+          <p>Conformément à l'article L616-1 du Code de la consommation, le client consommateur peut recourir gratuitement à un médiateur de la consommation. Bonfront adhère au dispositif de médiation de la consommation de la MEDICYS (www.medicys.fr).</p>
+          <div class="info-box">
+            Ces CGV ont été mises à jour en avril 2026. Bonfront se réserve le droit de les modifier à tout moment. La version en vigueur au moment de la commande est celle applicable à la prestation concernée.
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="audit.html">Audit</a>
+        <a href="agent.html">Agent IA SAV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // TOC active state on scroll
+    const articles = document.querySelectorAll('.article');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    articles.forEach(a => io.observe(a));
+  </script>
+
+</body>
+</html>
