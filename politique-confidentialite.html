@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de Confidentialité — Bonfront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* LAYOUT */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 48px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* TOC */
+    .toc { position: sticky; top: 88px; }
+
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.5);
+      margin-bottom: 16px;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc-list a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover { color: var(--white); border-color: rgba(210,255,40,0.3); background: rgba(255,255,255,0.03); }
+    .toc-list a.active { color: var(--accent); border-color: var(--accent); }
+    .toc-date { margin-top: 24px; font-size: 0.72rem; font-weight: 300; color: rgba(90,90,84,0.6); padding: 0 10px; }
+
+    /* CONTENT */
+    .content-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .content-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .content-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .content-intro {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* ARTICLES */
+    .article {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--grey-border);
+      scroll-margin-top: 88px;
+    }
+
+    .article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .article-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.35);
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .article-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.85;
+    }
+
+    .article-body p { margin-bottom: 14px; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { font-weight: 500; color: rgba(244,244,240,0.8); }
+    .article-body a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    .article-body a:hover { opacity: 0.75; }
+
+    .article-body ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .article-body ul li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* DATA TABLE */
+    .data-table {
+      margin: 20px 0;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .dt-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.4fr;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      align-items: start;
+    }
+
+    .dt-row:last-child { border-bottom: none; }
+
+    .dt-row.header {
+      background: var(--grey-mid);
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .dt-cell {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.65);
+      line-height: 1.55;
+    }
+
+    .dt-cell strong { font-weight: 500; color: rgba(244,244,240,0.85); }
+
+    /* RIGHTS GRID */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .right-card {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 6px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .right-card:hover { border-color: rgba(210,255,40,0.15); }
+
+    .right-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--white);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .right-title::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .right-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.6;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(210,255,40,0.04);
+      border: 1px solid rgba(210,255,40,0.12);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      line-height: 1.75;
+    }
+
+    /* RETENTION TABLE */
+    .retention-table {
+      margin: 20px 0;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .rt-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      align-items: center;
+    }
+
+    .rt-row:last-child { border-bottom: none; }
+
+    .rt-row.header {
+      background: var(--grey-mid);
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .rt-label { font-size: 0.85rem; font-weight: 400; color: rgba(244,244,240,0.75); }
+    .rt-duration { font-size: 0.82rem; font-weight: 300; color: var(--accent); }
+    .rt-trigger { font-size: 0.8rem; font-weight: 300; color: var(--grey); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--grey-border); padding: 32px 48px; }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.8rem; font-weight: 300; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .page-wrap { grid-template-columns: 1fr; padding: 100px 24px 70px; gap: 40px; }
+      .toc { display: none; }
+      .dt-row { grid-template-columns: 1fr; gap: 4px; }
+      .dt-row.header { display: none; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .rt-row { grid-template-columns: 1fr 1fr; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <aside class="toc">
+      <div class="toc-label">Sommaire</div>
+      <ul class="toc-list">
+        <li><a href="#responsable">Responsable du traitement</a></li>
+        <li><a href="#collecte">Données collectées</a></li>
+        <li><a href="#finalites">Finalités et bases légales</a></li>
+        <li><a href="#conservation">Durées de conservation</a></li>
+        <li><a href="#destinataires">Destinataires</a></li>
+        <li><a href="#transferts">Transferts hors UE</a></li>
+        <li><a href="#droits">Vos droits</a></li>
+        <li><a href="#exercice">Exercer vos droits</a></li>
+        <li><a href="#securite">Sécurité</a></li>
+        <li><a href="#mineurs">Mineurs</a></li>
+        <li><a href="#modifications">Modifications</a></li>
+      </ul>
+      <div class="toc-date">Mise à jour : avril 2026</div>
+    </aside>
+
+    <main class="content">
+
+      <div class="content-header">
+        <div class="content-tag">Documents légaux</div>
+        <h1 class="content-title">Politique de Confidentialité</h1>
+        <p class="content-intro">Bonfront s'engage à protéger vos données personnelles. Cette politique explique quelles données sont collectées, pourquoi, et comment vous pouvez les contrôler — conformément au RGPD et à la loi Informatique et Libertés.</p>
+      </div>
+
+      <div class="article" id="responsable">
+        <div class="article-num">Section 01</div>
+        <h2 class="article-title">Responsable du traitement</h2>
+        <div class="article-body">
+          <p>Le responsable du traitement de vos données personnelles est :</p>
+          <p>
+            <strong>Etann Jean-Baptiste</strong> — Bonfront<br>
+            SIREN : 104 193 719<br>
+            229 rue Saint-Honoré, 75001 Paris<br>
+            Email : <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a>
+          </p>
+          <div class="info-box">
+            En tant qu'auto-entrepreneur, Bonfront n'a pas l'obligation légale de désigner un Délégué à la Protection des Données (DPO). Pour toute question relative à vos données, contactez directement <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a>.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="collecte">
+        <div class="article-num">Section 02</div>
+        <h2 class="article-title">Données collectées</h2>
+        <div class="article-body">
+          <p>Bonfront collecte uniquement les données strictement nécessaires à la fourniture de ses services. Voici les données traitées selon le contexte :</p>
+
+          <div class="data-table">
+            <div class="dt-row header">
+              <div>Contexte</div>
+              <div>Données collectées</div>
+              <div>Source</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Création de compte</strong></div>
+              <div class="dt-cell">Adresse email, mot de passe (hashé localement)</div>
+              <div class="dt-cell">Saisie directe par l'utilisateur</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Commande de services</strong></div>
+              <div class="dt-cell">Nom ou raison sociale, email, URL du site, informations de paiement</div>
+              <div class="dt-cell">Formulaire de commande / email</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Onboarding agent IA</strong></div>
+              <div class="dt-cell">Informations sur la boutique (catalogue, politiques, FAQ), données de contact</div>
+              <div class="dt-cell">Formulaire d'onboarding</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Utilisation de l'agent SAV</strong></div>
+              <div class="dt-cell">Contenu des conversations client-agent (anonymisées côté Bonfront)</div>
+              <div class="dt-cell">Widget de chat intégré</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Navigation sur le site</strong></div>
+              <div class="dt-cell">Pages visitées, durée de session, source de trafic (données anonymisées via GA4)</div>
+              <div class="dt-cell">Google Analytics 4 (si consentement)</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Contact par email</strong></div>
+              <div class="dt-cell">Adresse email, nom, contenu du message</div>
+              <div class="dt-cell">Saisie directe par l'utilisateur</div>
+            </div>
+          </div>
+
+          <p>Bonfront ne collecte aucune donnée sensible au sens de l'article 9 du RGPD (santé, origine ethnique, opinions politiques, etc.).</p>
+        </div>
+      </div>
+
+      <div class="article" id="finalites">
+        <div class="article-num">Section 03</div>
+        <h2 class="article-title">Finalités et bases légales</h2>
+        <div class="article-body">
+          <div class="data-table">
+            <div class="dt-row header">
+              <div>Finalité</div>
+              <div>Base légale</div>
+              <div>Détail</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Exécution des services</strong></div>
+              <div class="dt-cell">Exécution du contrat</div>
+              <div class="dt-cell">Réalisation des audits, installation et maintenance des agents IA</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Gestion de l'espace client</strong></div>
+              <div class="dt-cell">Exécution du contrat</div>
+              <div class="dt-cell">Authentification, accès aux rapports et services</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Facturation et comptabilité</strong></div>
+              <div class="dt-cell">Obligation légale</div>
+              <div class="dt-cell">Conservation des pièces comptables (10 ans)</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Communication clients</strong></div>
+              <div class="dt-cell">Intérêt légitime</div>
+              <div class="dt-cell">Réponses aux demandes, informations sur les services en cours</div>
+            </div>
+            <div class="dt-row">
+              <div class="dt-cell"><strong>Mesure d'audience</strong></div>
+              <div class="dt-cell">Consentement</div>
+              <div class="dt-cell">Amélioration du site via Google Analytics 4 (données anonymisées)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="conservation">
+        <div class="article-num">Section 04</div>
+        <h2 class="article-title">Durées de conservation</h2>
+        <div class="article-body">
+          <p>Les données sont conservées uniquement le temps nécessaire aux finalités pour lesquelles elles ont été collectées.</p>
+          <div class="retention-table">
+            <div class="rt-row header">
+              <div>Type de donnée</div>
+              <div>Durée</div>
+              <div>Point de départ</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Données de compte client</div>
+              <div class="rt-duration">3 ans</div>
+              <div class="rt-trigger">Dernière activité</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Données de commande</div>
+              <div class="rt-duration">5 ans</div>
+              <div class="rt-trigger">Date de la commande</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Pièces comptables et factures</div>
+              <div class="rt-duration">10 ans</div>
+              <div class="rt-trigger">Date de clôture de l'exercice</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Données d'onboarding agent IA</div>
+              <div class="rt-duration">Durée du contrat + 30 jours</div>
+              <div class="rt-trigger">Date de résiliation</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Conversations agent SAV</div>
+              <div class="rt-duration">90 jours</div>
+              <div class="rt-trigger">Date de la conversation</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Emails de contact</div>
+              <div class="rt-duration">3 ans</div>
+              <div class="rt-trigger">Date du dernier échange</div>
+            </div>
+            <div class="rt-row">
+              <div class="rt-label">Données analytiques (GA4)</div>
+              <div class="rt-duration">13 mois</div>
+              <div class="rt-trigger">Date de collecte</div>
+            </div>
+          </div>
+          <p>À l'expiration des délais de conservation, les données sont supprimées de façon sécurisée ou anonymisées de manière irréversible.</p>
+        </div>
+      </div>
+
+      <div class="article" id="destinataires">
+        <div class="article-num">Section 05</div>
+        <h2 class="article-title">Destinataires des données</h2>
+        <div class="article-body">
+          <p>Vos données sont traitées en priorité par Etann Jean-Baptiste lui-même. Elles peuvent être transmises aux sous-traitants techniques suivants, dans le strict cadre de la fourniture des services :</p>
+          <ul>
+            <li><strong>OVHcloud</strong> (France) — hébergement de l'infrastructure back-end et des agents IA</li>
+            <li><strong>GitHub, Inc.</strong> (États-Unis) — hébergement des pages du site bonfront.fr via GitHub Pages</li>
+            <li><strong>Anthropic, PBC</strong> (États-Unis) — traitement des requêtes IA via l'API Claude pour la génération de réponses</li>
+            <li><strong>Google LLC</strong> (États-Unis) — mesure d'audience via Google Analytics 4 (si consentement), messagerie professionnelle</li>
+            <li><strong>Brevo SA</strong> (France) — envoi des emails transactionnels et de prospection</li>
+          </ul>
+          <p>Ces sous-traitants sont soumis à des obligations contractuelles de confidentialité et de sécurité. Bonfront ne vend ni ne loue vos données à des tiers à des fins commerciales.</p>
+        </div>
+      </div>
+
+      <div class="article" id="transferts">
+        <div class="article-num">Section 06</div>
+        <h2 class="article-title">Transferts hors Union Européenne</h2>
+        <div class="article-body">
+          <p>Certains sous-traitants (GitHub, Anthropic, Google) sont établis aux États-Unis. Les transferts vers ces entités sont encadrés par :</p>
+          <ul>
+            <li>Des <strong>clauses contractuelles types</strong> (CCT) approuvées par la Commission européenne</li>
+            <li>L'adhésion au <strong>Data Privacy Framework</strong> UE-États-Unis pour les entités concernées</li>
+          </ul>
+          <div class="info-box">
+            L'infrastructure principale des agents IA est hébergée sur un serveur OVHcloud situé en France. Les données de vos clients ne transitent pas hors de l'Union Européenne dans le cadre du fonctionnement des agents SAV. Seules les requêtes envoyées à l'API Anthropic (pour la génération de réponses) transitent vers les États-Unis — elles ne contiennent pas de données personnelles identifiables de vos clients.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="droits">
+        <div class="article-num">Section 07</div>
+        <h2 class="article-title">Vos droits</h2>
+        <div class="article-body">
+          <p>Conformément au RGPD (articles 15 à 22), vous disposez des droits suivants sur vos données personnelles :</p>
+          <div class="rights-grid">
+            <div class="right-card">
+              <div class="right-title">Droit d'accès</div>
+              <div class="right-desc">Obtenir une copie des données personnelles vous concernant que Bonfront détient.</div>
+            </div>
+            <div class="right-card">
+              <div class="right-title">Droit de rectification</div>
+              <div class="right-desc">Faire corriger des données inexactes ou compléter des données incomplètes.</div>
+            </div>
+            <div class="right-card">
+              <div class="right-title">Droit à l'effacement</div>
+              <div class="right-desc">Demander la suppression de vos données, dans les limites des obligations légales de conservation.</div>
+            </div>
+            <div class="right-card">
+              <div class="right-title">Droit à la portabilité</div>
+              <div class="right-desc">Recevoir vos données dans un format structuré et lisible par machine pour les transférer.</div>
+            </div>
+            <div class="right-card">
+              <div class="right-title">Droit d'opposition</div>
+              <div class="right-desc">Vous opposer au traitement fondé sur l'intérêt légitime ou à des fins de prospection.</div>
+            </div>
+            <div class="right-card">
+              <div class="right-title">Droit de limitation</div>
+              <div class="right-desc">Demander la suspension temporaire d'un traitement dans certaines circonstances.</div>
+            </div>
+          </div>
+          <p>Vous disposez également du droit de définir des directives relatives au sort de vos données après votre décès, conformément à la loi Informatique et Libertés.</p>
+        </div>
+      </div>
+
+      <div class="article" id="exercice">
+        <div class="article-num">Section 08</div>
+        <h2 class="article-title">Exercer vos droits</h2>
+        <div class="article-body">
+          <p>Pour exercer l'un de vos droits, adressez votre demande par email à <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a> en précisant :</p>
+          <ul>
+            <li>L'objet de votre demande (droit concerné)</li>
+            <li>Votre adresse email associée au compte Bonfront</li>
+            <li>Tout élément permettant de vérifier votre identité si nécessaire</li>
+          </ul>
+          <p>Bonfront s'engage à répondre à votre demande dans un délai d'<strong>un mois</strong> à compter de sa réception, conformément à l'article 12 du RGPD. Ce délai peut être prolongé de deux mois supplémentaires pour les demandes complexes, avec information préalable.</p>
+          <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) :</p>
+          <ul>
+            <li>En ligne : <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">cnil.fr/fr/plaintes</a></li>
+            <li>Par courrier : CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article" id="securite">
+        <div class="article-num">Section 09</div>
+        <h2 class="article-title">Sécurité des données</h2>
+        <div class="article-body">
+          <p>Bonfront met en place des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte, altération ou divulgation :</p>
+          <ul>
+            <li>Chiffrement des communications via HTTPS (TLS) sur l'ensemble du site et des APIs</li>
+            <li>Accès au serveur restreint par authentification SSH à clé, avec limitation du taux de tentatives</li>
+            <li>Ports non nécessaires bloqués par pare-feu (iptables)</li>
+            <li>Mots de passe hashés côté client avant tout stockage</li>
+            <li>Sauvegardes régulières des données de configuration</li>
+            <li>Accès aux données limité au seul Etann Jean-Baptiste</li>
+          </ul>
+          <p>En cas de violation de données à caractère personnel susceptible d'engendrer un risque pour vos droits et libertés, Bonfront s'engage à notifier la CNIL dans les 72 heures et à vous en informer dans les meilleurs délais, conformément aux articles 33 et 34 du RGPD.</p>
+        </div>
+      </div>
+
+      <div class="article" id="mineurs">
+        <div class="article-num">Section 10</div>
+        <h2 class="article-title">Mineurs</h2>
+        <div class="article-body">
+          <p>Les services de Bonfront sont exclusivement destinés à des professionnels ou à des personnes majeures. Bonfront ne collecte pas sciemment de données personnelles concernant des mineurs de moins de 15 ans.</p>
+          <p>Si vous êtes parent ou tuteur et avez connaissance que votre enfant mineur nous a communiqué des données personnelles, contactez-nous à <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a> afin que nous procédions à leur suppression.</p>
+        </div>
+      </div>
+
+      <div class="article" id="modifications">
+        <div class="article-num">Section 11</div>
+        <h2 class="article-title">Modifications de cette politique</h2>
+        <div class="article-body">
+          <p>Bonfront se réserve le droit de modifier la présente politique de confidentialité à tout moment, notamment pour se conformer à l'évolution de la réglementation applicable ou des services proposés.</p>
+          <p>En cas de modification substantielle, vous serez informé par email (si vous disposez d'un compte) ou via une notification sur le site. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+          <p>La poursuite de l'utilisation des services après notification des modifications vaut acceptation de la nouvelle politique.</p>
+          <div class="info-box">
+            Cette politique de confidentialité a été rédigée en conformité avec le Règlement (UE) 2016/679 du 27 avril 2016 (RGPD) et la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, modifiée. Dernière mise à jour : avril 2026.
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    const articles = document.querySelectorAll('.article');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    articles.forEach(a => io.observe(a));
+  </script>
+
+</body>
+</html>
