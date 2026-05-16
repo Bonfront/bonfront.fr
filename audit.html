@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit E-commerce — Bonfront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #6b6b65;
+      --grey-light: #1c1d1a;
+      --grey-mid: #2a2b27;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(14,15,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(210,255,40,0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 9px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(210,255,40,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(210,255,40,0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(210,255,40,0.06);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .hero-title .line-accent { color: var(--accent); }
+
+    .hero-title .line-dim {
+      color: var(--grey);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.65);
+      max-width: 520px;
+      margin-bottom: 52px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-price {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--grey);
+    }
+
+    .btn-price strong {
+      color: var(--white);
+      font-size: 1.4rem;
+    }
+
+    /* SECTION WHAT */
+    .section {
+      padding: 100px 40px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* WHAT IS INCLUDED */
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      margin-top: 60px;
+      border: 1px solid var(--grey-mid);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .check-item {
+      padding: 36px 32px;
+      background: var(--grey-light);
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .check-item:hover { background: var(--grey-mid); }
+
+    .check-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-bottom: 16px;
+    }
+
+    .check-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .check-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.65;
+    }
+
+    /* PROCESS */
+    .process {
+      background: var(--grey-light);
+      border-top: 1px solid var(--grey-mid);
+      border-bottom: 1px solid var(--grey-mid);
+    }
+
+    .process-steps {
+      display: flex;
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      right: 28px;
+      height: 1px;
+      background: var(--grey-mid);
+    }
+
+    .step {
+      flex: 1;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .step-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--grey-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 2;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--accent);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .step:hover .step-dot {
+      border-color: var(--accent);
+      background: rgba(210,255,40,0.05);
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.6;
+    }
+
+    /* PRICING BOX */
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 60px;
+      align-items: start;
+    }
+
+    .pricing-box {
+      border: 1px solid rgba(210,255,40,0.25);
+      border-radius: 8px;
+      padding: 48px 44px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(210,255,40,0.03) 0%, transparent 60%);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -13px;
+      left: 32px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 3px;
+    }
+
+    .pricing-amount {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 4rem;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .pricing-amount span {
+      font-size: 1.8rem;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+      color: rgba(210,255,40,0.6);
+    }
+
+    .pricing-note {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--grey);
+      margin-bottom: 36px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .pricing-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.75);
+      line-height: 1.5;
+    }
+
+    .pricing-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.85rem;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .btn-audit {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 16px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-audit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .pricing-info {
+      padding: 40px 0;
+    }
+
+    .pricing-info-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-info p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .info-highlight {
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.65);
+      line-height: 1.7;
+      margin-top: 24px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--grey-mid);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: var(--grey-light);
+      border: none;
+      padding: 24px 28px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: background 0.2s;
+    }
+
+    .faq-q:hover { background: var(--grey-mid); }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--accent);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s;
+      background: var(--grey-light);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      line-height: 1.75;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 28px 24px;
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+      text-align: center;
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(210,255,40,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .cta-final p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      margin-bottom: 40px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-mid);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 70px 20px; }
+      .pricing-wrap { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; gap: 32px; }
+      .process-steps::before { display: none; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+      .cta-final { padding: 70px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <a href="#commander" class="nav-cta">Commander l'audit — 49€</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-line" style="left: 25%"></div>
+    <div class="hero-grid-line" style="right: 25%"></div>
+    <div class="hero-inner">
+      <div class="hero-tag">Service — Audit e-commerce</div>
+      <h1 class="hero-title">
+        Votre boutique perd<br>
+        <span class="line-accent">des ventes.</span><br>
+        <span class="line-dim">Voyons pourquoi.</span>
+      </h1>
+      <p class="hero-sub">
+        Un audit complet de votre site e-commerce livré en 48h. Fiches produits, SAV, tunnel d'achat — on identifie ce qui freine vos conversions et comment y remédier.
+      </p>
+      <div class="hero-actions">
+        <a href="#commander" class="btn-primary">
+          Commander l'audit
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="btn-price">
+          <strong>49€</strong> livraison 48h
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QU'ON ANALYSE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Ce qu'on analyse</div>
+        <h2 class="section-title">Quatre axes, zéro superflu.</h2>
+        <p class="section-desc">On se concentre sur ce qui a un impact direct sur vos ventes. Pas de rapport de 50 pages inutiles.</p>
+      </div>
+      <div class="checklist reveal">
+        <div class="check-item">
+          <div class="check-num">01</div>
+          <div class="check-title">Fiches produits</div>
+          <div class="check-desc">Structure, copywriting, photos, informations manquantes. Ce qui donne envie d'acheter — ou pas.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-num">02</div>
+          <div class="check-title">Service client</div>
+          <div class="check-desc">Disponibilité, canaux de contact, FAQ, délais de réponse apparents. Ce que vos clients ne trouvent pas.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-num">03</div>
+          <div class="check-title">Tunnel d'achat</div>
+          <div class="check-desc">Parcours de l'arrivée au paiement. Frictions, abandons, étapes inutiles.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-num">04</div>
+          <div class="check-title">Avis clients</div>
+          <div class="check-desc">Comment vous gérez les retours négatifs, votre réputation en ligne, les signaux de confiance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section process">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Comment ça marche</div>
+        <h2 class="section-title">Simple et rapide.</h2>
+      </div>
+      <div class="process-steps reveal">
+        <div class="step">
+          <div class="step-dot">01</div>
+          <div class="step-title">Commandez</div>
+          <div class="step-desc">Vous renseignez l'URL de votre boutique et procédez au paiement.</div>
+        </div>
+        <div class="step">
+          <div class="step-dot">02</div>
+          <div class="step-title">On analyse</div>
+          <div class="step-desc">Analyse complète de votre site sous 48h ouvrées.</div>
+        </div>
+        <div class="step">
+          <div class="step-dot">03</div>
+          <div class="step-title">Rapport livré</div>
+          <div class="step-desc">Document PDF clair avec constats, preuves et recommandations concrètes.</div>
+        </div>
+        <div class="step">
+          <div class="step-dot">04</div>
+          <div class="step-title">Échangez</div>
+          <div class="step-desc">30 minutes offertes pour parcourir le rapport ensemble si besoin.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="commander">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Tarif</div>
+        <h2 class="section-title">Un tarif, tout inclus.</h2>
+      </div>
+      <div class="pricing-wrap reveal">
+        <div class="pricing-box">
+          <div class="pricing-badge">Offre de lancement</div>
+          <div class="pricing-amount"><span>€</span>49</div>
+          <div class="pricing-note">paiement unique — livraison sous 48h</div>
+          <ul class="pricing-list">
+            <li>Analyse des fiches produits</li>
+            <li>Analyse du service client et SAV</li>
+            <li>Analyse du tunnel d'achat</li>
+            <li>Analyse des avis et réputation</li>
+            <li>Rapport PDF avec recommandations</li>
+            <li>30 min d'échange incluses</li>
+          </ul>
+          <a href="mailto:contact@bonfront.fr?subject=Commande%20Audit%20E-commerce&body=Bonjour%2C%0A%0AJe%20souhaite%20commander%20un%20audit%20de%20ma%20boutique%20%3A%0A%0AURL%20du%20site%20%3A%20" class="btn-audit">Commander l'audit →</a>
+        </div>
+        <div class="pricing-info">
+          <div class="pricing-info-title">Pourquoi 49€ ?</div>
+          <p>Parce que l'objectif n'est pas de vous vendre un rapport. C'est de vous montrer ce qu'on peut faire — et ce que votre boutique rate.</p>
+          <p>À ce prix, vous n'avez rien à perdre. Si l'audit n'est pas utile, on vous rembourse.</p>
+          <div class="info-highlight">
+            La plupart des boutiques qu'on analyse ont au moins 2-3 problèmes facilement corrigeables qui leur coûtent des ventes chaque semaine.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">Questions fréquentes</div>
+        <h2 class="section-title">Ce qu'on nous demande.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">
+            Vous avez besoin d'accès à mon back-office ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Non. L'analyse se fait uniquement depuis la partie publique de votre boutique, comme le ferait n'importe quel visiteur. Aucun accès à votre espace d'administration n'est nécessaire.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Quel format pour le rapport ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Un document PDF clair, structuré par axe d'analyse. Chaque problème identifié est accompagné d'une capture d'écran et d'une recommandation concrète.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Ma boutique est sur Shopify / WooCommerce / PrestaShop, est-ce compatible ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">Oui. L'audit est indépendant de la plateforme utilisée. Tant que votre boutique est accessible en ligne, on peut l'analyser.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Et si je ne suis pas satisfait ?
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq-a">On vous rembourse intégralement. Si l'audit ne vous apporte rien d'actionnable, le paiement est annulé sans condition.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="cta-final-bg"></div>
+    <div style="position: relative; z-index: 2;">
+      <h2>Prêt à voir ce qui coince ?</h2>
+      <p>49€. 48h. Un rapport concret.</p>
+      <a href="mailto:contact@bonfront.fr?subject=Commande%20Audit%20E-commerce&body=Bonjour%2C%0A%0AJe%20souhaite%20commander%20un%20audit%20de%20ma%20boutique%20%3A%0A%0AURL%20du%20site%20%3A%20" class="btn-primary" style="display: inline-flex;">
+        Commander l'audit — 49€
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="cgv.html">CGV</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ toggle
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
