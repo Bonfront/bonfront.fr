@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions Légales — Bonfront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* LAYOUT */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 48px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* TOC */
+    .toc {
+      position: sticky;
+      top: 88px;
+    }
+
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.5);
+      margin-bottom: 16px;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc-list a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover { color: var(--white); border-color: rgba(210,255,40,0.3); background: rgba(255,255,255,0.03); }
+    .toc-list a.active { color: var(--accent); border-color: var(--accent); }
+
+    .toc-date {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(90,90,84,0.6);
+      padding: 0 10px;
+    }
+
+    /* CONTENT */
+    .content-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .content-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .content-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .content-intro {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* ARTICLES */
+    .article {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--grey-border);
+      scroll-margin-top: 88px;
+    }
+
+    .article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .article-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.35);
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .article-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.85;
+    }
+
+    .article-body p { margin-bottom: 14px; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { font-weight: 500; color: rgba(244,244,240,0.8); }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .article-body a:hover { opacity: 0.75; }
+
+    /* INFO GRID */
+    .info-grid {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      align-items: start;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey);
+      padding-top: 1px;
+    }
+
+    .info-value {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.7);
+      line-height: 1.6;
+    }
+
+    .info-value a { color: var(--accent); text-decoration: none; }
+    .info-value a:hover { opacity: 0.75; }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(210,255,40,0.04);
+      border: 1px solid rgba(210,255,40,0.12);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 32px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .page-wrap { grid-template-columns: 1fr; padding: 100px 24px 70px; gap: 40px; }
+      .toc { display: none; }
+      .info-row { grid-template-columns: 1fr; gap: 4px; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <aside class="toc">
+      <div class="toc-label">Sommaire</div>
+      <ul class="toc-list">
+        <li><a href="#editeur">Éditeur du site</a></li>
+        <li><a href="#hebergement">Hébergement</a></li>
+        <li><a href="#propriete">Propriété intellectuelle</a></li>
+        <li><a href="#donnees">Données personnelles</a></li>
+        <li><a href="#cookies">Cookies</a></li>
+        <li><a href="#responsabilite">Limitation de responsabilité</a></li>
+        <li><a href="#hyperliens">Hyperliens</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="toc-date">Mise à jour : avril 2026</div>
+    </aside>
+
+    <main class="content">
+
+      <div class="content-header">
+        <div class="content-tag">Documents légaux</div>
+        <h1 class="content-title">Mentions Légales</h1>
+        <p class="content-intro">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique (LCEN), voici les informations légales relatives au site bonfront.fr.</p>
+      </div>
+
+      <div class="article" id="editeur">
+        <div class="article-num">Section 01</div>
+        <h2 class="article-title">Éditeur du site</h2>
+        <div class="article-body">
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-label">Nom</div>
+              <div class="info-value">Etann Jean-Baptiste</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Enseigne</div>
+              <div class="info-value">Bonfront</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Statut juridique</div>
+              <div class="info-value">Auto-entrepreneur (entreprise individuelle)</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">SIREN</div>
+              <div class="info-value">104 193 719</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">SIRET</div>
+              <div class="info-value">10419371900010</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Code APE</div>
+              <div class="info-value">6202A — Conseil en systèmes et logiciels informatiques</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Date d'immatriculation</div>
+              <div class="info-value">24 avril 2026</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Siège social</div>
+              <div class="info-value">229 rue Saint-Honoré, 75001 Paris</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Email</div>
+              <div class="info-value"><a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a></div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">TVA</div>
+              <div class="info-value">Non assujetti à la TVA — franchise en base (article 293 B du CGI)</div>
+            </div>
+          </div>
+          <p>Le directeur de la publication est Etann Jean-Baptiste.</p>
+        </div>
+      </div>
+
+      <div class="article" id="hebergement">
+        <div class="article-num">Section 02</div>
+        <h2 class="article-title">Hébergement</h2>
+        <div class="article-body">
+          <p>Le site bonfront.fr est hébergé via <strong>GitHub Pages</strong>, service proposé par :</p>
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-label">Société</div>
+              <div class="info-value">GitHub, Inc.</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Adresse</div>
+              <div class="info-value">88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Site</div>
+              <div class="info-value"><a href="https://github.com" target="_blank" rel="noopener">github.com</a></div>
+            </div>
+          </div>
+          <p>L'infrastructure technique des agents IA et services back-end est hébergée sur un serveur dédié <strong>OVHcloud</strong> situé en France.</p>
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-label">Société</div>
+              <div class="info-value">OVH SAS</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Adresse</div>
+              <div class="info-value">2 rue Kellermann, 59100 Roubaix, France</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Site</div>
+              <div class="info-value"><a href="https://www.ovhcloud.com" target="_blank" rel="noopener">ovhcloud.com</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="propriete">
+        <div class="article-num">Section 03</div>
+        <h2 class="article-title">Propriété intellectuelle</h2>
+        <div class="article-body">
+          <p>L'ensemble des éléments constituant le site bonfront.fr — textes, graphismes, logo, structure, code source — est la propriété exclusive d'Etann Jean-Baptiste, protégé par le droit d'auteur et la législation relative à la propriété intellectuelle.</p>
+          <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l'autorisation écrite préalable de Bonfront.</p>
+          <p>Toute exploitation non autorisée du site ou de l'un de ses éléments pourra faire l'objet de poursuites judiciaires conformément aux dispositions des articles L.335-2 et suivants du Code de la Propriété Intellectuelle.</p>
+        </div>
+      </div>
+
+      <div class="article" id="donnees">
+        <div class="article-num">Section 04</div>
+        <h2 class="article-title">Données personnelles</h2>
+        <div class="article-body">
+          <p>Bonfront est susceptible de collecter des données personnelles dans le cadre de l'utilisation du site et de ses services (formulaires de contact, commandes, espace client).</p>
+          <p>Ces données sont traitées conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée.</p>
+          <p>Le responsable du traitement est Etann Jean-Baptiste. Vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition sur vos données personnelles, exercisable par email à <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a>.</p>
+          <p>Pour plus d'informations, consultez notre <a href="politique-confidentialite.html">Politique de confidentialité</a>.</p>
+        </div>
+      </div>
+
+      <div class="article" id="cookies">
+        <div class="article-num">Section 05</div>
+        <h2 class="article-title">Cookies</h2>
+        <div class="article-body">
+          <p>Le site bonfront.fr est susceptible d'utiliser des cookies à des fins de fonctionnement technique et d'analyse d'audience. Aucun cookie publicitaire ou de profilage commercial n'est utilisé.</p>
+          <p>Conformément à la réglementation en vigueur, votre consentement est recueilli avant le dépôt de tout cookie non strictement nécessaire au fonctionnement du site.</p>
+          <p>Pour plus d'informations sur les cookies utilisés et la gestion de vos préférences, consultez notre <a href="cookies.html">Politique de cookies</a>.</p>
+        </div>
+      </div>
+
+      <div class="article" id="responsabilite">
+        <div class="article-num">Section 06</div>
+        <h2 class="article-title">Limitation de responsabilité</h2>
+        <div class="article-body">
+          <p>Bonfront s'efforce de maintenir les informations présentes sur le site aussi exactes et à jour que possible. Cependant, Bonfront ne saurait garantir l'exactitude, la complétude ou l'actualité des informations diffusées.</p>
+          <p>Bonfront ne peut être tenu responsable des dommages directs ou indirects résultant de l'accès au site ou de l'utilisation de son contenu, y compris en cas d'inaccessibilité temporaire du site, d'erreurs ou d'omissions dans les informations fournies, ou de tout virus pouvant infecter l'équipement de l'utilisateur.</p>
+          <div class="info-box">
+            Les informations présentes sur ce site ont une vocation générale et informative. Elles ne constituent pas un conseil juridique, fiscal ou commercial. Bonfront recommande de consulter un professionnel qualifié pour toute décision engageant des conséquences significatives.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="hyperliens">
+        <div class="article-num">Section 07</div>
+        <h2 class="article-title">Hyperliens</h2>
+        <div class="article-body">
+          <p>Le site bonfront.fr peut contenir des liens hypertextes vers des sites tiers. Ces liens sont fournis à titre informatif uniquement. Bonfront n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu, leurs pratiques en matière de confidentialité ou leur disponibilité.</p>
+          <p>La création de liens hypertextes vers le site bonfront.fr est autorisée sans accord préalable, sous réserve que le lien ne soit pas utilisé à des fins commerciales ou publicitaires, qu'il n'induise pas en erreur sur la nature de la relation entre le site référençant et Bonfront, et qu'il ne reproduise pas le contenu du site.</p>
+        </div>
+      </div>
+
+      <div class="article" id="contact">
+        <div class="article-num">Section 08</div>
+        <h2 class="article-title">Contact</h2>
+        <div class="article-body">
+          <p>Pour toute question relative aux présentes mentions légales ou à l'utilisation du site, vous pouvez contacter Bonfront :</p>
+          <div class="info-grid">
+            <div class="info-row">
+              <div class="info-label">Email</div>
+              <div class="info-value"><a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a></div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Courrier</div>
+              <div class="info-value">Etann Jean-Baptiste — Bonfront<br>229 rue Saint-Honoré<br>75001 Paris</div>
+            </div>
+          </div>
+          <p>Bonfront s'engage à répondre à toute demande dans un délai raisonnable, et au plus tard sous 15 jours ouvrés.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="audit.html">Audit</a>
+        <a href="agent.html">Agent IA SAV</a>
+        <a href="cgv.html">CGV</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    const articles = document.querySelectorAll('.article');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    articles.forEach(a => io.observe(a));
+  </script>
+
+</body>
+</html>
