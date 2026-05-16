@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonfront — Automatisation IA pour e-commerçants</title>
+  <meta name="description" content="Bonfront automatise votre service client et diagnostique votre boutique en ligne. Agent IA SAV et audit e-commerce pour les boutiques françaises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, opacity 0.2s;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-link:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .nav-link.active {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      overflow: hidden;
+    }
+
+    /* Noise grain overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Glow */
+    .hero-glow {
+      position: absolute;
+      width: 800px; height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.07) 0%, transparent 70%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.04) 0%, transparent 70%);
+      bottom: 100px; left: 10%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Vertical lines */
+    .v-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(210,255,40,0.08) 30%, rgba(210,255,40,0.08) 70%, transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .eyebrow-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.8);
+    }
+
+    .eyebrow-line {
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: rgba(210,255,40,0.2);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    h1 .word-accent {
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    h1 .word-dim {
+      color: rgba(244,244,240,0.22);
+    }
+
+    h1 .block {
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      max-width: 460px;
+      line-height: 1.8;
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(244,244,240,0.5);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.88rem;
+      text-decoration: none;
+      padding: 14px 20px;
+      border: 1px solid var(--grey-border);
+      border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    /* HERO STATS */
+    .hero-stats {
+      position: absolute;
+      bottom: 48px;
+      right: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.7s forwards;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--grey);
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      border-top: 1px solid var(--grey-border);
+      border-bottom: 1px solid var(--grey-border);
+      padding: 18px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-wrap::before,
+    .marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+
+    .marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+
+    .marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 0 40px;
+      white-space: nowrap;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ABOUT STRIP */
+    .about {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .about-left h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .about-left p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.8;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .about-card {
+      padding: 28px 32px;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .about-card:hover {
+      border-color: rgba(210,255,40,0.2);
+      background: var(--grey-mid);
+    }
+
+    .card-icon {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      background: rgba(210,255,40,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-icon svg { color: var(--accent); }
+
+    .card-body {}
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.6;
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      color: var(--grey);
+      flex-shrink: 0;
+      align-self: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .about-card:hover .card-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* MANIFESTO */
+    .manifesto {
+      border-top: 1px solid var(--grey-border);
+      padding: 100px 48px;
+      background: var(--grey-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(210,255,40,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .manifesto-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .manifesto-label {
+      position: sticky;
+      top: 80px;
+    }
+
+    .manifesto-label .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .manifesto-label h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .manifesto-items {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .m-item {
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .m-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .m-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: rgba(210,255,40,0.4);
+      margin-bottom: 12px;
+    }
+
+    .m-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .m-text {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      line-height: 1.8;
+    }
+
+    /* CTA BLOCK */
+    .cta-block {
+      padding: 100px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      padding: 56px 60px;
+      background: var(--grey-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(210,255,40,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .cta-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--grey-border);
+      padding: 40px 48px;
+    }
+
+    .footer-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--grey-border);
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {}
+
+    .footer-col-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244,244,240,0.3);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.5);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--grey);
+    }
+
+    .footer-siren {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(90,90,84,0.6);
+      letter-spacing: 0.04em;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE NAV */
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: none;
+      padding: 6px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: flex; }
+
+      .hero { padding: 100px 24px 80px; }
+      .hero-stats { display: none; }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 70px 24px;
+      }
+
+      .manifesto-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .manifesto-label { position: static; }
+      .manifesto { padding: 70px 24px; }
+
+      .cta-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 32px;
+      }
+
+      .cta-actions { align-items: flex-start; }
+      .cta-block { padding: 60px 24px; }
+
+      footer { padding: 40px 24px; }
+
+      .footer-top { flex-direction: column; }
+      .footer-nav { gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+    <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="v-line" style="left: 20%"></div>
+    <div class="v-line" style="right: 20%"></div>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <div class="eyebrow-text">Automatisation e-commerce</div>
+        <div class="eyebrow-line"></div>
+      </div>
+
+      <h1>
+        <span class="block">Votre boutique</span>
+        <span class="block word-accent">mérite mieux</span>
+        <span class="block word-dim">que du temps perdu.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Bonfront automatise votre service client et diagnostique ce qui freine vos ventes. Deux services pensés pour les e-commerçants français.
+      </p>
+
+      <div class="hero-actions">
+        <a href="audit.html" class="btn-primary">
+          Commencer par un audit
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="agent.html" class="btn-ghost">
+          Découvrir l'agent IA
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">48<span>h</span></div>
+        <div class="stat-label">Délai de livraison audit</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">Disponibilité agent IA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><div class="marquee-dot"></div>Shopify</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>WooCommerce</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>PrestaShop</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Wix</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Squarespace</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Magento</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Shopify</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>WooCommerce</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>PrestaShop</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Wix</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Squarespace</div>
+      <div class="marquee-item"><div class="marquee-dot"></div>Magento</div>
+    </div>
+  </div>
+
+  <!-- ABOUT / SERVICES -->
+  <section class="about reveal">
+    <div class="about-left">
+      <div class="section-label">Ce qu'on fait</div>
+      <h2>Deux outils.<br>Un seul objectif.</h2>
+      <p>Vous passez trop de temps à répondre aux mêmes questions, et pas assez à développer votre boutique. Bonfront s'en charge.</p>
+    </div>
+    <div class="about-right">
+      <a href="audit.html" class="about-card">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Audit e-commerce — 49€</div>
+          <div class="card-desc">Analyse complète de votre boutique livrée en 48h. Fiches produits, SAV, tunnel d'achat, réputation.</div>
+        </div>
+        <svg class="card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="agent.html" class="about-card">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Agent IA SAV — dès 29€/mois</div>
+          <div class="card-desc">Un agent formé sur votre boutique qui répond à vos clients 24h/24. Installation en une semaine.</div>
+        </div>
+        <svg class="card-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-bg"></div>
+    <div class="manifesto-inner">
+      <div class="manifesto-label reveal">
+        <div class="section-label">Notre approche</div>
+        <h2>Pourquoi Bonfront ?</h2>
+      </div>
+      <div class="manifesto-items">
+        <div class="m-item reveal">
+          <div class="m-num">01</div>
+          <div class="m-title">Pas de jargon, pas de promesses vides.</div>
+          <div class="m-text">On ne vous vend pas de l'IA comme buzzword. On vous installe des outils concrets qui font une chose précise, bien.</div>
+        </div>
+        <div class="m-item reveal">
+          <div class="m-num">02</div>
+          <div class="m-title">Conçu pour les petites boutiques.</div>
+          <div class="m-text">Les grandes agences ne s'occupent pas des e-commerçants à moins de 500k€ de CA. Bonfront si. Les tarifs aussi sont pensés pour vous.</div>
+        </div>
+        <div class="m-item reveal">
+          <div class="m-num">03</div>
+          <div class="m-title">Un interlocuteur unique.</div>
+          <div class="m-text">C'est Etann qui installe, configure et maintient. Pas de sous-traitance, pas de décharge de responsabilité. Vous savez à qui vous parlez.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block reveal">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-tag">Première étape</div>
+        <h2 class="cta-title">Commencez par voir ce qui ne va pas.</h2>
+        <p class="cta-sub">Un audit à 49€, livré en 48h. Sans engagement sur la suite.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="audit.html" class="btn-primary">
+          Commander l'audit
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:contact@bonfront.fr" class="btn-ghost">Une question d'abord →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+        <div class="footer-tagline">Automatisation IA pour e-commerçants français.</div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="audit.html">Audit e-commerce</a>
+          <a href="agent.html">Agent IA SAV</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Société</div>
+          <a href="a-propos.html">À propos</a>
+          <a href="mailto:contact@bonfront.fr">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Légal</div>
+          <a href="cgv.html">CGV</a>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-confidentialite.html">Confidentialité</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Bonfront. Tous droits réservés.</div>
+      <div class="footer-siren">SIREN 104193719 — Paris 1er</div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile toggle placeholder
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      // À implémenter si besoin d'un menu mobile complet
+    });
+  </script>
+
+</body>
+</html>
