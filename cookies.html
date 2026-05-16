@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de Cookies — Bonfront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f0d;
+      --accent: #d2ff28;
+      --white: #f4f4f0;
+      --grey: #5a5a54;
+      --grey-light: #161714;
+      --grey-mid: #222320;
+      --grey-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid rgba(210,255,40,0.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s, height 0.35s, border-color 0.2s;
+    }
+
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: rgba(210,255,40,0.6);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(14,15,13,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(244,244,240,0.55);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* LAYOUT */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 48px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* TOC */
+    .toc { position: sticky; top: 88px; }
+
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.5);
+      margin-bottom: 16px;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc-list a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover { color: var(--white); border-color: rgba(210,255,40,0.3); background: rgba(255,255,255,0.03); }
+    .toc-list a.active { color: var(--accent); border-color: var(--accent); }
+    .toc-date { margin-top: 24px; font-size: 0.72rem; font-weight: 300; color: rgba(90,90,84,0.6); padding: 0 10px; }
+
+    /* CONTENT */
+    .content-header {
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .content-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .content-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .content-intro {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.45);
+      line-height: 1.8;
+      max-width: 540px;
+    }
+
+    /* ARTICLES */
+    .article {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--grey-border);
+      scroll-margin-top: 88px;
+    }
+
+    .article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .article-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(210,255,40,0.35);
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .article-body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.55);
+      line-height: 1.85;
+    }
+
+    .article-body p { margin-bottom: 14px; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { font-weight: 500; color: rgba(244,244,240,0.8); }
+    .article-body a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    .article-body a:hover { opacity: 0.75; }
+
+    .article-body ul {
+      list-style: none;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .article-body ul li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* COOKIES TABLE */
+    .cookie-table {
+      margin: 24px 0;
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ct-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 2fr auto;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--grey-border);
+      align-items: center;
+    }
+
+    .ct-row:last-child { border-bottom: none; }
+
+    .ct-row.header {
+      background: var(--grey-mid);
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .ct-name { font-size: 0.85rem; font-weight: 400; color: rgba(244,244,240,0.8); font-family: monospace; font-size: 0.8rem; }
+    .ct-type { font-size: 0.82rem; font-weight: 300; color: var(--grey); }
+    .ct-purpose { font-size: 0.82rem; font-weight: 300; color: rgba(244,244,240,0.5); line-height: 1.5; }
+
+    .ct-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .ct-badge.required {
+      background: rgba(40,255,176,0.08);
+      color: #28ffb0;
+      border: 1px solid rgba(40,255,176,0.2);
+    }
+
+    .ct-badge.analytics {
+      background: rgba(255,170,40,0.08);
+      color: #ffaa28;
+      border: 1px solid rgba(255,170,40,0.2);
+    }
+
+    .ct-badge.optional {
+      background: rgba(90,90,84,0.15);
+      color: var(--grey);
+      border: 1px solid rgba(90,90,84,0.2);
+    }
+
+    /* TOGGLE PREFS */
+    .pref-section {
+      background: var(--grey-light);
+      border: 1px solid var(--grey-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+
+    .pref-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--grey-border);
+    }
+
+    .pref-row:last-child { border-bottom: none; }
+
+    .pref-info {}
+
+    .pref-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .pref-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.5;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--grey-mid);
+      border: 1px solid var(--grey-border);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      left: 3px; top: 3px;
+      background: var(--grey);
+      border-radius: 50%;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .toggle input:checked + .toggle-slider { background: rgba(210,255,40,0.15); border-color: rgba(210,255,40,0.3); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); background: var(--accent); }
+
+    .toggle.disabled { opacity: 0.5; pointer-events: none; }
+
+    /* SAVE BTN */
+    .btn-save {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 12px 24px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-top: 16px;
+    }
+
+    .btn-save:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .save-confirm {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: #28ffb0;
+      margin-left: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .save-confirm.visible { opacity: 1; }
+
+    /* INFO BOX */
+    .info-box {
+      background: rgba(210,255,40,0.04);
+      border: 1px solid rgba(210,255,40,0.12);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(244,244,240,0.6);
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--grey-border); padding: 32px 48px; }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+    .footer-links a { font-size: 0.8rem; font-weight: 300; color: var(--grey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .page-wrap { grid-template-columns: 1fr; padding: 100px 24px 70px; gap: 40px; }
+      .toc { display: none; }
+      .ct-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .ct-row.header .ct-purpose, .ct-purpose { display: none; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BON<span>FRONT</span></a>
+    <div class="nav-links">
+      <a href="audit.html" class="nav-link">Audit e-commerce</a>
+      <a href="agent.html" class="nav-link">Agent IA SAV</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="espace-client.html" class="nav-cta">Mon espace</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <aside class="toc">
+      <div class="toc-label">Sommaire</div>
+      <ul class="toc-list">
+        <li><a href="#quest-ce">Qu'est-ce qu'un cookie ?</a></li>
+        <li><a href="#utilisation">Ce qu'on utilise</a></li>
+        <li><a href="#liste">Liste des cookies</a></li>
+        <li><a href="#preferences">Vos préférences</a></li>
+        <li><a href="#navigateur">Gérer via le navigateur</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="toc-date">Mise à jour : avril 2026</div>
+    </aside>
+
+    <main class="content">
+
+      <div class="content-header">
+        <div class="content-tag">Documents légaux</div>
+        <h1 class="content-title">Politique de Cookies</h1>
+        <p class="content-intro">Ce site utilise un nombre minimal de cookies, strictement nécessaires à son fonctionnement. Voici ce qu'il faut savoir, sans jargon inutile.</p>
+      </div>
+
+      <div class="article" id="quest-ce">
+        <div class="article-num">Section 01</div>
+        <h2 class="article-title">Qu'est-ce qu'un cookie ?</h2>
+        <div class="article-body">
+          <p>Un cookie est un petit fichier texte déposé sur votre appareil (ordinateur, téléphone, tablette) lors de votre visite sur un site web. Il permet au site de mémoriser des informations sur votre navigation — vos préférences, votre session de connexion, ou des données statistiques anonymes.</p>
+          <p>Les cookies ne sont pas des logiciels malveillants. Ils ne peuvent pas lire les données de votre appareil ni accéder à vos fichiers personnels. Leur durée de vie est limitée dans le temps.</p>
+          <div class="info-box">
+            Bonfront n'utilise aucun cookie publicitaire, aucun cookie de profilage et ne revend aucune donnée collectée via des cookies à des tiers.
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="utilisation">
+        <div class="article-num">Section 02</div>
+        <h2 class="article-title">Ce qu'on utilise</h2>
+        <div class="article-body">
+          <p>Le site bonfront.fr utilise trois catégories de cookies :</p>
+          <ul>
+            <li><strong>Cookies strictement nécessaires</strong> — indispensables au fonctionnement du site (session de connexion à l'espace client, préférences cookies). Ils ne peuvent pas être désactivés sans altérer le fonctionnement du site.</li>
+            <li><strong>Cookies d'analyse d'audience</strong> — permettent de mesurer le trafic et les pages visitées via Google Analytics 4. Ces données sont anonymisées et agrégées. Ils sont optionnels et nécessitent votre consentement.</li>
+            <li><strong>Cookies de stockage local (localStorage/sessionStorage)</strong> — utilisés pour mémoriser votre session de connexion à l'espace client côté navigateur. Techniquement distincts des cookies mais soumis aux mêmes règles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="article" id="liste">
+        <div class="article-num">Section 03</div>
+        <h2 class="article-title">Liste des cookies</h2>
+        <div class="article-body">
+          <p>Voici l'ensemble des cookies et données de stockage déposés sur votre appareil lors de votre visite :</p>
+          <div class="cookie-table">
+            <div class="ct-row header">
+              <div>Nom</div>
+              <div>Type</div>
+              <div>Finalité</div>
+              <div>Statut</div>
+            </div>
+            <div class="ct-row">
+              <div class="ct-name">bonfront_auth</div>
+              <div class="ct-type">sessionStorage</div>
+              <div class="ct-purpose">Maintien de la session de connexion à l'espace client. Supprimé à la fermeture du navigateur.</div>
+              <div><span class="ct-badge required">Nécessaire</span></div>
+            </div>
+            <div class="ct-row">
+              <div class="ct-name">bonfront_user</div>
+              <div class="ct-type">sessionStorage</div>
+              <div class="ct-purpose">Mémorise l'email de l'utilisateur connecté pour personnaliser l'interface. Supprimé à la fermeture du navigateur.</div>
+              <div><span class="ct-badge required">Nécessaire</span></div>
+            </div>
+            <div class="ct-row">
+              <div class="ct-name">bonfront_accounts</div>
+              <div class="ct-type">localStorage</div>
+              <div class="ct-purpose">Stockage local des comptes créés sur l'espace client. Données chiffrées, non transmises à des tiers.</div>
+              <div><span class="ct-badge required">Nécessaire</span></div>
+            </div>
+            <div class="ct-row">
+              <div class="ct-name">bonfront_cookies</div>
+              <div class="ct-type">localStorage</div>
+              <div class="ct-purpose">Mémorise vos préférences en matière de cookies pour ne pas afficher la bannière à chaque visite.</div>
+              <div><span class="ct-badge required">Nécessaire</span></div>
+            </div>
+            <div class="ct-row">
+              <div class="ct-name">_ga, _ga_*</div>
+              <div class="ct-type">Cookie tiers</div>
+              <div class="ct-purpose">Google Analytics 4 — mesure d'audience anonymisée (pages vues, durée de session, source de trafic). Durée : 13 mois.</div>
+              <div><span class="ct-badge analytics">Analytique</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="preferences">
+        <div class="article-num">Section 04</div>
+        <h2 class="article-title">Vos préférences</h2>
+        <div class="article-body">
+          <p>Vous pouvez à tout moment modifier vos préférences en matière de cookies ci-dessous. Les cookies strictement nécessaires ne peuvent pas être désactivés car ils sont indispensables au fonctionnement du site.</p>
+
+          <div class="pref-section">
+            <div class="pref-row">
+              <div class="pref-info">
+                <div class="pref-name">Cookies nécessaires</div>
+                <div class="pref-desc">Session de connexion, préférences. Indispensables au fonctionnement du site.</div>
+              </div>
+              <label class="toggle disabled">
+                <input type="checkbox" checked disabled />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="pref-row">
+              <div class="pref-info">
+                <div class="pref-name">Cookies analytiques</div>
+                <div class="pref-desc">Google Analytics 4 — mesure anonymisée du trafic. Aide à améliorer le site.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="toggle-analytics" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn-save" onclick="savePrefs()">
+            Enregistrer mes préférences
+          </button>
+          <span class="save-confirm" id="save-confirm">Préférences enregistrées.</span>
+        </div>
+      </div>
+
+      <div class="article" id="navigateur">
+        <div class="article-num">Section 05</div>
+        <h2 class="article-title">Gérer via le navigateur</h2>
+        <div class="article-body">
+          <p>Vous pouvez également contrôler et supprimer les cookies directement depuis les paramètres de votre navigateur. Voici les liens vers les guides officiels des principaux navigateurs :</p>
+          <ul>
+            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/fr/kb/cookies-informations-sites-enregistrent" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+            <li><a href="https://support.microsoft.com/fr-fr/microsoft-edge/supprimer-les-cookies-dans-microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+          </ul>
+          <p>Attention : la suppression des cookies nécessaires (session de connexion) entraînera votre déconnexion de l'espace client.</p>
+          <div class="info-box">
+            Pour en savoir plus sur les cookies et vos droits, vous pouvez consulter le site de la CNIL : <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" target="_blank" rel="noopener">cnil.fr</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="article" id="contact">
+        <div class="article-num">Section 06</div>
+        <h2 class="article-title">Contact</h2>
+        <div class="article-body">
+          <p>Pour toute question relative à notre utilisation des cookies ou pour exercer vos droits, contactez-nous à <a href="mailto:contact@bonfront.fr">contact@bonfront.fr</a>.</p>
+          <p>Cette politique peut être mise à jour à tout moment. La date de dernière mise à jour est indiquée en haut de page. Nous vous encourageons à la consulter régulièrement.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">BON<span>FRONT</span></a>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="cgv.html">CGV</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Load saved prefs
+    const prefs = JSON.parse(localStorage.getItem('bonfront_cookies') || '{}');
+    document.getElementById('toggle-analytics').checked = prefs.analytics === true;
+
+    function savePrefs() {
+      const analytics = document.getElementById('toggle-analytics').checked;
+      localStorage.setItem('bonfront_cookies', JSON.stringify({ analytics }));
+
+      // Disable GA if refused
+      if (!analytics) {
+        window['ga-disable-G-M5L3W99TED'] = true;
+      }
+
+      const confirm = document.getElementById('save-confirm');
+      confirm.classList.add('visible');
+      setTimeout(() => confirm.classList.remove('visible'), 2500);
+    }
+
+    // TOC active state
+    const articles = document.querySelectorAll('.article');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    articles.forEach(a => io.observe(a));
+  </script>
+
+</body>
+</html>
