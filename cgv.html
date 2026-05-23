@@ -58,7 +58,6 @@
       border-color: rgba(210,255,40,0.6);
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -117,7 +116,6 @@
 
     .nav-cta:hover { opacity: 0.85; }
 
-    /* LAYOUT */
     .page-wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -128,7 +126,6 @@
       align-items: start;
     }
 
-    /* SIDEBAR NAV */
     .toc {
       position: sticky;
       top: 88px;
@@ -182,7 +179,6 @@
       padding: 0 10px;
     }
 
-    /* CONTENT */
     .content {}
 
     .content-header {
@@ -217,7 +213,6 @@
       max-width: 560px;
     }
 
-    /* ARTICLES */
     .article {
       margin-bottom: 56px;
       padding-bottom: 56px;
@@ -287,7 +282,6 @@
       margin-top: 2px;
     }
 
-    /* PRICING TABLE */
     .pricing-table {
       margin: 20px 0;
       background: var(--grey-light);
@@ -327,7 +321,6 @@
       white-space: nowrap;
     }
 
-    /* INFO BOX */
     .info-box {
       background: rgba(210,255,40,0.04);
       border: 1px solid rgba(210,255,40,0.12);
@@ -340,7 +333,6 @@
       line-height: 1.75;
     }
 
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--grey-border);
       padding: 32px 48px;
@@ -408,7 +400,6 @@
 
   <div class="page-wrap">
 
-    <!-- TABLE DES MATIÈRES -->
     <aside class="toc">
       <div class="toc-label">Sommaire</div>
       <ul class="toc-list">
@@ -427,10 +418,9 @@
         <li><a href="#art13">13. Données personnelles</a></li>
         <li><a href="#art14">14. Loi applicable et litiges</a></li>
       </ul>
-      <div class="toc-date">Mise à jour : avril 2026</div>
+      <div class="toc-date">Mise à jour : mai 2026</div>
     </aside>
 
-    <!-- CONTENU -->
     <main class="content">
 
       <div class="content-header">
@@ -485,7 +475,7 @@
             <div class="pt-row">
               <div class="pt-service">Installation agent IA SAV</div>
               <div class="pt-type">Paiement unique</div>
-              <div class="pt-price">500 €</div>
+              <div class="pt-price">Sur devis</div>
             </div>
             <div class="pt-row">
               <div class="pt-service">Hébergement agent IA SAV</div>
@@ -498,7 +488,7 @@
               <div class="pt-price">97 €/mois</div>
             </div>
           </div>
-          <p>Le premier mois d'hébergement est offert lors de la souscription à l'agent IA SAV. Les tarifs sont indiqués hors taxes et sont susceptibles d'évoluer. Toute modification tarifaire est communiquée au client avec un préavis d'un mois minimum.</p>
+          <p>Le tarif de l'installation de l'agent IA SAV est établi sur devis, en fonction des spécificités du projet du client. Le premier mois d'hébergement est offert lors de la souscription à l'agent IA SAV. Les tarifs sont indiqués hors taxes et sont susceptibles d'évoluer. Toute modification tarifaire est communiquée au client avec un préavis d'un mois minimum.</p>
         </div>
       </div>
 
@@ -545,7 +535,7 @@
         <div class="article-body">
           <p>Conformément à l'article L221-28 du Code de la consommation, <strong>le droit de rétractation ne s'applique pas</strong> aux prestations de services pleinement exécutées avant la fin du délai de rétractation, avec l'accord préalable express du consommateur.</p>
           <p>Pour l'<strong>audit e-commerce</strong> : en commandant, le client reconnaît expressément que la prestation débutera immédiatement et accepte de renoncer à son droit de rétractation dès lors que le rapport lui est livré.</p>
-          <p>Pour l'<strong>agent IA SAV</strong> : un droit de rétractation de 14 jours calendaires s'applique à compter de la commande, à condition que la mise en production n'ait pas encore débuté. Passé ce délai ou après démarrage des travaux d'installation, aucun remboursement ne pourra être exigé sur les frais d'installation (500 €).</p>
+          <p>Pour l'<strong>agent IA SAV</strong> : un droit de rétractation de 14 jours calendaires s'applique à compter de la commande, à condition que la mise en production n'ait pas encore débuté. Passé ce délai ou après démarrage des travaux d'installation, aucun remboursement ne pourra être exigé sur les frais d'installation.</p>
           <div class="info-box">
             La garantie de remboursement mentionnée sur la page Audit e-commerce est une garantie commerciale propre à Bonfront, distincte du droit légal de rétractation. Elle s'applique si le rapport livré ne contient aucune recommandation actionnable. Toute demande doit être formulée dans les 7 jours suivant la réception du rapport.
           </div>
@@ -636,7 +626,7 @@
           <p>À défaut d'accord amiable dans un délai de 30 jours à compter de la notification du litige, tout différend sera soumis à la compétence exclusive des tribunaux de <strong>Toulouse (France)</strong>.</p>
           <p>Conformément à l'article L616-1 du Code de la consommation, le client consommateur peut recourir gratuitement à un médiateur de la consommation. Bonfront adhère au dispositif de médiation de la consommation de la MEDICYS (www.medicys.fr).</p>
           <div class="info-box">
-            Ces CGV ont été mises à jour en avril 2026. Bonfront se réserve le droit de les modifier à tout moment. La version en vigueur au moment de la commande est celle applicable à la prestation concernée.
+            Ces CGV ont été mises à jour en mai 2026. Bonfront se réserve le droit de les modifier à tout moment. La version en vigueur au moment de la commande est celle applicable à la prestation concernée.
           </div>
         </div>
       </div>
@@ -678,7 +668,6 @@
     }
     animateRing();
 
-    // TOC active state on scroll
     const articles = document.querySelectorAll('.article');
     const tocLinks = document.querySelectorAll('.toc-list a');
 
